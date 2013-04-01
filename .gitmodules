@@ -34,9 +34,6 @@
 [submodule "bundle/vim-indent-guides"]
 	path = bundle/vim-indent-guides
 	url = https://github.com/nathanaelkane/vim-indent-guides.git
-[submodule "bundle/omnicppcomplete"]
-	path = bundle/omnicppcomplete
-	url = https://github.com/vim-scripts/OmniCppComplete.git
 [submodule "bundle/doxygen-support"]
 	path = bundle/doxygen-support
 	url = https://github.com/vim-scripts/doxygen-support.vim.git
@@ -49,3 +46,9 @@
 [submodule "bundle/ctrlp"]
 	path = bundle/ctrlp
 	url = https://github.com/kien/ctrlp.vim.git
+[submodule "bundle/clang"]
+	path = bundle/clang
+	url = https://github.com/Rip-Rip/clang_complete.git
+[submodule "bundle/ycm"]
+	path = bundle/ycm
+	url = https://github.com/Valloric/YouCompleteMe.git
