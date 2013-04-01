@@ -51,6 +51,9 @@ cmap ,, <cr>
 nmap <M-c> :e! ~/.vim/linux.vim<cr>
 
 "切换选项卡
+nmap n :tabnext<cr>
+nmap p :tabprevious<cr>
+
 nmap <M-p> :tabprevious<cr>
 nmap <M-n> :tabnext<cr>
 nmap <C-t> :tabnew<cr>
@@ -60,6 +63,11 @@ nmap <M-l> :bnext<cr>
 nmap <M-h> :bprevious<cr>
 nmap <M-a> :bfirst<cr>
 nmap <M-e> :blast<cr>
+
+nmap l :bnext<cr>
+nmap h :bprevious<cr>
+nmap a :bfirst<cr>
+nmap e :blast<cr>
 
 "换大小写
 inoremap <C-k><C-u> <esc>bgUwea
@@ -79,6 +87,4 @@ cmap ;py py print
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
 " python --> jedi-vim
-let g:jedi#related_names_command = "<leader><leader>n"
-
 "}}}

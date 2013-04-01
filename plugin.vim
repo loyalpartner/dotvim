@@ -27,3 +27,7 @@ nmap <F4> :AuthorInfoDetect<cr>
 
 
 "let g:ycm_extra_conf_globlist = ['/usr/include/c++/4.7.2/*','!~/*']
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_key_invoke_completion = '<C-@>'
