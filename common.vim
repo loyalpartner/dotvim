@@ -400,3 +400,9 @@ function! CheckPythonSyntax()
     let &errorformat = ef 
 endfunction
 "}}}
+
+" 补全菜单颜色
+highlight! PmenuSbar  NONE
+highlight! PmenuThumb NONE
+highlight! Pmenu      NONE
+highlight! link PmenuSel NonText
