@@ -85,6 +85,10 @@ syntax enable
 colorscheme desert
 set background=dark
 
+"set list
+nmap <leader>l :set list!<cr>
+set listchars=tab:▸\ ,eol:¬
+
 " Set extra options when running in GUI mode
 if has("gui_running")
     set guioptions-=T

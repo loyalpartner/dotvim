@@ -15,6 +15,8 @@ au FileType vim set foldmethod=marker
 "{{{
 set fencs=utf8,cp936,chinese,ucs-bom,gb18030 enc=utf8 
 
+set guifont=powerline
+
 set mouse=a
 
 set t_Co=256
@@ -49,6 +51,7 @@ cmap ,, <cr>
 
 "编辑配置文件
 nmap <M-c> :e! ~/.vim/linux.vim<cr>
+nmap c :e! ~/.vim/linux.vim<cr>
 
 "切换选项卡
 nmap n :tabnext<cr>
