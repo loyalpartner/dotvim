@@ -221,6 +221,7 @@ nmap <silent> <M-j> mz:m+<cr>`z
 nmap <silent> <M-k> mz:m-2<cr>`z
 vmap <silent> <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <silent> <M-k> :m'<-2<cr>`>my`<mzgv`yo`z  
+" 终端
 nmap <silent> j mz:m+<cr>`z
 nmap <silent> k mz:m-2<cr>`z
 vmap <silent> j :m'>+<cr>`<my`>mzgv`yo`z
@@ -250,10 +251,12 @@ autocmd BufWrite *.coffee :call DeleteTrailingWS()
 vnoremap <silent> gv :call VisualSelection('gv')<CR>
 
 " Open vimgrep and put the cursor in the right position
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
+map <leader>g :vimgrep //j **/*.<Home><right><right><right><right><right><right><right><right><right>
+map <S-F3> :vimgrep /<c-r>=expand("<cword>")<cr>/j **/*.
 
 " Vimgreps in the current file
-map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
+map <leader><space> :vimgrep //j <C-R>%<C-A><Home><right><right><right><right><right><right><right><right><right>
+map <F3> :vimgrep /<c-r>=expand("<cword>")<cr>/j <C-R>%<C-A><cr><Esc>:copen<cr>
 
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
@@ -262,7 +265,7 @@ vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 "
 " When you search with vimgrep, display your results in cope by doing:
 "   <leader>cc
-"
+""
 " To go to the next search result do:
 "   <leader>n
 "

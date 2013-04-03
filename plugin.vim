@@ -34,3 +34,15 @@ let g:ycm_key_invoke_completion = '<C-@>'
 let g:Powerline_symbols = 'fancy'
 "}}}
 
+"{{{
+let g:pyflakes_use_quickfix = 0
+"}}}
+
+"{{{ Syntastic
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_check_on_open=1
+
+"}}}
