@@ -24,10 +24,6 @@ set t_Co=256
 " 隐藏菜单,滚动条等
 set guioptions=gte
 
-" 显示当前行,列
-set cursorline
-"set cursorcolumn
-
 " 自动补全 --> 不选中第一项
 set completeopt+=longest
 set complete=.,w,b,k "设置补全提示项

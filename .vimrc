@@ -1,5 +1,6 @@
 " vim:set foldmethod=marker tabstop=4 shiftwidth=4 softtabstop=4 expandtab:
-
+"
+"
 if(has("win32") || has("win95") || has("win64") || has("win16")) "判定当前操作系统类型{{{
     let g:iswindows=1
 else
@@ -25,3 +26,4 @@ else
    call pathogen#helptags()
    filetype plugin indent on
 endif "}}}
+

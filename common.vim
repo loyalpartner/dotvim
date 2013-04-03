@@ -3,7 +3,12 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
 set history=700
-set nu
+"set nu
+set colorcolumn=80
+
+" 显示当前行,列
+set cursorline
+set cursorcolumn
 
 " Enable filetype plugins
 filetype plugin on
@@ -80,10 +85,9 @@ set tm=500
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
-syntax enable
-
-colorscheme desert
-set background=dark
+"syntax enable
+"colorscheme desert
+"set background=dark
 
 "set list
 nmap <leader>l :set list!<cr>
