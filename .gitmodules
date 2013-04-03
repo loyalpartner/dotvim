@@ -49,3 +49,6 @@
 [submodule "bundle/ycm"]
 	path = bundle/ycm
 	url = https://github.com/Valloric/YouCompleteMe.git
+[submodule "bundle/py-imports"]
+	path = bundle/py-imports
+	url = https://github.com/vim-scripts/python-imports.vim.git
