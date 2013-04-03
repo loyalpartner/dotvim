@@ -68,6 +68,7 @@ class GoogleTranslate(object):
 EOF
 
 nmap <silent> <M-d> :call QueryWordUnderCursor()<cr>
+nmap <silent> d :call QueryWordUnderCursor()<cr>
 "vmap ,2d :call QueryWordUnderCursor()<cr>
 
 fun! QueryWordUnderCursor()

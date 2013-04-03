@@ -48,6 +48,7 @@ let g:vimim_punctuation=0
 imap ,, <Esc>
 nmap ,, :
 cmap ,, <cr> 
+nmap ,r :reg<cr>
 
 "编辑配置文件
 nmap <M-c> :e! ~/.vim/linux.vim<cr>
@@ -73,8 +74,8 @@ nmap a :bfirst<cr>
 nmap e :blast<cr>
 
 "换大小写
-inoremap <C-k><C-u> <esc>bgUwea
-inoremap <C-k><C-l> <esc>bguwea
+inoremap <C-k><C-u> <esc>gUawea
+inoremap <C-k><C-l> <esc>guawea
 inoremap <C-k><C-t> <esc>b~ea
 
 " 用途:更改C++参数
