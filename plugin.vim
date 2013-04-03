@@ -9,11 +9,11 @@ let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
 "}}}
 
 "{{{ Indent Guides
-let g:indent_guides_guide_size = 1
+let g:indent_guides_guide_size = 2
 let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_auto_colors = 0
-hi IndentGuidesOdd  guibg=red   ctermbg=3
-hi IndentGuidesEven guibg=green ctermbg=4
+"let g:indent_guides_auto_colors = 0
+"hi IndentGuidesOdd  guibg=red   ctermbg=3
+"hi IndentGuidesEven guibg=green ctermbg=4
 "}}}
 
 "{{{ authorinfo
@@ -39,10 +39,14 @@ let g:pyflakes_use_quickfix = 0
 "}}}
 
 "{{{ Syntastic
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 let g:syntastic_check_on_open=1
-
+let g:syntastic_error_symbol='=>'
+let g:syntastic_warning_symbol='!!'
+let g:syntastic_python_checkers = ['flake8', 'pylint']
+"}}}
+"
+"
+"
+"{{{
+"au filetype cpp set syntax=cpp11
 "}}}
