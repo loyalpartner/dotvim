@@ -8,6 +8,7 @@
 "}}}
 
 au FileType vim set foldmethod=marker
+set hidden
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => 图形相关
@@ -16,6 +17,10 @@ au FileType vim set foldmethod=marker
 set fencs=utf8,cp936,chinese,ucs-bom,gb18030 enc=utf8 
 
 set guifont=powerline
+
+" 显示当前行,列
+au InsertEnter * set nocursorline
+au InsertLeave * set cursorline
 
 set mouse=a
 
@@ -42,32 +47,57 @@ let g:vimim_punctuation=0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
 imap ,, <Esc>
-nmap ,, :
+noremap ,, :
 cmap ,, <cr> 
-nmap ,r :reg<cr>
+noremap ,r :reg<cr>
+
+"显示行号
+set nu
+noremap q :q<cr>
+noremap <M-q> :q<cr>
+
+"帮助
+inoremap <F1> <Esc>:h 
+noremap <F1> :h 
+
+" 移动 
+inoremap f <S-Right>
+inoremap b <S-Left>
+"inoremap k <Up>
+"inoremap j <Down>
+
+" CTRL-U and CTRL-W in insert mode cannot be undone.  Use CTRL-G u to first
+"
+" " break undo, so that we can undo those changes after inserting a line break.
+"
+" " For more info, see: http://vim.wikia.com/wiki/Recover_from_accidental_Ctrl-U
+"
+inoremap <c-u> <c-g>u<c-u>
+inoremap <c-w> <c-g>u<c-w>
+
 
 "编辑配置文件
-nmap <M-c> :e! ~/.vim/linux.vim<cr>
-nmap c :e! ~/.vim/linux.vim<cr>
+noremap <M-c> :e! ~/.vim/linux.vim<cr>
+noremap c :e! ~/.vim/linux.vim<cr>
 
 "切换选项卡
-nmap n :tabnext<cr>
-nmap p :tabprevious<cr>
+"nmap n :tabnext<cr>
+"nmap p :tabprevious<cr>
 
-nmap <M-p> :tabprevious<cr>
-nmap <M-n> :tabnext<cr>
-nmap <C-t> :tabnew<cr>
+noremap <M-p> :tabprevious<cr>
+"nmap <M-n> :tabnext<cr>
+"nmap <C-t> :tabnew<cr>
 
 " 切换缓冲
-nmap <M-l> :bnext<cr>
-nmap <M-h> :bprevious<cr>
-nmap <M-a> :bfirst<cr>
-nmap <M-e> :blast<cr>
+noremap <M-l> :bnext<cr>
+noremap <M-h> :bprevious<cr>
+noremap <M-a> :bfirst<cr>
+noremap <M-e> :blast<cr>
 
-nmap l :bnext<cr>
-nmap h :bprevious<cr>
-nmap a :bfirst<cr>
-nmap e :blast<cr>
+noremap l :bnext<cr>
+noremap h :bprevious<cr>
+noremap a :bfirst<cr>
+noremap e :blast<cr>
 
 "换大小写
 inoremap <C-k><C-u> <esc>gUawea
@@ -82,9 +112,3 @@ cmap ;py py print
 "}}}
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => 编程相关
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"{{{
-" python --> jedi-vim
-"}}}

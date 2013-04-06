@@ -1,14 +1,12 @@
+au filetype vim set formatoptions-=c formatoptions-=r formatoptions-=o
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
 set history=700
 "set nu
-set colorcolumn=80
-
-" 显示当前行,列
-set cursorline
-set cursorcolumn
+"set colorcolumn=80
 
 " Enable filetype plugins
 filetype plugin on
@@ -23,8 +21,17 @@ let mapleader = ","
 let g:mapleader = ","
 
 " Fast saving
-nmap <leader>w :w!<cr>
+noremap <leader>w :w!<cr>
 
+" In normal mode, we use : much more often than ; so lets swap them.
+" WARNING: this will cause any "ordinary" map command without the "nore" prefix
+" that uses ":" to fail. For instance, "map <f2> :w" would fail, since vim will
+" read ":w" as ";w" because of the below remappings. Use "noremap"s in such
+" situations and you'll be fine.
+nnoremap ; :
+nnoremap : ;
+vnoremap ; :
+vnoremap : ;
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -90,7 +97,7 @@ set tm=500
 "set background=dark
 
 "set list
-nmap <leader>l :set list!<cr>
+noremap <leader>l :set list!<cr>
 set listchars=tab:▸\ ,eol:¬
 
 " Set extra options when running in GUI mode
@@ -153,40 +160,40 @@ vnoremap <silent> # :call VisualSelection('b')<CR>
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Treat long lines as break lines (useful when moving around in them)
-map j gj
-map k gk
+noremap j gj
+noremap k gk
 
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 "map <space> /
 "map <c-space> ?
 
 " Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
+noremap <silent> <leader><cr> :noh<cr>
 
 " Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+noremap <C-j> <C-W>j
+noremap <C-k> <C-W>k
+noremap <C-h> <C-W>h
+noremap <C-l> <C-W>l
 
 " Close the current buffer
-map <leader>bd :Bclose<cr>
+noremap <leader>bd :Bclose<cr>
 
 " Close all the buffers
-map <leader>ba :1,1000 bd!<cr>
+noremap <leader>ba :1,1000 bd!<cr>
 
 " Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
+noremap <leader>tn :tabnew<cr>
+noremap <leader>to :tabonly<cr>
 "map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
+noremap <leader>tm :tabmove
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+noremap <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
 " Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
+noremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Specify the behavior when switching between buffers 
 try
@@ -218,24 +225,25 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap VIM 0 to first non-blank character
-map 0 ^
+noremap 0 ^
 
 " Move a line of text using ALT+[np] or Comamnd+[jk] on mac
-nmap <silent> <M-j> mz:m+<cr>`z
-nmap <silent> <M-k> mz:m-2<cr>`z
-vmap <silent> <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <silent> <M-k> :m'<-2<cr>`>my`<mzgv`yo`z  
+noremap <silent> <M-j> mz:m+<cr>`z
+noremap <silent> <M-k> mz:m-2<cr>`z
+vnoremap <silent> <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vnoremap <silent> <M-k> :m'<-2<cr>`>my`<mzgv`yo`z  
+
 " 终端
-nmap <silent> j mz:m+<cr>`z
-nmap <silent> k mz:m-2<cr>`z
-vmap <silent> j :m'>+<cr>`<my`>mzgv`yo`z
-vmap <silent> k :m'<-2<cr>`>my`<mzgv`yo`z  
+noremap <silent> j mz:m+<cr>`z
+noremap <silent> k mz:m-2<cr>`z
+vnoremap <silent> j :m'>+<cr>`<my`>mzgv`yo`z
+vnoremap <silent> k :m'<-2<cr>`>my`<mzgv`yo`z  
 
 if has("mac") || has("macunix")
-  nmap <D-j> <M-j>
-  nmap <D-k> <M-k>
-  vmap <D-j> <M-j>
-  vmap <D-k> <M-k>
+  nnoremap <D-j> <M-j>
+  noremap <D-k> <M-k>
+  vnoremap <D-j> <M-j>
+  vnoremap <D-k> <M-k>
 endif
 
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
@@ -255,12 +263,12 @@ autocmd BufWrite *.coffee :call DeleteTrailingWS()
 vnoremap <silent> gv :call VisualSelection('gv')<CR>
 
 " Open vimgrep and put the cursor in the right position
-map <leader>g :vimgrep //j **/*.<Home><right><right><right><right><right><right><right><right><right>
-map <S-F3> :vimgrep /<c-r>=expand("<cword>")<cr>/j **/*.
+noremap <leader>g :vimgrep //j **/*.<Home><right><right><right><right><right><right><right><right><right>
+noremap <S-F3> :vimgrep /<c-r>=expand("<cword>")<cr>/j **/*.
 
 " Vimgreps in the current file
-map <leader><space> :vimgrep //j <C-R>%<C-A><Home><right><right><right><right><right><right><right><right><right>
-map <F3> :vimgrep /<c-r>=expand("<cword>")<cr>/j <C-R>%<C-A><cr><Esc>:copen<cr>
+noremap <leader><space> :vimgrep //j <C-R>%<C-A><Home><right><right><right><right><right><right><right><right><right>
+noremap <F3> :vimgrep /<c-r>=expand("<cword>")<cr>/j <C-R>%<C-A><cr><Esc>:copen<cr>
 
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
@@ -276,23 +284,23 @@ vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 " To go to the previous search results do:
 "   <leader>p
 "
-map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
+noremap <leader>cc :botright cope<cr>
+noremap <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
+noremap <leader>n :cn<cr>
+noremap <leader>p :cp<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pressing ,ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
+noremap <leader>ss :setlocal spell!<cr>
 
 " Shortcuts using <leader>
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>s? z=
+noremap <leader>sn ]s
+noremap <leader>sp [s
+noremap <leader>sa zg
+noremap <leader>s? z=
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -302,10 +310,10 @@ map <leader>s? z=
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Quickly open a buffer for scripbble
-map <leader>q :e ~/buffer<cr>
+noremap <leader>q :e ~/buffer<cr>
 
 " Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
+noremap <leader>pp :setlocal paste!<cr>
 
 
 
@@ -370,7 +378,7 @@ function! <SID>BufcloseCloseIt()
 endfunction
 
 " 打开网址,文件浏览器
-nmap <silent> <leader>o :call OpenUrlUnderCursor()<CR>
+noremap <silent> <leader>o :call OpenUrlUnderCursor()<CR>
 function! OpenUrlUnderCursor()
     "execute "normal BvEy"
 python << EOF
@@ -398,17 +406,12 @@ EOF
 endfunction
 
 " Python Run 
-nmap <silent> <leader><F5> :call CheckPythonSyntax()<cr>
+noremap <leader><F5> :call CheckPythonSyntax()<cr>
 function! CheckPythonSyntax() 
     let mp = &makeprg 
-    let ef = &errorformat 
-    let exeFile = expand("%:t") 
     setlocal makeprg=python\ -u 
-    set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m 
     silent make % 
-    copen 
     let &makeprg     = mp 
-    let &errorformat = ef 
 endfunction
 "}}}
 
@@ -417,3 +420,7 @@ highlight! PmenuSbar  NONE
 highlight! PmenuThumb NONE
 highlight! Pmenu      NONE
 highlight! link PmenuSel NonText
+
+autocmd BufRead *.py set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
+autocmd BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+autocmd BufRead *.py noremap <silent> <F5> :!python %<CR>
