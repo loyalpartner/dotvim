@@ -63,4 +63,7 @@ let g:syntastic_warning_symbol='!!'
 let g:syntastic_python_checkers = ['flake8', 'pylint']
 "}}}
 
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               easymotion                                "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:EasyMotion_leader_key = '<Leader>e'
