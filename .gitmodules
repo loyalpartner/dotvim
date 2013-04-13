@@ -67,3 +67,6 @@
 [submodule "bundle/ListToggle"]
 	path = bundle/ListToggle
 	url = https://github.com/Valloric/ListToggle.git
+[submodule "bundle/vim-python-mode"]
+	path = bundle/vim-python-mode
+	url = https://github.com/loyalpartner/python-mode.git

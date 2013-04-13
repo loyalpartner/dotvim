@@ -54,6 +54,7 @@ let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_key_invoke_completion = '<C-L>'
+let g:ycm_filetype_blacklist = {'python':1}
 "inoremap <Tab> <C-x><C-o>
 "inoremap <S-Tab> <Tab>
 
@@ -65,7 +66,10 @@ let g:Powerline_symbols = 'fancy'
 let g:syntastic_check_on_open=1
 let g:syntastic_error_symbol='=>'
 let g:syntastic_warning_symbol='!!'
-let g:syntastic_python_checkers = ['flake8', 'pylint']
+"let g:syntastic_python_checkers = ['flake8', 'pylint']
+let g:syntastic_mode_map={'mode':'active',
+            \ 'active_filetypes': [],
+            \ 'passive_filetypes': ['python'] }
 "}}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -88,3 +92,11 @@ let g:lt_quickfix_list_toggle_map = '<leader>qq'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "nnoremap <leader>a= :Align = //
 "vnoremap <leader>a= :Align = //
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               python-mode                               "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:pymode_lint=0
+let g:pymode_lint_cwindow=0
+let g:pymode_lint_hold=1

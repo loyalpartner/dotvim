@@ -62,7 +62,7 @@ nnoremap <Down>  <Nop>
 imap ,, <Esc>
 noremap ,, :
 cmap ,, <cr> 
-noremap ,r :reg<cr>
+"noremap ,r :reg<cr>
 
 "显示行号
 "set nu
@@ -100,8 +100,8 @@ nmap ca, f,ld2F,i,<ESC>a "delete arg and insert
 noremap <M-c> :e! ~/.vim/linux.vim<cr>
 noremap c :e! ~/.vim/linux.vim<cr>
 
-inoremap <C-e> <C-x><C-e>
-inoremap <C-y> <C-x><C-y>
+"inoremap <C-e> <C-x><C-e>
+"inoremap <C-y> <C-x><C-y>
 
 " 
 cnoremap <C-p> <Up>
