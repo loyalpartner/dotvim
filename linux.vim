@@ -1,4 +1,4 @@
-" vim:set foldmethod=marker :
+" vim:set foldmethod=marker tabstop=4 shiftwidth=4 softtabstop=4 expandtab:
 
 " 让vim 在linux 终端和gui保持一致{{{
 "for i in range(65, 90) + range(97, 122) " 让终端支持M-*快捷键
@@ -46,13 +46,26 @@ let g:vimim_punctuation=0
 " => 按键配置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
+inoremap <Left>  <Nop>
+vnoremap <Left>  <Nop>
+nnoremap <Left>  <Nop>
+inoremap <Right> <Nop>
+vnoremap <Right> <Nop>
+nnoremap <Right> <Nop>
+inoremap <Up>    <Nop>
+vnoremap <Up>    <Nop>
+nnoremap <Up>    <Nop>
+inoremap <Down>  <Nop>
+vnoremap <Down>  <Nop>
+nnoremap <Down>  <Nop>
+
 imap ,, <Esc>
 noremap ,, :
 cmap ,, <cr> 
 noremap ,r :reg<cr>
 
 "显示行号
-set nu
+"set nu
 noremap q :q<cr>
 noremap <M-q> :q<cr>
 
@@ -67,18 +80,32 @@ inoremap b <S-Left>
 "inoremap j <Down>
 
 " CTRL-U and CTRL-W in insert mode cannot be undone.  Use CTRL-G u to first
-"
-" " break undo, so that we can undo those changes after inserting a line break.
-"
-" " For more info, see: http://vim.wikia.com/wiki/Recover_from_accidental_Ctrl-U
-"
+" break undo, so that we can undo those changes after inserting a line break.
+" For more info, see: http://vim.wikia.com/wiki/Recover_from_accidental_Ctrl-U
 inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
 
+" gO to create a new line below cursor in normal mode
+nnoremap go o<ESC>k
+" g<Ctrl+o> to create a new line above cursor (Ctrl to prevent collision with 'go' command)
+nnoremap g<C-o> O<ESC>j
+
+"custom comma motion mapping
+nmap di, f,dT,
+nmap ci, f,cT,
+nmap da, f,ld2F,i,<ESC>l "delete argument 
+nmap ca, f,ld2F,i,<ESC>a "delete arg and insert
 
 "编辑配置文件
 noremap <M-c> :e! ~/.vim/linux.vim<cr>
 noremap c :e! ~/.vim/linux.vim<cr>
+
+inoremap <C-e> <C-x><C-e>
+inoremap <C-y> <C-x><C-y>
+
+" 
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
 
 "切换选项卡
 "nmap n :tabnext<cr>
@@ -93,7 +120,6 @@ noremap <M-l> :bnext<cr>
 noremap <M-h> :bprevious<cr>
 noremap <M-a> :bfirst<cr>
 noremap <M-e> :blast<cr>
-
 noremap l :bnext<cr>
 noremap h :bprevious<cr>
 noremap a :bfirst<cr>
@@ -106,9 +132,10 @@ inoremap <C-k><C-t> <esc>b~ea
 
 " 用途:更改C++参数
 cmap ;tf ?^{??(?,/^}/s/ 
-
-" 用途:输入表达式可以当作计算器
 cmap ;py py print 
-"}}}
 
+"au FileType c,cpp inoremap <Tab> <C-x><C-o> 
+"au FileType c cpp inoremap <S-Tab> <Tab>
+                  
+"}}}
 

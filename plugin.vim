@@ -16,7 +16,7 @@ let g:ctrlp_custom_ignore = {
 
 "{{{ 主题
 syntax enable
-colorscheme kolor2
+colorscheme valloric
 "set background=dark
 
 let g:kolor_italic=1                    " Enable italic. Default: 1
@@ -29,12 +29,13 @@ let g:kolor_alternative_matchparen=0    " Gray 'MatchParen' color. Default: 0
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
-hi IndentGuidesOdd  ctermbg=237 ctermfg=none
-hi IndentGuidesEven ctermbg=237 ctermfg=none
+"hi IndentGuidesOdd  ctermbg=237 ctermfg=none
+"hi IndentGuidesEven ctermbg=237 ctermfg=none
 "}}}
 
-"{{{ CtrlP
+"{{{ UltiSnips
 let g:UltiSnipsListSnippets="s"
+let g:UltiSnipsExpandTrigger="^[t"
 "}}}
 
 "{{{ authorinfo
@@ -44,13 +45,17 @@ let g:vimrc_homepage='http://www.none.cn'
 nmap <F4> :AuthorInfoDetect<cr>
 "}}}
 
-"{{{ ycm
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   ycm                                   "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:ycm_extra_conf_globlist = ['/usr/include/c++/4.7.2/*']
 let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_confirm_extra_conf = 0
-let g:ycm_key_invoke_completion = '<C-@>'
-"}}}
+let g:ycm_key_invoke_completion = '<C-L>'
+"inoremap <Tab> <C-x><C-o>
+"inoremap <S-Tab> <Tab>
 
 "{{{ PowerLine
 let g:Powerline_symbols = 'fancy'
@@ -67,3 +72,19 @@ let g:syntastic_python_checkers = ['flake8', 'pylint']
 "                               easymotion                                "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:EasyMotion_leader_key = '<Leader>e'
+let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'
+"let g:EasyMotion_keys = 'asdfghjkl'
+let g:EasyMotion_do_shade = 0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               ToggleList                                "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:lt_location_list_toggle_map = '<leader>ll'
+let g:lt_quickfix_list_toggle_map = '<leader>qq'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                  Align                                  "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"nnoremap <leader>a= :Align = //
+"vnoremap <leader>a= :Align = //

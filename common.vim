@@ -1,5 +1,3 @@
-au filetype vim set formatoptions-=c formatoptions-=r formatoptions-=o
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -97,7 +95,7 @@ set tm=500
 "set background=dark
 
 "set list
-noremap <leader>l :set list!<cr>
+noremap <leader>ls :set list!<cr>
 set listchars=tab:▸\ ,eol:¬
 
 " Set extra options when running in GUI mode
@@ -310,7 +308,7 @@ noremap <leader>s? z=
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Quickly open a buffer for scripbble
-noremap <leader>q :e ~/buffer<cr>
+noremap <leader>qe :e ~/buffer<cr>
 
 " Toggle paste mode on and off
 noremap <leader>pp :setlocal paste!<cr>
@@ -405,6 +403,46 @@ if cl != '':
 EOF
 endfunction
 
+" 查阅帮助文档的时候,当光标停留在某个tag上面的时候,显示预览信息
+"au! CursorHold *.cnx nested exe "silent! ptag " . expand("<cword>")
+
+au! CursorHold *.cnx nested call PreviewWord()
+func PreviewWord()
+    if &previewwindow            " 不要在预览窗口里执行
+        return
+    endif
+    let w = expand("<cword>")        " 在当前光标位置抓词
+    if w =~ '\a'            " 如果该单词包括一个字母
+        " 在显示下一个标签之前，删除所有现存的语法高亮
+        silent! wincmd P            " 跳转至预览窗口
+        if &previewwindow        " 如果确实转到了预览窗口……
+            match none            " 删除语法高亮
+            wincmd p            " 回到原来的窗口
+        endif
+
+        " 试着显示当前光标处匹配的标签
+        try
+            exe "ptag " . w
+        catch
+            return
+        endtry
+
+        silent! wincmd P            " 跳转至预览窗口
+        if &previewwindow        " 如果确实转到了预览窗口……
+            if has("folding")
+                silent! .foldopen        " 展开折叠的行
+            endif
+            call search("$", "b")        " 到前一行的行尾
+            let w = substitute(w, '\\', '\\\\', "")
+            call search('\<\V' . w . '\>')    " 定位光标在匹配的单词上
+            " 给在此位置的单词加上匹配高亮
+            hi previewWord term=bold ctermbg=green guibg=green
+            exe 'match previewWord "\%' . line(".") . 'l\%' . col(".") . 'c\k*"'
+            wincmd p            " 返回原来的窗口
+        endif
+    endif
+endfun
+
 " Python Run 
 noremap <leader><F5> :call CheckPythonSyntax()<cr>
 function! CheckPythonSyntax() 
@@ -424,3 +462,9 @@ highlight! link PmenuSel NonText
 autocmd BufRead *.py set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
 autocmd BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
 autocmd BufRead *.py noremap <silent> <F5> :!python %<CR>
+autocmd BufRead *.c  noremap <silent> <F5> :call RunC()<cr>
+func! RunC()  
+    exec silent "w"  
+    exec silent "!gcc % -g -o %<"  
+    exec "!./%<"  
+endfunc  

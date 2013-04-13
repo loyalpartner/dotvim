@@ -61,3 +61,9 @@
 [submodule "bundle/easymotion"]
 	path = bundle/easymotion
 	url = https://github.com/Lokaltog/vim-easymotion.git
+[submodule "bundle/operator-highlight"]
+	path = bundle/operator-highlight
+	url = https://github.com/Valloric/vim-operator-highlight.git
+[submodule "bundle/ListToggle"]
+	path = bundle/ListToggle
+	url = https://github.com/Valloric/ListToggle.git

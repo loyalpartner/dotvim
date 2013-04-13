@@ -2,10 +2,10 @@
 # ========== USER MACROS ======================================
 # =============================================================
 #
-$AUTHOR$    = Dr. Fritz Mehner 
+$AUTHOR$    = GaoPP
 $AUTHORREF$ = fgm
-$EMAIL$     = mehner@fh-swf.de
-$COMPANY$   = FH Südwestfalen, Iserlohn
+$EMAIL$     = loyalpartner@163.com
+$COMPANY$   = none
 $COPYRIGHT$ = Copyright (c) $YEAR$, $AUTHOR$
 $sortmenus$ = no
 
