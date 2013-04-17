@@ -34,43 +34,56 @@ let g:indent_guides_auto_colors = 0
 "}}}
 
 "{{{ UltiSnips
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                UltiSnips                                "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:UltiSnipsListSnippets="s"
-let g:UltiSnipsExpandTrigger="^[t"
-"}}}
+"let g:UltiSnipsExpandTrigger="^[t"
 
-"{{{ authorinfo
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               authorinfo                                "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:vimrc_author='loyalpartner' 
 let g:vimrc_email='loyalpartner@163.com' 
 let g:vimrc_homepage='http://www.none.cn' 
-nmap <F4> :AuthorInfoDetect<cr>
-"}}}
+nnoremap <F4> :AuthorInfoDetect<cr>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   ycm                                   "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:ycm_extra_conf_globlist = ['/usr/include/c++/4.7.2/*']
-let g:ycm_autoclose_preview_window_after_insertion = 1
+"let g:ycm_autoclose_preview_window_after_insertion = 1
+"let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_key_invoke_completion = '<C-L>'
-let g:ycm_filetype_blacklist = {'python':1}
+"let g:ycm_filetype_blacklist = {'python':1}
 "inoremap <Tab> <C-x><C-o>
 "inoremap <S-Tab> <Tab>
 
-"{{{ PowerLine
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                Powerline                                "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:Powerline_symbols = 'fancy'
-"}}}
+
 
 "{{{ Syntastic
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                Syntastic                                "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_check_on_open=1
 let g:syntastic_error_symbol='=>'
 let g:syntastic_warning_symbol='!!'
-"let g:syntastic_python_checkers = ['flake8', 'pylint']
+let g:syntastic_python_checkers = ['flake8', 'pylint']
 let g:syntastic_mode_map={'mode':'active',
             \ 'active_filetypes': [],
-            \ 'passive_filetypes': ['python'] }
-"}}}
+            \ 'passive_filetypes': [] }
+            "\ 'passive_filetypes': ['python'] }
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               easymotion                                "
@@ -97,6 +110,11 @@ let g:lt_quickfix_list_toggle_map = '<leader>qq'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               python-mode                               "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:pymode = 0
 "let g:pymode_lint=0
-let g:pymode_lint_cwindow=0
-let g:pymode_lint_hold=1
+"let g:pymode_lint_checker = "pyflakes"
+let g:pymode_lint_write   = 0
+let g:pymode_lint_cwindow = 0
+let g:pymode_lint_onfly   = 0
+let g:pymode_lint_hold    = 1
+cabbr plc PyLintAuto

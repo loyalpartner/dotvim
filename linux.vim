@@ -17,12 +17,23 @@ set hidden
 set fencs=utf8,cp936,chinese,ucs-bom,gb18030 enc=utf8 
 
 set guifont=powerline
+" Setting the font to Consolas, 11 pt
+"if has("gui_running")
+  "if has("gui_gtk2")
+    "set guifont=Consolas\ 11
+  "else
+    "set guifont=Consolas:h11
+  "endif
+"endif
 
 " 显示当前行,列
-au InsertEnter * set nocursorline
-au InsertLeave * set cursorline
+set cursorline
+set cursorcolumn
 
-set mouse=a
+"set mouse=a
+
+" 设置显示按键提示
+set showcmd
 
 set t_Co=256
 
@@ -62,6 +73,7 @@ nnoremap <Down>  <Nop>
 imap ,, <Esc>
 noremap ,, :
 cmap ,, <cr> 
+noremap <Space> :
 "noremap ,r :reg<cr>
 
 "显示行号
@@ -139,3 +151,7 @@ cmap ;py py print
                   
 "}}}
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                  c,c++                                  "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au FileType c,cpp setlocal keywordprg=man\ 3

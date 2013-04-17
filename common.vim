@@ -26,10 +26,10 @@ noremap <leader>w :w!<cr>
 " that uses ":" to fail. For instance, "map <f2> :w" would fail, since vim will
 " read ":w" as ";w" because of the below remappings. Use "noremap"s in such
 " situations and you'll be fine.
-nnoremap ; :
-nnoremap : ;
-vnoremap ; :
-vnoremap : ;
+"nnoremap ; :
+"nnoremap : ;
+"vnoremap ; :
+"vnoremap : ;
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -311,7 +311,7 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 noremap <leader>qe :e ~/buffer<cr>
 
 " Toggle paste mode on and off
-noremap <leader>pp :setlocal paste!<cr>
+noremap <leader>PP :setlocal paste!<cr>
 
 
 
@@ -406,7 +406,7 @@ endfunction
 " 查阅帮助文档的时候,当光标停留在某个tag上面的时候,显示预览信息
 "au! CursorHold *.cnx nested exe "silent! ptag " . expand("<cword>")
 
-au! CursorHold *.cnx nested call PreviewWord()
+au! CursorHold *.(cnx|txt) nested call PreviewWord()
 func PreviewWord()
     if &previewwindow            " 不要在预览窗口里执行
         return
