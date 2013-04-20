@@ -1,3 +1,22 @@
-snippet $[ "" 
-$[${1:expr}]
+snippet #! "#!/bin/sh|bash" !b
+#!/bin/${1:b}${1/(b)|(s)/(?1:ash)(?2:h)}
 endsnippet
+
+snippet forin "for....in....done" !b
+for ${1:var} in ${2:;list};do
+    ${3:#statement}
+done
+endsnippet
+
+snippet ls
+`ls`
+endsnippet
+
+snippet te "test" !b
+`!p fn`
+endsnippet
+
+snippet wow
+${1:Text}`!p snip.rv = (75-2*len(t[1]))*' '+t[1].upper()`
+endsnippet
+

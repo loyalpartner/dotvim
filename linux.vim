@@ -8,7 +8,6 @@
 "}}}
 
 au FileType vim set foldmethod=marker
-set hidden
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => 图形相关
@@ -17,6 +16,7 @@ set hidden
 set fencs=utf8,cp936,chinese,ucs-bom,gb18030 enc=utf8 
 
 set guifont=powerline
+
 " Setting the font to Consolas, 11 pt
 "if has("gui_running")
   "if has("gui_gtk2")
@@ -25,26 +25,6 @@ set guifont=powerline
     "set guifont=Consolas:h11
   "endif
 "endif
-
-" 显示当前行,列
-set cursorline
-set cursorcolumn
-
-"set mouse=a
-
-" 设置显示按键提示
-set showcmd
-
-set t_Co=256
-
-" 隐藏菜单,滚动条等
-set guioptions=gte
-
-" 自动补全 --> 不选中第一项
-set completeopt+=longest
-set complete=.,w,b,k "设置补全提示项
-
-set foldlevel=100
 
 " 输入法
 let g:vimim_shuangpin='ms'
@@ -70,37 +50,6 @@ inoremap <Down>  <Nop>
 vnoremap <Down>  <Nop>
 nnoremap <Down>  <Nop>
 
-imap ,, <Esc>
-noremap ,, :
-cmap ,, <cr> 
-noremap <Space> :
-"noremap ,r :reg<cr>
-
-"显示行号
-"set nu
-noremap q :q<cr>
-noremap <M-q> :q<cr>
-
-"帮助
-inoremap <F1> <Esc>:h 
-noremap <F1> :h 
-
-" 移动 
-inoremap f <S-Right>
-inoremap b <S-Left>
-"inoremap k <Up>
-"inoremap j <Down>
-
-" CTRL-U and CTRL-W in insert mode cannot be undone.  Use CTRL-G u to first
-" break undo, so that we can undo those changes after inserting a line break.
-" For more info, see: http://vim.wikia.com/wiki/Recover_from_accidental_Ctrl-U
-inoremap <c-u> <c-g>u<c-u>
-inoremap <c-w> <c-g>u<c-w>
-
-" gO to create a new line below cursor in normal mode
-nnoremap go o<ESC>k
-" g<Ctrl+o> to create a new line above cursor (Ctrl to prevent collision with 'go' command)
-nnoremap g<C-o> O<ESC>j
 
 "custom comma motion mapping
 nmap di, f,dT,
@@ -109,8 +58,8 @@ nmap da, f,ld2F,i,<ESC>l "delete argument
 nmap ca, f,ld2F,i,<ESC>a "delete arg and insert
 
 "编辑配置文件
-noremap <M-c> :e! ~/.vim/linux.vim<cr>
-noremap c :e! ~/.vim/linux.vim<cr>
+nnoremap <M-c> :e! ~/.vim/linux.vim<cr>
+nnoremap c :e! ~/.vim/linux.vim<cr>
 
 "inoremap <C-e> <C-x><C-e>
 "inoremap <C-y> <C-x><C-y>
@@ -118,24 +67,25 @@ noremap c :e! ~/.vim/linux.vim<cr>
 " 
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+
 
 "切换选项卡
 "nmap n :tabnext<cr>
 "nmap p :tabprevious<cr>
 
-noremap <M-p> :tabprevious<cr>
-"nmap <M-n> :tabnext<cr>
-"nmap <C-t> :tabnew<cr>
-
 " 切换缓冲
-noremap <M-l> :bnext<cr>
-noremap <M-h> :bprevious<cr>
-noremap <M-a> :bfirst<cr>
-noremap <M-e> :blast<cr>
 noremap l :bnext<cr>
 noremap h :bprevious<cr>
 noremap a :bfirst<cr>
 noremap e :blast<cr>
+
+" 终端
+"noremap <silent> j mz:m+<cr>`z
+"noremap <silent> k mz:m-2<cr>`z
+"vnoremap <silent> j :m'>+<cr>`<my`>mzgv`yo`z
+"vnoremap <silent> k :m'<-2<cr>`>my`<mzgv`yo`z  
 
 "换大小写
 inoremap <C-k><C-u> <esc>gUawea
@@ -146,12 +96,11 @@ inoremap <C-k><C-t> <esc>b~ea
 cmap ;tf ?^{??(?,/^}/s/ 
 cmap ;py py print 
 
-"au FileType c,cpp inoremap <Tab> <C-x><C-o> 
-"au FileType c cpp inoremap <S-Tab> <Tab>
-                  
 "}}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  c,c++                                  "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au FileType c,cpp setlocal keywordprg=man\ 3
+
+

@@ -19,7 +19,7 @@ let mapleader = ","
 let g:mapleader = ","
 
 " Fast saving
-noremap <leader>w :w!<cr>
+noremap <leader>ww :w!<cr>
 
 " In normal mode, we use : much more often than ; so lets swap them.
 " WARNING: this will cause any "ordinary" map command without the "nore" prefix
@@ -34,6 +34,8 @@ noremap <leader>w :w!<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set t_Co=256
+
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=4
 
@@ -42,6 +44,26 @@ set wildmenu
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
+
+" 隐藏菜单,滚动条等
+set guioptions=gte
+
+" 显示当前行,列
+set cursorline
+set cursorcolumn
+
+set hidden
+
+"set mouse=a
+
+" 设置显示按键提示
+"set showcmd
+
+" 自动补全 --> 不选中第一项
+set completeopt+=longest
+"set complete=.,w,b,k "设置补全提示项
+
+set foldlevel=100
 
 "Always show current position
 set ruler
@@ -222,8 +244,17 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+noremap <Space> :
+
+cabbr qa qa!
+
 " Remap VIM 0 to first non-blank character
 noremap 0 ^
+
+noremap <M-l> :bnext<cr>
+noremap <M-h> :bprevious<cr>
+noremap <M-a> :bfirst<cr>
+noremap <M-e> :blast<cr>
 
 " Move a line of text using ALT+[np] or Comamnd+[jk] on mac
 noremap <silent> <M-j> mz:m+<cr>`z
@@ -231,18 +262,18 @@ noremap <silent> <M-k> mz:m-2<cr>`z
 vnoremap <silent> <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vnoremap <silent> <M-k> :m'<-2<cr>`>my`<mzgv`yo`z  
 
-" 终端
-noremap <silent> j mz:m+<cr>`z
-noremap <silent> k mz:m-2<cr>`z
-vnoremap <silent> j :m'>+<cr>`<my`>mzgv`yo`z
-vnoremap <silent> k :m'<-2<cr>`>my`<mzgv`yo`z  
-
 if has("mac") || has("macunix")
   nnoremap <D-j> <M-j>
   noremap <D-k> <M-k>
   vnoremap <D-j> <M-j>
   vnoremap <D-k> <M-k>
 endif
+
+" CTRL-U and CTRL-W in insert mode cannot be undone.  Use CTRL-G u to first
+" break undo, so that we can undo those changes after inserting a line break.
+" For more info, see: http://vim.wikia.com/wiki/Recover_from_accidental_Ctrl-U
+inoremap <C-u> <C-g>u<C-u>
+inoremap <C-w> <C-g>u<C-w>
 
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
 func! DeleteTrailingWS()
@@ -444,27 +475,55 @@ func PreviewWord()
 endfun
 
 " Python Run 
-noremap <leader><F5> :call CheckPythonSyntax()<cr>
-function! CheckPythonSyntax() 
-    let mp = &makeprg 
-    setlocal makeprg=python\ -u 
-    silent make % 
-    let &makeprg     = mp 
-endfunction
+"noremap <leader><F5> :call CheckPythonSyntax()<cr>
+"function! CheckPythonSyntax() 
+    "let mp = &makeprg 
+    "setlocal makeprg=python\ -u 
+    "silent make % 
+    "let &makeprg     = mp 
+"endfunction
 "}}}
 
 " 补全菜单颜色
-highlight! PmenuSbar  NONE
-highlight! PmenuThumb NONE
-highlight! Pmenu      NONE
-highlight! link PmenuSel NonText
+"highlight! PmenuSbar  NONE
+"highlight! PmenuThumb NONE
+"highlight! Pmenu      NONE
+"highlight! link PmenuSel NonText
 
-autocmd BufRead *.py set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
-autocmd BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-autocmd BufRead *.py noremap <silent> <F5> :!python %<CR>
-autocmd BufRead *.c  noremap <silent> <F5> :call RunC()<cr>
-func! RunC()  
-    exec silent "w"  
-    exec silent "!gcc % -g -o %<"  
-    exec "!./%<"  
-endfunc  
+"autocmd BufRead *.py set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
+"autocmd BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+autocmd BufRead *.py,*.c,*.sh map <silent> <F5> :call Run()<CR>
+autocmd BufRead *.py,*.c,*.sh map <silent> <leader><F5> :call Debug()<CR>
+autocmd BufRead *.py noremap <silent> <F4> :call SetBP()<CR>
+func! Run() "{{{"
+    exec "w"
+    if expand("%:p:e") == "c"
+        exec "!gcc ".expand("%:p")." -g -o ".expand("%:p:r")
+        exec "!".expand("%:p:r")
+    elseif expand("%:p:e") == "sh"
+        exec "!" . expand("%:p")
+    elseif expand("%:p:e") == "py"
+        exec "!python ".expand("%:p")
+    endif
+endfunc "}}}"
+
+func! Debug() "{{{"
+    exec "w"
+    if expand("%:p:e") == "c"
+        exec "!gcc ".expand("%:p")." -g -o ".expand("%:p:r")
+        exec "!gdb ".expand("%:p:r")
+    elseif expand("%:p:e") == "sh"
+        exec "!bashdb " . expand("%:p")
+    elseif expand("%:p:e") == "py"
+        exec "!python ".expand("%:p")
+    endif
+endfunc "}}}"
+
+func! SetBP() "{{{"
+    let bp_flag = "import pdb; pdb.set_trace()  # XXX BREAKPOINT"
+    if getline(".") == bp_flag
+        exec "normal dd"
+    else
+        call append(line(".")-1, bp_flag)
+    endif
+endfunc "}}}"

@@ -9,6 +9,7 @@ set gfn=YaHei_Consolas_Hybrid:h8:b
 set gfw=YaHei_Consolas_Hybrid,NSimSun-18030
 lang messages zh_CN.utf-8
 
+filetype plugin indent on
 " 加载菜单
 if has("gui")
     source $VIMRUNTIME/menu.vim    

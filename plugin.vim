@@ -33,11 +33,10 @@ let g:indent_guides_auto_colors = 0
 "hi IndentGuidesEven ctermbg=237 ctermfg=none
 "}}}
 
-"{{{ UltiSnips
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                UltiSnips                                "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:UltiSnipsListSnippets="s"
+let g:UltiSnipsListSnippets=""
 "let g:UltiSnipsExpandTrigger="^[t"
 
 
@@ -47,7 +46,7 @@ let g:UltiSnipsListSnippets="s"
 let g:vimrc_author='loyalpartner' 
 let g:vimrc_email='loyalpartner@163.com' 
 let g:vimrc_homepage='http://www.none.cn' 
-nnoremap <F4> :AuthorInfoDetect<cr>
+"nnoremap <F4> :AuthorInfoDetect<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -58,6 +57,7 @@ nnoremap <F4> :AuthorInfoDetect<cr>
 "let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_key_invoke_completion = '<C-L>'
 "let g:ycm_filetype_blacklist = {'python':1}

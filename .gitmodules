@@ -70,3 +70,7 @@
 [submodule "bundle/vim-python-mode"]
 	path = bundle/vim-python-mode
 	url = https://github.com/loyalpartner/python-mode.git
+	url = https://github.com/myusuf3/numbers.vim.git
+[submodule "bundle/numbers.vim"]
+	path = bundle/numbers.vim
+	url = https://github.com/myusuf3/numbers.vim.git
