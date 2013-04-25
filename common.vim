@@ -244,7 +244,8 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-noremap <Space> :
+nnoremap <Space> :
+vnoremap <Space> :
 
 cabbr qa qa!
 
@@ -292,7 +293,7 @@ autocmd BufWrite *.coffee :call DeleteTrailingWS()
 vnoremap <silent> gv :call VisualSelection('gv')<CR>
 
 " Open vimgrep and put the cursor in the right position
-noremap <leader>g :vimgrep //j **/*.<Home><right><right><right><right><right><right><right><right><right>
+noremap <leader>g :vimgrep //g **/*.<Home><right><right><right><right><right><right><right><right><right>
 noremap <S-F3> :vimgrep /<c-r>=expand("<cword>")<cr>/j **/*.
 
 " Vimgreps in the current file
@@ -492,9 +493,13 @@ endfun
 
 "autocmd BufRead *.py set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
 "autocmd BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-autocmd BufRead *.py,*.c,*.sh map <silent> <F5> :call Run()<CR>
-autocmd BufRead *.py,*.c,*.sh map <silent> <leader><F5> :call Debug()<CR>
+autocmd BufRead *.py,*.c,*.sh,*.coffee map <silent> <F5> :call Run()<CR>
+autocmd BufRead *.py,*.c,*.sh,*.coffee map <silent> <leader><F5> :call Debug()<CR>
 autocmd BufRead *.py noremap <silent> <F4> :call SetBP()<CR>
+func! Chmod() "{{{}}}"
+    exec "!chmod u+x " . expand("%:p")
+endfunc
+
 func! Run() "{{{"
     exec "w"
     if expand("%:p:e") == "c"
@@ -504,6 +509,8 @@ func! Run() "{{{"
         exec "!" . expand("%:p")
     elseif expand("%:p:e") == "py"
         exec "!python ".expand("%:p")
+    elseif expand("%:p:e") == "coffee"
+        exec "!coffee ".expand("%:p")
     endif
 endfunc "}}}"
 

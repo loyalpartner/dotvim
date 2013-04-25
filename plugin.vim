@@ -37,7 +37,18 @@ let g:indent_guides_auto_colors = 0
 "                                UltiSnips                                "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:UltiSnipsListSnippets=""
-"let g:UltiSnipsExpandTrigger="^[t"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               DelimiMate                                "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"au FileType snippets let b:loaded_delimitMate = 0
+"let g:delimitMate_expand_space = 1
+let g:delimitMate_expand_cr = 1
+let delimitMate_autoclose = 1
+"au FileType vim,html let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -88,7 +99,7 @@ let g:syntastic_mode_map={'mode':'active',
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               easymotion                                "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:EasyMotion_leader_key = '<Leader>e'
+let g:EasyMotion_leader_key = '<Leader><Leader>'
 let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'
 "let g:EasyMotion_keys = 'asdfghjkl'
 let g:EasyMotion_do_shade = 0
@@ -117,4 +128,15 @@ let g:pymode_lint_write   = 0
 let g:pymode_lint_cwindow = 0
 let g:pymode_lint_onfly   = 0
 let g:pymode_lint_hold    = 1
-cabbr plc PyLintAuto
+"cabbr plc PyLintAuto
+cnoremap ;pl PyLintAuto<cr>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                 number                                  "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"cabbr ;nt NumbersToggle
+let g:enable_numbers = 0
+cnoremap ;nt NumbersToggle<cr>
+cnoremap ;nn set nu<cr>:set nonu<cr>
+

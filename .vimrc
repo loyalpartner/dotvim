@@ -26,4 +26,3 @@ else
    call pathogen#helptags()
    filetype plugin indent on
 endif "}}}
-
