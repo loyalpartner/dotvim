@@ -108,4 +108,5 @@ au FileType c,cpp setlocal keywordprg=man\ 3
 "                                 coffee                                  "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "au FileType coffee set formatoptions=ql
-
+"au FileType coffee set omnifunc=javascriptcomplete#CompleteJS
+au FileType coffee set shiftwidth=2 tabstop=2 softtabstop=2 expandtab
