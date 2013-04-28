@@ -190,5 +190,5 @@ cnoremap ;nn set nu<cr>:set nonu<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              coffeescript                               "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-cnoremap ;cv CoffeeCompile vertical<cr>
-cnoremap ;cs CoffeeCompile<cr>
+au FileType coffee cnoremap ;cv CoffeeCompile vertical<cr>
+au FileType coffee cnoremap ;cs CoffeeCompile<cr>
