@@ -15,14 +15,14 @@ au FileType vim set foldmethod=marker
 "{{{
 set fencs=utf8,cp936,chinese,ucs-bom,gb18030 enc=utf8 
 
-set guifont=powerline
+set guifont=monospace\ 9
 
 " Setting the font to Consolas, 11 pt
 "if has("gui_running")
   "if has("gui_gtk2")
-    "set guifont=Consolas\ 11
+    "set guifont=Consolas\ 9
   "else
-    "set guifont=Consolas:h11
+    "set guifont=Consolas:h9
   "endif
 "endif
 

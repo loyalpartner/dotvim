@@ -52,7 +52,7 @@ set guioptions=gte
 set cursorline
 set cursorcolumn
 
-set hidden
+"set hidden
 
 "set mouse=a
 
@@ -502,15 +502,19 @@ endfunc
 
 func! Run() "{{{"
     exec "w"
+    "我觉得运行需要分2种情况:
+    "1. 不需要输入参数
+    "2. 需要输入参数"
     if expand("%:p:e") == "c"
-        exec "!gcc ".expand("%:p")." -g -o ".expand("%:p:r")
+        "使用system执行gcc"
+        system("!gcc ".expand("%:p")." -g -o ".expand("%:p:r"))
         exec "!".expand("%:p:r")
     elseif expand("%:p:e") == "sh"
         exec "!" . expand("%:p")
     elseif expand("%:p:e") == "py"
         exec "!python ".expand("%:p")
     elseif expand("%:p:e") == "coffee"
-        exec "!coffee ".expand("%:p")
+      echo system("coffee -s", join(getline(1,"$"),"\n"))
     endif
 endfunc "}}}"
 

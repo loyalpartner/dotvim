@@ -126,7 +126,9 @@ let g:ycm_semantic_triggers =  {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                Powerline                                "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:Powerline_symbols = 'fancy'
+if !has("gui") || !has("win")
+    let g:Powerline_symbols = 'fancy'
+endif
 
 
 "{{{ Syntastic
@@ -190,5 +192,42 @@ cnoremap ;nn set nu<cr>:set nonu<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              coffeescript                               "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au FileType coffee cnoremap ;cv CoffeeCompile vertical<cr>
-au FileType coffee cnoremap ;cs CoffeeCompile<cr>
+autocmd BufNewFile,BufRead *.coffee set filetype=coffee
+autocmd BufNewFile,BufRead *Cakefile set filetype=coffee
+autocmd BufNewFile,BufRead *.coffeekup,*.ck set filetype=coffee
+autocmd BufNewFile,BufRead *._coffee set filetype=coffee
+
+"autocmd BufWritePost *.coffee exec "CoffeeCompile"
+
+"let g:coffee_compile_buf = -1
+"func! CoffeeCompile()
+    "exec "w"
+    "let input = join(getline(1,"$"),"\n")
+    "let output =  system("coffee -sc ",input)
+
+    "let src_buf = bufnr('%')
+    "let src_win = bufwinnr(src_buf)
+    
+    "if g:coffee_compile_buf == -1
+      "belowright vertical new
+      "let g:coffee_compile_buf = bufnr('%')
+    "else
+      "exec g:coffee_compile_buf 'wincmd w'
+    "endif
+
+    "" We're now in the scratch buffer, so set it up.
+    "setlocal bufhidden=wipe buftype=nofile
+    "setlocal nobuflisted nomodifiable noswapfile nowrap
+
+    "setlocal modifiable
+      "exec '% delete'
+      "put! =output
+      "exec '$ delete'
+    "setlocal nomodifiable
+    "setlocal ft=javascript
+
+    "exec src_win 'wincmd w'
+    ""let js = expand("%:p:r").".js"
+"endfunc
+
+
