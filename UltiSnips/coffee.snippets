@@ -1,7 +1,14 @@
 snippet - "->" 
 -> $0
 endsnippet
-
+snippet : "Description" !b
+"${1:}":"${2:}"
+endsnippet
 snippet ifte "Ternary if" !
 if ${1:condition} then ${2:value} else ${3:other}
+endsnippet
+
+snippet swi "Switch" !
+switch ${1:object}
+	when ${2:value} then ${0:# body...}
 endsnippet

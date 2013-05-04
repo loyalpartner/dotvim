@@ -98,6 +98,7 @@ set magic
 
 " Show matching brackets when text indicator is over them
 set showmatch
+
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
@@ -538,3 +539,5 @@ func! SetBP() "{{{"
         call append(line(".")-1, bp_flag)
     endif
 endfunc "}}}"
+
+au BufEnter *.coffee call system("coffee -c ".expand("%:p"))

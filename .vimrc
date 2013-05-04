@@ -8,6 +8,15 @@ else
 endif
 "}}}
 
+if (has("g:loadplugin") && g:loadplugin==0) " 判定是否使用pathogen加载插件{{{
+    " 不加载插件
+else
+   filetype off
+   call pathogen#infect()
+   call pathogen#helptags()
+   filetype plugin indent on
+endif "}}}
+
 if (g:iswindows==1) " 根据Windows,Linux采用不同的策略{{{
     source ~\vimfiles\windows.vim
     source ~\vimfiles\common.vim
@@ -16,13 +25,4 @@ else
     source ~/.vim/linux.vim
     source ~/.vim/common.vim
     source ~/.vim/plugin.vim
-endif "}}}
-
-if (has("g:loadplugin") && g:loadplugin==0) " 判定是否使用pathogen加载插件{{{
-    " 不加载插件
-else
-   filetype off
-   call pathogen#infect()
-   call pathogen#helptags()
-   filetype plugin indent on
 endif "}}}

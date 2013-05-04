@@ -36,20 +36,21 @@ let g:vimim_punctuation=0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => 按键配置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-inoremap ,, <Tab>
+"inoremap ,, <Tab>
+inoremap <C-c> <Esc>
 "{{{
-inoremap <Left>  <Nop>
-vnoremap <Left>  <Nop>
-nnoremap <Left>  <Nop>
-inoremap <Right> <Nop>
-vnoremap <Right> <Nop>
-nnoremap <Right> <Nop>
-inoremap <Up>    <Nop>
-vnoremap <Up>    <Nop>
-nnoremap <Up>    <Nop>
-inoremap <Down>  <Nop>
-vnoremap <Down>  <Nop>
-nnoremap <Down>  <Nop>
+"inoremap <Left>  <Nop>
+"vnoremap <Left>  <Nop>
+"nnoremap <Left>  <Nop>
+"inoremap <Right> <Nop>
+"vnoremap <Right> <Nop>
+"nnoremap <Right> <Nop>
+"inoremap <Up>    <Nop>
+"vnoremap <Up>    <Nop>
+"nnoremap <Up>    <Nop>
+"inoremap <Down>  <Nop>
+"vnoremap <Down>  <Nop>
+"nnoremap <Down>  <Nop>
 
 
 "custom comma motion mapping
@@ -109,4 +110,4 @@ au FileType c,cpp setlocal keywordprg=man\ 3
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "au FileType coffee set formatoptions=ql
 "au FileType coffee set omnifunc=javascriptcomplete#CompleteJS
-au FileType coffee set shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+au FileType coffee,javascript set shiftwidth=2 tabstop=2 softtabstop=2 expandtab

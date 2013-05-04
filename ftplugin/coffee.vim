@@ -139,7 +139,7 @@ function! s:CoffeeCompile(startline, endline, args)
 
     " We're now in the scratch buffer, so set it up.
     setlocal bufhidden=wipe buftype=nofile
-    setlocal nobuflisted nomodifiable noswapfile nowrap
+    setlocal nobuflisted nomodifiable noswapfile
 
     autocmd BufWipeout <buffer> call s:CoffeeCompileClose()
     " Save the cursor when leaving the CoffeeCompile buffer.

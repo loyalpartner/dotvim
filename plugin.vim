@@ -2,55 +2,37 @@
 " => 插件
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{ctrl+p
+let g:ctrlp_use_caching = 1
+let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_show_hidden = 1
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Linux/MacOSX
-let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
-                      \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
-"let g:ctrlp_clear_cache_on_exit = 0
+"let g:ctrlp_extensions = ['quickfix', 'dir', 'rtscript',
+                      "\ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
 let g:ctrlp_custom_ignore = {
 \ 'dir':  '\v[\/]\.(git|hg|svn|cache)$',
 \ 'file': '\v\.(exe|so|dll)$',
 \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
 \ }
+"noremap <C-p><C-l> :CtrlPLine<cr>
+"noremap <C-p><C-c> :CtrlPChange <C-r>=expand("%:p")<cr><cr>
+"noremap <C-p><C-u> :CtrlPUndo<cr>
+"noremap <C-p><C-r> :CtrlPRTS<cr>
+"noremap <C-p><C-b> :CtrlPBuffer<cr>
+"noremap <C-p><C-p> :CtrlP <C-r>=expand("%:p:h")<cr><cr>
+"noremap <C-p><C-r> :CtrlPMRU<cr>
+"noremap <C-p><C-w> :CtrlPClearCache<cr>
+"noremap <C-p>b :CtrlPBookmarkDir<cr>
+"noremap <C-p><C-p> :CtrlPQuickfix<cr>
 
-let g:ctrlp_prompt_mappings = {
-\ 'PrtBS()':              ['<bs>', '<c-]>'],
-\ 'PrtDelete()':          ['<del>'],
-\ 'PrtDeleteWord()':      ['<c-w>'],
-\ 'PrtClear()':           ['<c-u>'],
-\ 'PrtSelectMove("j")':   ['<c-j>', '<down>', '<S-Tab>'],
-\ 'PrtSelectMove("k")':   ['<c-k>', '<up>', '<Tab>'],
-\ 'PrtSelectMove("t")':   ['<Home>', '<kHome>'],
-\ 'PrtSelectMove("b")':   ['<End>', '<kEnd>'],
-\ 'PrtSelectMove("u")':   ['<PageUp>', '<kPageUp>'],
-\ 'PrtSelectMove("d")':   ['<PageDown>', '<kPageDown>'],
-\ 'PrtHistory(-1)':       ['<c-n>'],
-\ 'PrtHistory(1)':        ['<c-p>'],
-\ 'AcceptSelection("e")': ['<cr>', '<2-LeftMouse>'],
-\ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>'],
-\ 'AcceptSelection("t")': ['<c-t>'],
-\ 'AcceptSelection("v")': ['<c-v>', '<RightMouse>'],
-\ 'ToggleFocus()':        ['<c-t>'],
-\ 'ToggleRegex()':        ['<c-r>'],
-\ 'ToggleByFname()':      ['<c-d>'],
-\ 'ToggleType(1)':        ['<c-f>', '<c-up>'],
-\ 'ToggleType(-1)':       ['<c-b>', '<c-down>'],
-\ 'PrtExpandDir()':       ['<tab>'],
-\ 'PrtInsert("c")':       ['<MiddleMouse>', '<insert>'],
-\ 'PrtInsert()':          ['<c-\>'],
-\ 'PrtCurStart()':        ['<c-a>'],
-\ 'PrtCurEnd()':          ['<c-e>'],
-\ 'PrtCurLeft()':         ['<c-h>', '<left>', '<c-^>'],
-\ 'PrtCurRight()':        ['<c-l>', '<right>'],
-\ 'PrtClearCache()':      ['<F5>'],
-\ 'PrtDeleteEnt()':       ['<F7>'],
-\ 'CreateNewFile()':      ['<c-y>'],
-\ 'MarkToOpen()':         ['<c-z>'],
-\ 'OpenMulti()':          ['<c-o>'],
-\ 'PrtExit()':            ['<esc>', '<c-c>', '<c-g>'],
-\ }
-"}}}
-
+noremap ,,l :CtrlPLine<cr>
+noremap ,,c :CtrlPChange <C-r>=expand("%:p")<cr><cr>
+noremap ,,u :CtrlPUndo<cr>
+noremap ,,r :CtrlPRTS<cr>
+noremap ,,b :CtrlPBuffer<cr>
+noremap ,,p :CtrlP <C-r>=expand("%:p:h")<cr><cr>
+noremap ,,m :CtrlPMRU<cr>
+noremap ,,w :CtrlPClearCache<cr>
+noremap ,,B :CtrlPBookmarkDir<cr>
 "{{{ 主题
 syntax enable
 colorscheme valloric
@@ -73,10 +55,11 @@ let g:indent_guides_auto_colors = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                UltiSnips                                "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:UltiSnipsListSnippets=""
+let g:UltiSnipsListSnippets="<C-s>"
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+inoremap <S-tab> <Tab>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               DelimiMate                                "
@@ -103,7 +86,7 @@ let g:vimrc_homepage='http://www.none.cn'
 "let g:ycm_extra_conf_globlist = ['/usr/include/c++/4.7.2/*']
 "let g:ycm_autoclose_preview_window_after_insertion = 1
 "let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_min_num_of_chars_for_completion = 1
+let g:ycm_min_num_of_chars_for_completion = 4
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_confirm_extra_conf = 0
@@ -148,7 +131,7 @@ let g:syntastic_mode_map={'mode':'active',
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               easymotion                                "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:EasyMotion_leader_key = '<Leader><Leader>'
+let g:EasyMotion_leader_key = '<Leader>e'
 let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'
 "let g:EasyMotion_keys = 'asdfghjkl'
 let g:EasyMotion_do_shade = 0
@@ -196,7 +179,7 @@ autocmd BufNewFile,BufRead *.coffee set filetype=coffee
 autocmd BufNewFile,BufRead *Cakefile set filetype=coffee
 autocmd BufNewFile,BufRead *.coffeekup,*.ck set filetype=coffee
 autocmd BufNewFile,BufRead *._coffee set filetype=coffee
-
+au BufWritePost *.coffee call system("coffee -c ".expand("%:p"))
 "autocmd BufWritePost *.coffee exec "CoffeeCompile"
 
 "let g:coffee_compile_buf = -1
@@ -230,4 +213,16 @@ autocmd BufNewFile,BufRead *._coffee set filetype=coffee
     ""let js = expand("%:p:r").".js"
 "endfunc
 
+nmap <C-m> %
+au FileType * let b:match_words = '"\%["["]][^"]\+:"\%["["]]'.
+                                 \",\'\\%[\'[\']][^\']\\+:\'\\%[\'[\']]".
+                                 \',(\%[([(]]\w*:)\%[)[)]]'
+"au FileType * let b:match_words = b:match_words.',\sstruct:^\}'
+"au FileType * let b:match_words += '^\{:^\}'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                zencoding                                "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:user_zen_leader_key = '<Leader><leader>'
+let g:use_zen_complete_tag = 1
 
