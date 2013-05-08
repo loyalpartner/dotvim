@@ -1,6 +1,4 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/home/lee/.vim/plugin'
+let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_1='/home/lee'
 let g:netrw_dirhist_2='/home/lee/.vim'
-let g:netrw_dirhist_3='/home/lee'
-let g:netrw_dirhist_4='/opt/sublime_text'

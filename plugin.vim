@@ -2,10 +2,11 @@
 " => 插件
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{ctrl+p
-let g:ctrlp_use_caching = 1
-let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_use_caching = 0
+let g:ctrlp_clear_cache_on_exit = 1
+let g:ctrlp_max_height = 20
 let g:ctrlp_show_hidden = 1
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Linux/MacOSX
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*,~/.vim/bundle/*        " Linux/MacOSX
 "let g:ctrlp_extensions = ['quickfix', 'dir', 'rtscript',
                       "\ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
 let g:ctrlp_custom_ignore = {
@@ -55,7 +56,8 @@ let g:indent_guides_auto_colors = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                UltiSnips                                "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:UltiSnipsListSnippets="<C-s>"
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsListSnippets="<C-z>"
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<C-k>"
@@ -86,7 +88,7 @@ let g:vimrc_homepage='http://www.none.cn'
 "let g:ycm_extra_conf_globlist = ['/usr/include/c++/4.7.2/*']
 "let g:ycm_autoclose_preview_window_after_insertion = 1
 "let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_min_num_of_chars_for_completion = 4
+let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_confirm_extra_conf = 0
@@ -119,6 +121,7 @@ endif
 "                                Syntastic                                "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_check_on_open=1
+let g:syntastic_enable_signs=0
 let g:syntastic_error_symbol='=>'
 let g:syntastic_warning_symbol='!!'
 let g:syntastic_python_checkers = ['flake8', 'pylint']
@@ -179,7 +182,7 @@ autocmd BufNewFile,BufRead *.coffee set filetype=coffee
 autocmd BufNewFile,BufRead *Cakefile set filetype=coffee
 autocmd BufNewFile,BufRead *.coffeekup,*.ck set filetype=coffee
 autocmd BufNewFile,BufRead *._coffee set filetype=coffee
-au BufWritePost *.coffee call system("coffee -c ".expand("%:p"))
+"au BufWritePost *.coffee call system("coffee -c ".expand("%:p"))
 "autocmd BufWritePost *.coffee exec "CoffeeCompile"
 
 "let g:coffee_compile_buf = -1
@@ -214,9 +217,6 @@ au BufWritePost *.coffee call system("coffee -c ".expand("%:p"))
 "endfunc
 
 nmap <C-m> %
-au FileType * let b:match_words = '"\%["["]][^"]\+:"\%["["]]'.
-                                 \",\'\\%[\'[\']][^\']\\+:\'\\%[\'[\']]".
-                                 \',(\%[([(]]\w*:)\%[)[)]]'
 "au FileType * let b:match_words = b:match_words.',\sstruct:^\}'
 "au FileType * let b:match_words += '^\{:^\}'
 
@@ -226,3 +226,8 @@ au FileType * let b:match_words = '"\%["["]][^"]\+:"\%["["]]'.
 let g:user_zen_leader_key = '<Leader><leader>'
 let g:use_zen_complete_tag = 1
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                TaskList                                 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>tl <Plug>TaskList
+let g:tlWindowPosition = 1

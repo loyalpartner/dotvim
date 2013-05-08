@@ -96,7 +96,8 @@ hi ColorColumn     guibg=#3B3A32
 
 hi Normal          guifg=#F8F8F2 guibg=#000000
 hi Comment         guifg=#13c100               gui=none
-hi CursorLine                    guibg=#1F1F1F
+"hi CursorLine                    guibg=#1F1F1F
+hi CursorLine                                 cterm=undercurl
 hi CursorColumn                  guibg=#293739
 hi LineNr          guifg=#3D3D3D guibg=black
 hi NonText         guifg=#BCBCBC guibg=#232526
@@ -185,7 +186,8 @@ if &t_Co > 255
 
    hi Normal          ctermfg=252 ctermbg=233
    hi Comment         ctermfg=59
-   hi CursorLine                  ctermbg=234   cterm=none
+   "hi CursorLine                  ctermbg=234   cterm=none
+   hi CursorLine                                 cterm=undercurl
    hi CursorColumn                ctermbg=234
    hi LineNr          ctermfg=250 ctermbg=234
    hi NonText         ctermfg=250 ctermbg=234

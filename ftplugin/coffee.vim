@@ -195,4 +195,4 @@ endif
 " Peek at compiled CoffeeScript.
 command! -range=% -bar -nargs=* -complete=customlist,s:CoffeeCompileComplete
 \        CoffeeCompile call s:CoffeeCompile(<line1>, <line2>, <q-args>)
-autocmd BufWritePost *.coffee call s:CoffeeCompile(1,"$","vertical")
+"autocmd BufWritePost *.coffee call s:CoffeeCompile(1,"$","vertical")
