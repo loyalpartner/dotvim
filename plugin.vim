@@ -1,6 +1,6 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => 插件
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                  CtrlP                                  "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{ctrl+p
 let g:ctrlp_use_caching = 0
 let g:ctrlp_clear_cache_on_exit = 1
@@ -14,26 +14,20 @@ let g:ctrlp_custom_ignore = {
 \ 'file': '\v\.(exe|so|dll)$',
 \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
 \ }
-"noremap <C-p><C-l> :CtrlPLine<cr>
-"noremap <C-p><C-c> :CtrlPChange <C-r>=expand("%:p")<cr><cr>
-"noremap <C-p><C-u> :CtrlPUndo<cr>
-"noremap <C-p><C-r> :CtrlPRTS<cr>
-"noremap <C-p><C-b> :CtrlPBuffer<cr>
-"noremap <C-p><C-p> :CtrlP <C-r>=expand("%:p:h")<cr><cr>
-"noremap <C-p><C-r> :CtrlPMRU<cr>
-"noremap <C-p><C-w> :CtrlPClearCache<cr>
-"noremap <C-p>b :CtrlPBookmarkDir<cr>
-"noremap <C-p><C-p> :CtrlPQuickfix<cr>
 
 noremap ,,l :CtrlPLine<cr>
 noremap ,,c :CtrlPChange <C-r>=expand("%:p")<cr><cr>
 noremap ,,u :CtrlPUndo<cr>
 noremap ,,r :CtrlPRTS<cr>
-noremap ,,b :CtrlPBuffer<cr>
+"noremap ,,t <esc>:tabs<cr>:tabs<space>
+"noremap ,,b :CtrlPBuffer<cr>
+nnoremap ,,b <esc>:ls<cr>:b<space>
 noremap ,,p :CtrlP <C-r>=expand("%:p:h")<cr><cr>
 noremap ,,m :CtrlPMRU<cr>
 noremap ,,w :CtrlPClearCache<cr>
 noremap ,,B :CtrlPBookmarkDir<cr>
+"}}}
+
 "{{{ 主题
 syntax enable
 colorscheme valloric
@@ -62,6 +56,8 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 inoremap <S-tab> <Tab>
+au FileType snippets setlocal comments=:# commentstring=#\ %s
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               DelimiMate                                "
@@ -86,17 +82,18 @@ let g:vimrc_homepage='http://www.none.cn'
 "                                   ycm                                   "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:ycm_extra_conf_globlist = ['/usr/include/c++/4.7.2/*']
-"let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
 "let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_key_invoke_completion = '<C-L>'
-"let g:ycm_filetype_blacklist = {'python':1}
+"let g:ycm_filetype_blacklist = {
+          "\ 'python' : 1,
+          "\}
 "inoremap <Tab> <C-x><C-o>
 "inoremap <S-Tab> <Tab>
-
 let g:ycm_semantic_triggers =  {
   \   'c' : ['->', '.'],
   \   'objc' : ['->', '.'],
@@ -111,16 +108,16 @@ let g:ycm_semantic_triggers =  {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                Powerline                                "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if !has("gui") || !has("win")
-    let g:Powerline_symbols = 'fancy'
-endif
+let g:Powerline_symbols = 'fancy'
+let g:Powerline_stl_path_style = 'full'
+"let g:Powerline_mode_n = 'NORMAL'
 
 
 "{{{ Syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                Syntastic                                "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:syntastic_check_on_open=1
+let g:syntastic_check_on_open=0
 let g:syntastic_enable_signs=0
 let g:syntastic_error_symbol='=>'
 let g:syntastic_warning_symbol='!!'
@@ -129,6 +126,7 @@ let g:syntastic_mode_map={'mode':'active',
             \ 'active_filetypes': [],
             \ 'passive_filetypes': [] }
             "\ 'passive_filetypes': ['python'] }
+highlight SyntasticErrorLine guibg=red
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -159,13 +157,34 @@ let g:lt_quickfix_list_toggle_map = '<leader>qq'
 "let g:pymode = 0
 "let g:pymode_lint=0
 "let g:pymode_lint_checker = "pyflakes"
+let g:pymode_rope = 1
+let g:pymode_rope_enable_autoimport = 1
+let g:pymode_rope_autoimport_generate = 1
+let g:pymode_rope_autoimport_underlineds = 0
+let g:pymode_rope_codeassist_maxfixes = 10
+let g:pymode_rope_sorted_completions = 1
+let g:pymode_rope_extended_complete = 1
+let g:pymode_rope_autoimport_modules = ["os", "shutil","bs4"]
+let g:pymode_rope_vim_completion = 1
+let g:pymode_rope_guess_project = 1
+let g:pymode_rope_goto_def_newwin = "vnew"
+let g:pymode_rope_always_show_complete_menu = 0
+
 let g:pymode_lint_write   = 0
 let g:pymode_lint_cwindow = 0
 let g:pymode_lint_onfly   = 0
 let g:pymode_lint_hold    = 1
+"au FileType python set omnifunc=RopeOmni
+"au FileType python nnoremap <buffer> gd :RopeGotoDefinition<cr>
+au FileType python nnoremap <buffer> <c-n>r :RopeRename<cr>
+au FileType python nnoremap <buffer> <c-n>g :RopeGotoDefinition<cr>
+au FileType python nnoremap <buffer> <c-n>d :RopeShowDoc<cr>
+au FileType python nnoremap <buffer> <c-n>f :RopeFindOccurrences<cr>
+au FileType python nnoremap <buffer> <c-n>i :RopeAutoImport<cr>
+au FileType python nnoremap <buffer> gd :RopeGotoDefinition<cr>
+
 "cabbr plc PyLintAuto
 cnoremap ;pl PyLintAuto<cr>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 number                                  "
@@ -178,45 +197,7 @@ cnoremap ;nn set nu<cr>:set nonu<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              coffeescript                               "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd BufNewFile,BufRead *.coffee set filetype=coffee
-autocmd BufNewFile,BufRead *Cakefile set filetype=coffee
-autocmd BufNewFile,BufRead *.coffeekup,*.ck set filetype=coffee
-autocmd BufNewFile,BufRead *._coffee set filetype=coffee
-"au BufWritePost *.coffee call system("coffee -c ".expand("%:p"))
-"autocmd BufWritePost *.coffee exec "CoffeeCompile"
-
-"let g:coffee_compile_buf = -1
-"func! CoffeeCompile()
-    "exec "w"
-    "let input = join(getline(1,"$"),"\n")
-    "let output =  system("coffee -sc ",input)
-
-    "let src_buf = bufnr('%')
-    "let src_win = bufwinnr(src_buf)
-    
-    "if g:coffee_compile_buf == -1
-      "belowright vertical new
-      "let g:coffee_compile_buf = bufnr('%')
-    "else
-      "exec g:coffee_compile_buf 'wincmd w'
-    "endif
-
-    "" We're now in the scratch buffer, so set it up.
-    "setlocal bufhidden=wipe buftype=nofile
-    "setlocal nobuflisted nomodifiable noswapfile nowrap
-
-    "setlocal modifiable
-      "exec '% delete'
-      "put! =output
-      "exec '$ delete'
-    "setlocal nomodifiable
-    "setlocal ft=javascript
-
-    "exec src_win 'wincmd w'
-    ""let js = expand("%:p:r").".js"
-"endfunc
-
-nmap <C-m> %
+au BufNewFile,BufReadPost *.coffee setl foldmethod=marker nofoldenable
 "au FileType * let b:match_words = b:match_words.',\sstruct:^\}'
 "au FileType * let b:match_words += '^\{:^\}'
 
@@ -231,3 +212,21 @@ let g:use_zen_complete_tag = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>tl <Plug>TaskList
 let g:tlWindowPosition = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                Colorizer                                "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:colorizer_nomap = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                          gundo                                          "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:gundo_auto_preview = 0
+nnoremap <leader>u :GundoToggle<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                 tagbar                                  "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:tagbar_width = 30
+let g:tagbar_sort = 0
+let g:tagbar_left = 1

@@ -1,3 +1,4 @@
+""{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -48,9 +49,12 @@ set wildignore=*.o,*~,*.pyc
 " 隐藏菜单,滚动条等
 set guioptions=gte
 
-" 显示当前行,列
+" 显示当前行,列,只在当前窗口显示
 set cursorline
-set cursorcolumn
+autocmd WinLeave * set nocursorline
+autocmd WinEnter * set cursorline
+
+"set cursorcolumn
 
 "set hidden
 
@@ -155,9 +159,9 @@ set expandtab
 set smarttab
 
 " 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 
 " Linebreak on 500 characters
 set lbr
@@ -167,6 +171,13 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
+set showcmd
+" 手速不行，所以时间条长点 囧
+set timeout timeoutlen=3000 ttimeoutlen=100
+au CmdWinEnter * set timeoutlen=500 ttimeoutlen=50
+au CmdWinLeave * set timeoutlen=3000 ttimeoutlen=50
+au InsertEnter * set timeoutlen=500 ttimeoutlen=50
+au InsertLeave * set timeoutlen=3000 ttimeoutlen=50
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
@@ -206,8 +217,9 @@ noremap <leader>ba :1,1000 bd!<cr>
 " Useful mappings for managing tabs
 noremap <leader>tn :tabnew<cr>
 noremap <leader>to :tabonly<cr>
-"map <leader>tc :tabclose<cr>
-noremap <leader>tm :tabmove
+
+noremap <leader>tc :tabclose<cr>
+noremap <leader>tm :tabmove<space>
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
@@ -219,7 +231,7 @@ noremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 " Specify the behavior when switching between buffers 
 try
   set switchbuf=useopen,usetab,newtab
-  set stal=1
+  set stal=2
 catch
 endtry
 
@@ -247,6 +259,7 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Space> :
 vnoremap <Space> :
+sunmap <space>
 
 cabbr qa qa!
 
@@ -258,11 +271,17 @@ noremap <M-h> :bprevious<cr>
 noremap <M-a> :bfirst<cr>
 noremap <M-e> :blast<cr>
 
-" Move a line of text using ALT+[np] or Comamnd+[jk] on mac
+" Move a line of text using ALT+[np] or Comamnd+[jk] on mac {{{
 noremap <silent> <M-j> mz:m+<cr>`z
 noremap <silent> <M-k> mz:m-2<cr>`z
 vnoremap <silent> <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vnoremap <silent> <M-k> :m'<-2<cr>`>my`<mzgv`yo`z  
+
+noremap <silent> j mz:m+<cr>`z
+noremap <silent> k mz:m-2<cr>`z
+vnoremap <silent> j :m'>+<cr>`<my`>mzgv`yo`z
+vnoremap <silent> k :m'<-2<cr>`>my`<mzgv`yo`z  
+"}}}
 
 if has("mac") || has("macunix")
   nnoremap <D-j> <M-j>
@@ -302,7 +321,7 @@ noremap <leader><space> :vimgrep //j <C-R>%<C-A><Home><right><right><right><righ
 noremap <F3> :vimgrep /<c-r>=expand("<cword>")<cr>/j <C-R>%<C-A><cr><Esc>:copen<cr>
 
 " When you press <leader>r you can search and replace the selected text
-vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
+"vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 
 " Do :help cope if you are unsure what cope is. It's super useful!
 "
@@ -338,7 +357,7 @@ noremap <leader>s? z=
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+noremap <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Quickly open a buffer for scripbble
 noremap <leader>qe :e ~/buffer<cr>
@@ -407,100 +426,351 @@ function! <SID>BufcloseCloseIt()
      execute("bdelete! ".l:currentBufNum)
    endif
 endfunction
-
-" 打开网址,文件浏览器
-noremap <silent> <leader>o :call OpenUrlUnderCursor()<CR>
-function! OpenUrlUnderCursor()
-    "execute "normal BvEy"
-python << EOF
-import webbrowser 
-
-# 获取当前位置
-pos = vim.current.window.cursor
-cl = vim.current.buffer[pos[0]-1]
-
-if cl != '':
-
-    # 判断当前一个字符是否为空,以便决定是否使用B回退
-    if cl[pos[1]] != ' ':
-
-        if cl[pos[1]-1] == ' ' or pos[1] == 0: vim.command('normal vEy')
-        else: vim.command('normal BvEy')
-
-        # 回到上次的位置
-        vim.current.window.cursor = pos
-
-        # 由于经常编写Markdown,URL总是被[{<,这些符号包围,所以要将这些忽略
-        url = vim.eval('@0').strip('{[(<>)]},;.')
-        webbrowser.open_new(url)
-EOF
-endfunction
-
-
-" 查阅帮助文档的时候,当光标停留在某个tag上面的时候,显示预览信息
-"au! CursorHold *.cnx nested exe "silent! ptag " . expand("<cword>")
-
-"au! CursorHold *.(cnx|txt) nested call PreviewWord()
-func! PreviewWord()
-    if &previewwindow            " 不要在预览窗口里执行
-        return
-    endif
-    let w = expand("<cword>")        " 在当前光标位置抓词
-    if w =~ '\a'            " 如果该单词包括一个字母
-        " 在显示下一个标签之前，删除所有现存的语法高亮
-        silent! wincmd P            " 跳转至预览窗口
-        if &previewwindow        " 如果确实转到了预览窗口……
-            match none            " 删除语法高亮
-            wincmd p            " 回到原来的窗口
-        endif
-
-        " 试着显示当前光标处匹配的标签
-        try
-            exe "ptag " . w
-        catch
-            return
-        endtry
-
-        silent! wincmd P            " 跳转至预览窗口
-        if &previewwindow        " 如果确实转到了预览窗口……
-            if has("folding")
-                silent! .foldopen        " 展开折叠的行
-            endif
-            call search("$", "b")        " 到前一行的行尾
-            let w = substitute(w, '\\', '\\\\', "")
-            call search('\<\V' . w . '\>')    " 定位光标在匹配的单词上
-            " 给在此位置的单词加上匹配高亮
-            hi previewWord term=bold ctermbg=green guibg=green
-            exe 'match previewWord "\%' . line(".") . 'l\%' . col(".") . 'c\k*"'
-            wincmd p            " 返回原来的窗口
-        endif
-    endif
-endfun
-
-" Python Run 
-"noremap <leader><F5> :call CheckPythonSyntax()<cr>
-"function! CheckPythonSyntax() 
-    "let mp = &makeprg 
-    "setlocal makeprg=python\ -u 
-    "silent make % 
-    "let &makeprg     = mp 
-"endfunction
 "}}}
 
-" 补全菜单颜色
-"highlight! PmenuSbar  NONE
-"highlight! PmenuThumb NONE
-"highlight! Pmenu      NONE
-"highlight! link PmenuSel NonText
+au FileType coffee,vim let b:no_ext = 1
 
+"{{{ 自定义Tab选项卡
+if exists("+showtabline")
+
+  "let g:header = '⡇⡇ ❐ Tabs/Now：' . tabpagenr('$') . '/' . tabpagenr().' ⡇ ' 
+  let g:min_tabs = 3
+  let g:tail   = ' ⡇ 192.168.1.104 ❐ ⡇⡇'
+  let g:plugin = ''
+
+"{{{
+  func! MyTab_GetHeader()
+    return '⡇⡇ ❐ Tabs-Now：' . tabpagenr('$') . '-' . tabpagenr().' ⡇ ' 
+  endfunc
+
+  func! MyTab_List()
+    let pageno = tabpagenr()
+    let tablist = []
+
+    let i = 1
+    while i <= tabpagenr('$')
+      let bufnr = tabpagebuflist(i)[tabpagewinnr(i) - 1]
+      let wn = tabpagewinnr(i,'$')
+      let bufname = bufname(bufnr)
+      let bufname = (bufname == ''? 'noname' :fnamemodify(bufname, ':p:t'))
+      call add(tablist, bufname)
+      let i+=1
+    endw
+    return tablist
+  endfunc 
+"}}}
+
+  "{{{ MyTab_ItemStr
+  func! MyTab_ItemStr( index, file ) 
+    let item = ' '.a:index.' '
+    let file = a:file
+    let file = (file == '' ? 'noname' : file)
+    if exists('b:no_ext') && b:no_ext 
+      let file = fnamemodify(file, ':p:t:r')
+    else
+      let file = fnamemodify(file, ':p:t')
+    endif
+    let item .= file. ' '
+    return item
+  endfunc 
+  "}}}
+  
+  "{{{ MyTab_Tabs
+  func! MyTab_Tabs( tablist, rest, p ) 
+
+    let i = 0
+    let tabidx = tabpagenr() -1
+    let start = i
+    let str = ''
+
+    while i <= tabpagenr('$') - 1
+
+      let item = MyTab_ItemStr( i+1, a:tablist[i] )
+
+      if i != tabpagenr('$') - 1 
+        let item .= ' '
+      endif
+
+      let str = str . item
+
+      " 显示的字符串长度小于预留的长度
+      if strdisplaywidth( str ) <= a:rest
+
+        if i == tabpagenr('$') - 1
+          "echom start . 'start'
+          "echom join(a:tablist[ start :i],'-')
+          return [tabidx - start, start , a:tablist[ start :i]]
+        endif
+
+        let i += 1
+
+      " 显示的字符串长度大于预留的长度
+      elseif strdisplaywidth( str ) > a:rest
+
+        if i == 1
+          "echom " 第一个item的长度大于预留的空间".str
+          return [0,a:tablist[0:0]]
+        elseif i <= tabidx
+          let str = ''
+          let start = i
+          "echom i."me start".str
+        elseif i > tabidx
+          return [tabidx - start, start ,a:tablist[ start :i - 1]]
+        endif
+      endif
+
+    endw
+  endfunc 
+  "}}}
+
+  "{{{
+  func! MyTab_Preview(tabs, tidx, base, flag) 
+    let str = ''
+    let i = 0
+    while i <= len(a:tabs) -1
+      let item = MyTab_ItemStr( a:base + i+1, a:tabs[i] )
+
+      if i != tabpagenr('$') - 1 
+        let item .= (a:flag == 1 ? '%#TabLineFill# ' : ' ')
+      endif
+
+      let item = (a:flag == 1 ? (i == a:tidx ? '%#TabLineSel#' : '%#TabLine#') . item : item)
+      let str .= item
+      let i += 1
+    endw
+    if a:flag == 0
+      return MyTab_GetHeader() .str . g:tail . g:plugin
+    else
+      let spacecount = &columns - strdisplaywidth(MyTab_Preview(a:tabs, a:tidx, a:base, 0))
+      return MyTab_GetHeader() . str . "%#TabLineFill#" . repeat(' ', spacecount) . g:tail . g:plugin
+    endif
+  endfunc 
+  "}}}
+
+  function! MyTab_Line2()
+
+    let tabs =  MyTab_List()
+    let restlength = &columns - strdisplaywidth(MyTab_GetHeader().g:tail.g:plugin)
+    let result = MyTab_Tabs(tabs, restlength,1)
+    return MyTab_Preview(result[2], result[0], result[1], 1)
+  endfunc
+    "{{{
+  function! MyTab_Line()
+
+    let s = '⡇⡇ ❐ Tab Now：'. tabpagenr().' ⡇ '
+    let ss = s " 计算显示字符的长度
+    let wn = ''
+    let t = tabpagenr()
+    let i = 1
+    while i <= tabpagenr('$')
+      let buflist = tabpagebuflist(i)
+      let winnr = tabpagewinnr(i)
+      let wn = tabpagewinnr(i,'$')
+
+      let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
+      let s .= ' '.i.' '
+      let ss .= ' '.i.' '
+
+      let bufnr = buflist[winnr - 1]
+      let file = bufname(bufnr)
+      let buftype = getbufvar(bufnr, 'buftype')
+      if buftype == 'nofile'
+        if file =~ '\/.'
+          let file = substitute(file, '.*\/\ze.', '', '')
+        endif
+      else
+        if exists('b:no_ext') && b:no_ext == 1
+          let file = fnamemodify(file, ':p:t:r')
+        else
+          let file = fnamemodify(file, ':p:t')
+        endif
+      endif
+      if file == ''
+        let file = '[No Name]'
+      endif
+      let s .= file.' %#TabLineFill# '
+      let ss.= file.'  '
+      let i = i + 1
+    endwhile
+    let tail1 = '❐ ⡇⡇'
+    let tail2 = 'happy new day 囧囧囧囧!'
+    let tail = tail1.tail2
+    let ss.= tail
+    let displaywidth = strwidth(ss)
+
+    let spaces = ''
+    if displaywidth < &columns
+      let lnum = &columns - displaywidth 
+      while lnum > 0
+        let spaces .= ' '
+        let lnum -= 1
+      endw
+    endif
+    let s.=  spaces . tail1. '%#TabOther#' . tail2 . '%'
+		"let s .= '%#TabLineFill#%T'
+    return s
+  endfunction
+  set stal=2
+  set tabline=%!MyTab_Line2()
+endif
+"}}}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => 按键配置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 在编程的时候经常要输入(,[,{,'," etc
+" 如果正常输入极不方便
+" 该映射方案可以很好的处理这个问题"{{{
+noremap! "" ""<left>
+noremap! '' ''<left>
+noremap! (( ()<left>
+noremap! (<cr> (<cr>)<c-o>O
+noremap! (; ();<esc>hi
+noremap! (<cr>; (<cr>);<c-o>O
+noremap! ('; ('');<esc>hhi
+noremap! ("; ("");<esc>hhi
+noremap! (' ('')<esc>hi
+noremap! (" ("")<esc>hi
+noremap! {{ {}<left>
+noremap! {<cr> {<cr>}<c-o>O
+noremap! {; {};<esc>hi
+noremap! {<cr>; {<cr>};<c-o>O
+noremap! {'; {''};<esc>hhi
+noremap! {"; {""};<esc>hhi
+noremap! {' {''}<esc>hi
+noremap! {" {""}<esc>hi
+noremap! [[ []<left>
+noremap! [<cr> [<cr>]<c-o>O
+noremap! [; [];<esc>hi
+noremap! [<cr>; [<cr>];<c-o>O
+noremap! ['; [''];<esc>hhi
+noremap! ["; [""];<esc>hhi
+noremap! [' ['']<esc>hi
+noremap! [" [""]<esc>hi
+"}}}
+
+"custom comma motion mapping"{{{
+nnoremap di, f,dT,
+nnoremap ci, f,cT,
+nnoremap da, f,ld2F,i,<ESC>l "delete argument 
+nnoremap ca, f,ld2F,i,<ESC>a "delete arg and insert
+"}}}
+
+"nnoremap <leader>reg :reg<cr>
+nnoremap <leader>yp "+p
+nnoremap <leader>yy "+yy
+vnoremap <leader>yy "+y
+
+nnoremap <leader>v viw<c-g>
+
+onoremap id i"
+onoremap ad a"
+
+nnoremap f za
+nnoremap <silent> F :1,$foldc<cr>
+nnoremap <silent> t :call append(line('.'), "")<cr>
+nnoremap <silent> T :call append(line('.')-1, "")<cr>
+
+"编辑配置文件
+nnoremap <M-c> :e! ~/.vim/linux.vim<cr>
+nnoremap c :e! ~/.vim/linux.vim<cr>
+
+nmap <F6> :set nu!<cr>
+
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+
+" 切换缓冲
+noremap L :bnext<cr>
+noremap H :bprevious<cr>
+noremap A :bfirst<cr>
+noremap E :blast<cr>
+
+" 切换选项卡"{{{
+noremap l :tabnext<cr>
+noremap h :tabprevious<cr>
+noremap a :tabfirst<cr>
+noremap e :tablast<cr>
+noremap 1 :tabnext 1<cr>
+noremap 2 :tabnext 2<cr>
+
+noremap <c-w>1 :tabnext 1<cr>
+noremap <c-w>2 :tabnext 2<cr>
+noremap <c-w>2 :tabnext 2<cr>
+noremap <c-w>3 :tabnext 3<cr>
+noremap <c-w>4 :tabnext 4<cr>
+noremap <c-w>5 :tabnext 5<cr>
+noremap <c-w>6 :tabnext 6<cr>
+noremap <c-w>7 :tabnext 7<cr>
+noremap <c-w>8 :tabnext 8<cr>
+noremap <c-w>9 :tabnext 9<cr>
+"}}}
+
+" 转换大小写"{{{
+nnoremap <C-k><C-u> <esc>gUawea
+inoremap <C-k><C-u> <esc>gUawea
+nnoremap <C-k><C-l> <esc>guawea
+inoremap <C-k><C-l> <esc>guawea
+nnoremap <C-k><C-t> <esc>b~ea
+inoremap <C-k><C-t> <esc>b~ea
+"}}}
+
+" Repeat previous command with a bang(直接的)
+nnoremap <leader>. q:k<CR>
+
+" easy indent/outdent"{{{
+nnoremap < <<
+nnoremap > >>
+vnoremap < <gv
+vnoremap > >gv
+sunmap <
+"}}}
+
+" map <c-c> 
+nnoremap <c-c> <esc>
+
+noremap H ^
+noremap L $
+
+map Y y$
+
+"" 强制保存
+cabbr w!! w !sudo tee % >/dev/null
+
+nnoremap <leader>S mz^vg_y:execute @@<CR>`z
+vnoremap <leader>S mzy:execute @@<CR>`z
+
+nnoremap <silent> ,gf :vertical botright wincmd f<CR>
+
+"nnoremap u g-
+"nnoremap <C-R> g+
+" 用途:更改C++参数
+"cmap ;tf ?^{??(?,/^}/s/ 
+
+if exists("+undofile")
+  " undofile - This allows you to use undos after exiting and restarting
+  " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
+  " :help undo-persistence
+  " This is only present in 7.3+
+  if isdirectory($HOME . '/.vim/undo') == 0
+    :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
+  endif
+  set undodir=./.vim-undo//
+  set undodir+=~/.vim/undo//
+  set undofile
+endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             自定义插进                                  "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "autocmd BufRead *.py set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
 "autocmd BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
 autocmd BufRead *.py,*.c,*.sh,*.coffee map <silent> <F5> :call Run()<CR>
 autocmd BufRead *.py,*.c,*.sh,*.coffee map <silent> <leader><F5> :call Debug()<CR>
 autocmd BufRead *.py noremap <silent> <F4> :call SetBP()<CR>
-func! Chmod() "{{{}}}"
+func! Chmod() "{{{"
     exec "!chmod u+x " . expand("%:p")
-endfunc
+  endfunc "}}}
 
 func! Run() "{{{"
     exec "w"
@@ -541,107 +811,9 @@ func! SetBP() "{{{"
     endif
 endfunc "}}}"
 
-"au BufEnter *.coffee call system("coffee -c ".expand("%:p"))
-nnoremap <c-u> :call clearmatches()<cr>
-nnoremap <C-d> :call ME_StartEdit()<cr>
-snoremap <c-d> <Esc>:call ME_Select()<cr>
-"nnoremap <c-j> :source %<cr>
-"nnoremap <C-k>k viw<C-g>
-
-"hi previewWord term=bold ctermbg=green guibg=green
-"hi previewWord term=underline
-let b:me_start = 0
-
-func! ME_StartEdit() "{{{
-    let b:me_start = 1
-    let b:me_firstchange = 1
-    exec "normal viwo"
-endfunc"}}}
-
-func! ME_Select() "{{{
-    hi previewWord term=underline ctermfg=red guibg=green
-    "hi previewWord term=undercurl 
-    "hi selectLine  term=bold
-    let b:me_lastcol = col(".")
-    let b:me_lastline = getline(".")
-    call matchadd("previewWord","\\%" . line(".") . "l\\%" . col(".") . "c\\k*")
-    call search("\\<\\V". expand("<cword>"). "\\>")
-    exec "normal viwo"
-endfunc"}}}
-
-func! ME_Init() "{{{
-    if !exists("b:me_lines") || b:me_lines == {}
-        let b:me_lines = {}
-    endif
-    let b:me_linelength = strlen(getline("."))
-    echo b:me_linelength
-    for matchitem in getmatches()
-        if matchitem['group'] == "previewWord"
-            call ME_AddLine(matchitem['pattern'])
-        endif
-    endfor
-    "echo patterns
-endfunc"}}}
-
-fun! ME_AddLine(pattern) "{{{
-    "\%557l\%1c\k* 
-    "\% lo l\% co c pa
-    let ln = str2nr(matchstr(a:pattern,'\d\+')) "line no
-    let cn = str2nr(matchstr(a:pattern, '\d\+', 2 + strlen(ln))) " column no
-    let pa = strpart(a:pattern,6+strlen(ln)+strlen(cn)) " pattern
-    
-    let line = getline(ln)
-    let head=  strpart(line,0,cn-1)
-    let tail = strpart(line, cn-1)
-    let tail = strpart(tail, strlen(matchstr(tail,pa)))
-
-    let me_line = {'head':head,'tail':tail,'ln':ln,'cn':cn}
-    let b:me_lines[ln] = me_line
-    "call add(b:me_lines, me_line)
-    unlet ln cn pa line head tail me_line
-endfunc"}}}
-
-func! CursorMoved() "{{{
-    echo b:me_start
-    if b:me_start == 0
-        "echo "move return"
-        return
-    endif
-    echo "apply change"
-    let me_change = "change"
-    let new_text = b:me_linelength - strlen(getline("."))
-    " 通过行长度来判断进行的操作(移动，删除，增加)"
-    if b:me_firstchange == 1
-        let b:me_firstchange = 0
-        let me_change =  getline(".")[col(".")-2:col(".")-2]
-        for key in keys(b:me_lines)
-            let me_line = b:me_lines[key]
-            let b:me_lines[key] = { "head": me_line.head . me_change, "tail": me_line.tail, "ln": me_line.ln, "cn": me_line.cn + col(".") - b:me_lastcol }
-        endfor
-    else
-        let me_change =  getline(".")[col(".")-2:col(".")-2]
-        for key in keys(b:me_lines)
-            let me_line = b:me_lines[key]
-            let b:me_lines[key] = { "head": me_line.head . me_change, "tail": me_line.tail, "ln": me_line.ln, "cn": me_line.cn + col(".") - b:me_lastcol }
-            echo me_line
-        endfor
-    endif
-    for key in keys(b:me_lines)
-        let me_line = b:me_lines[key]
-        call setline(me_line['ln'], me_line['head']. me_line['tail'])
-    endfor
-    
-    "for key in keys(b:me_lines)
-        "let me_line = b:me_lines[key]
-        ""echo (me_line.ln) .  line(".")
-        "if me_line.ln != line(".")
-            "call setline(me_line['ln'], me_line['head']. me_change. me_line['tail'])
-        "endif
-    "endfor
-endfunc "}}}
-
-au FileType * let b:me_start = 0
-"au CursorMovedI * call CursorMoved()
-"au InsertEnter * call ME_Init()
-"au InsertLeave * unlet b:me_lines | let b:me_start = 0 | call clearmatches()
-"au CursorMovedI * call setline(line("."),getline(line("."))."n")
+" 结合 .,n,p可以实现快速替换
+""{{{
+nnoremap <silent> <c-d> :let @/ = "\\<" . expand('<cword>') . "\\>"<cr>
+"nnoremap <silent> <c-d>ma :let b:word = "\\<" . expand('<cword>') . "\\>"<cr>:let @/=b:word<cr>
+"nnoremap <silent> <c-d>c :let b:word = "\\<" . expand('<cword>') . "\\>"<cr>:let @/=b:word<cr>ciw
+"}}}

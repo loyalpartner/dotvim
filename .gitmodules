@@ -61,10 +61,6 @@
 [submodule "bundle/ListToggle"]
 	path = bundle/ListToggle
 	url = https://github.com/Valloric/ListToggle.git
-[submodule "bundle/vim-python-mode"]
-	path = bundle/vim-python-mode
-	url = https://github.com/loyalpartner/python-mode.git
-	url = https://github.com/myusuf3/numbers.vim.git
 [submodule "bundle/numbers.vim"]
 	path = bundle/numbers.vim
 	url = https://github.com/myusuf3/numbers.vim.git
@@ -74,3 +70,15 @@
 [submodule "bundle/TaskList"]
 	path = bundle/TaskList
 	url = https://github.com/vim-scripts/TaskList.vim.git
+[submodule "bundle/pymode"]
+	path = bundle/pymode
+	url = https://github.com/klen/python-mode.git
+[submodule "bundle/gundo"]
+	path = bundle/gundo
+	url = https://github.com/sjl/gundo.vim.git
+[submodule "bundle/tagbar"]
+	path = bundle/tagbar
+	url = https://github.com/majutsushi/tagbar.git
+[submodule "bundle/vim-coffee-script"]
+	path = bundle/vim-coffee-script
+	url = https://github.com/kchmck/vim-coffee-script.git

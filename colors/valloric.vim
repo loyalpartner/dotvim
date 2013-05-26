@@ -134,21 +134,23 @@ if &t_Co > 255
    hi Function        ctermfg=118
    hi Identifier      ctermfg=208
    hi Ignore          ctermfg=244 ctermbg=232
-   hi IncSearch       ctermfg=193 ctermbg=16
+   "hi IncSearch       ctermfg=193 ctermbg=16
+   hi IncSearch          ctermfg=15 ctermbg=240 cterm=none             
 
    hi Keyword         ctermfg=161               cterm=bold
    hi Label           ctermfg=229               cterm=none
    hi Macro           ctermfg=193
    hi SpecialKey      ctermfg=81
 
-   hi MatchParen      ctermfg=16  ctermbg=208 cterm=bold
+   "hi MatchParen      ctermfg=16  ctermbg=208 cterm=bold
+   hi MatchParen      ctermfg=208  ctermbg=none cterm=bold
    hi ModeMsg         ctermfg=229
    hi MoreMsg         ctermfg=229
    hi Operator        ctermfg=161
 
    " complete menu
-   hi Pmenu           ctermfg=81  ctermbg=16
-   hi PmenuSel                    ctermbg=244
+   hi Pmenu           ctermfg=144  ctermbg=none
+   hi PmenuSel                    ctermbg=16
    hi PmenuSbar                   ctermbg=232
    hi PmenuThumb      ctermfg=81
 
@@ -156,7 +158,8 @@ if &t_Co > 255
    hi PreProc         ctermfg=118
    hi Question        ctermfg=81
    hi Repeat          ctermfg=161
-   hi Search          ctermfg=253 ctermbg=66
+   "hi Search          ctermfg=253 ctermbg=66
+   hi Search          ctermfg=none        ctermbg=234   cterm=none
 
    " marks column
    hi SignColumn      ctermfg=118 ctermbg=235
@@ -186,9 +189,17 @@ if &t_Co > 255
 
    hi Normal          ctermfg=252 ctermbg=233
    hi Comment         ctermfg=59
-   "hi CursorLine                  ctermbg=234   cterm=none
-   hi CursorLine                                 cterm=undercurl
+   "hi Comment         ctermfg=135
+   hi CursorLine                  ctermbg=234   cterm=none
+   "hi CursorLine                                 cterm=undercurl
    hi CursorColumn                ctermbg=234
-   hi LineNr          ctermfg=250 ctermbg=234
+   "hi CursorColumn                ctermbg=none   cterm=underline
+   "hi LineNr          ctermfg=250 ctermbg=234
+   hi LineNr          ctermfg=208 ctermbg=none
    hi NonText         ctermfg=250 ctermbg=234
+
+   hi TabLine         ctermfg=15 ctermbg=240 cterm=none
+   hi TabLineSel      ctermfg=15 ctermbg=166
+   hi TabLineFill     ctermfg=11 ctermbg=240
+   hi TabOther        ctermfg=240 ctermbg=32
 end

@@ -1,9 +1,30 @@
-snippet py "Description" 
+snippet py "Description"
 python << EOF
 ${1:python code}
 EOF
 endsnippet
-	
+
+global !p
+def example(mode, str):
+    if mode is 's':
+        return mode + str
+endglobal
+
+snippet map "map" !b
+${1:i}map ${2:<leader>${3:key}} ${4:command or other}
+endsnippet
+
+snippet mapno "noremap" !b
+${1:i}noremap ${2:<leader>${3:key}} ${4:command or other}
+endsnippet
+
+snippet func "fun" !b
+"{{{
+func! ${1:Fun_name}(${2:param}) 
+${3:}
+endfunc 
+"}}}
+endsnippet
 
 snippet nr2char 	 "通过 ASCII 码值取得一个字符" !
 nr2char($1)$0
@@ -118,7 +139,7 @@ endsnippet
 snippet filter 	 "删除列表的选定项目" !
 filter($1)$0
 endsnippet
-snippet map 	 "改变每个列表项目" !
+snippet map() 	 "改变每个列表项目"
 map($1)$0
 endsnippet
 snippet sort 	 "给列表排序" !
@@ -180,7 +201,7 @@ endsnippet
 snippet filter 	 "删除字典的选定项目" !
 filter($1)$0
 endsnippet
-snippet map 	 "改变每个字典项目" !
+snippet map() 	 "改变每个字典项目" !
 map($1)$0
 endsnippet
 snippet keys 	 "得到字典的键列表" !
@@ -759,7 +780,7 @@ endsnippet
 snippet getpid 	 "得到 Vim 的进程号" !
 getpid($1)$0
 endsnippet
-	
+
 snippet libcall 	 "调用一个外部库函数" !
 libcall($1)$0
 endsnippet

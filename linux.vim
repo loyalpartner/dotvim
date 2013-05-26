@@ -1,4 +1,4 @@
-" vim:set foldmethod=marker tabstop=4 shiftwidth=4 softtabstop=4 expandtab:
+" vim:set foldmethod=marker tabstop=2 shiftwidth=2 softtabstop=2 expandtab:
 
 " 让vim 在linux 终端和gui保持一致{{{
 "for i in range(65, 90) + range(97, 122) " 让终端支持M-*快捷键
@@ -17,74 +17,6 @@ set fencs=utf8,cp936,chinese,ucs-bom,gb18030 enc=utf8
 
 set guifont=monospace\ 9
 
-" Setting the font to Consolas, 11 pt
-"if has("gui_running")
-  "if has("gui_gtk2")
-    "set guifont=Consolas\ 9
-  "else
-    "set guifont=Consolas:h9
-  "endif
-"endif
-
-"}}}
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => 按键配置
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"custom comma motion mapping
-nmap di, f,dT,
-nmap ci, f,cT,
-nmap da, f,ld2F,i,<ESC>l "delete argument 
-nmap ca, f,ld2F,i,<ESC>a "delete arg and insert
-
-vnoremap <leader>yy "+y
-nnoremap <leader>yp "+p
-
-"编辑配置文件
-nnoremap <M-c> :e! ~/.vim/linux.vim<cr>
-nnoremap c :e! ~/.vim/linux.vim<cr>
-
-"inoremap <C-e> <C-x><C-e>
-"inoremap <C-y> <C-x><C-y>
-
-" 
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-
-" 切换缓冲
-noremap l :bnext<cr>
-noremap h :bprevious<cr>
-noremap a :bfirst<cr>
-noremap e :blast<cr>
-
-" 切换选项卡
-noremap L :tabnext<cr>
-noremap H :tabprevious<cr>
-noremap A :tabfirst<cr>
-noremap E :tablast<cr>
-
-" 终端
-"noremap <silent> j mz:m+<cr>`z
-"noremap <silent> k mz:m-2<cr>`z
-"vnoremap <silent> j :m'>+<cr>`<my`>mzgv`yo`z
-"vnoremap <silent> k :m'<-2<cr>`>my`<mzgv`yo`z  
-
-"换大小写
-nnoremap <C-k><C-u> <esc>gUawea
-inoremap <C-k><C-u> <esc>gUawea
-nnoremap <C-k><C-l> <esc>guawea
-inoremap <C-k><C-l> <esc>guawea
-nnoremap <C-k><C-t> <esc>b~ea
-inoremap <C-k><C-t> <esc>b~ea
-
-" 用途:更改C++参数
-cmap ;tf ?^{??(?,/^}/s/ 
-cmap ;py py print 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  c,c++                                  "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -98,4 +30,44 @@ au FileType c,cpp setlocal keywordprg=man\ 3
 au FileType coffee,javascript set shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
 
-nmap <F6> :set nonumber<cr>
+nmap <F6> :set nu!<cr>
+
+
+let g:tagbar_type_coffee = {
+    \ 'ctagstype' : 'coffee',
+    \ 'kinds'     : [
+        \ 'c:classes',
+        \ 'm:methods',
+        \ 'f:functions',
+        \ 'v:variables',
+        \ 'f:fields',
+    \ ]
+\ }
+
+" Posix regular expressions for matching interesting items. Since this will 
+" be passed as an environment variable, no whitespace can exist in the options
+" so [:space:] is used instead of normal whitespaces.
+" Adapted from: https://gist.github.com/2901844
+let s:ctags_opts = '
+  \ --langdef=coffee
+  \ --langmap=coffee:.coffee
+  \ --regex-coffee=/(^|=[[:space:]])*class[[:space:]]([A-Za-z]+\.)*([A-Za-z]+)([[:space:]]extends[[:space:]][A-Za-z.]+)?$/\3/c,class/
+  \ --regex-coffee=/^[[:space:]]*(module\.)?(exports\.)?@?([A-Za-z.]+):.*[-=]>.*$/\3/m,method/
+  \ --regex-coffee=/^[[:space:]]*(module\.)?(exports\.)?([A-Za-z.]+)[[:space:]]+=.*[-=]>.*$/\3/f,function/
+  \ --regex-coffee=/^[[:space:]]*([A-Za-z.]+)[[:space:]]+=[^->\n]*$/\1/v,variable/
+  \ --regex-coffee=/^[[:space:]]*@([A-Za-z.]+)[[:space:]]+=[^->\n]*$/\1/f,field/
+  \ --regex-coffee=/^[[:space:]]*@([A-Za-z.]+):[^->\n]*$/\1/f,staticField/
+  \ --regex-coffee=/^[[:space:]]*([A-Za-z.]+):[^->\n]*$/\1/f,field/
+  \ --regex-coffee=/(constructor:[[:space:]]\()@([A-Za-z.]+)/\2/f,field/
+  \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z.]+(,[[:space:]]@([A-Za-z.]+)){0}/\3/f,field/
+  \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z.]+(,[[:space:]]@([A-Za-z.]+)){1}/\3/f,field/
+  \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z.]+(,[[:space:]]@([A-Za-z.]+)){2}/\3/f,field/
+  \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z.]+(,[[:space:]]@([A-Za-z.]+)){3}/\3/f,field/
+  \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z.]+(,[[:space:]]@([A-Za-z.]+)){4}/\3/f,field/
+  \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z.]+(,[[:space:]]@([A-Za-z.]+)){5}/\3/f,field/
+  \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z.]+(,[[:space:]]@([A-Za-z.]+)){6}/\3/f,field/
+  \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z.]+(,[[:space:]]@([A-Za-z.]+)){7}/\3/f,field/
+  \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z.]+(,[[:space:]]@([A-Za-z.]+)){8}/\3/f,field/
+  \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z.]+(,[[:space:]]@([A-Za-z.]+)){9}/\3/f,field/'
+
+let $CTAGS = substitute(s:ctags_opts, '\v\([nst]\)', '\\', 'g')
