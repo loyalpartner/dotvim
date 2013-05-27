@@ -29,10 +29,6 @@ au FileType c,cpp setlocal keywordprg=man\ 3
 "au FileType coffee set omnifunc=javascriptcomplete#CompleteJS
 au FileType coffee,javascript set shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
-
-nmap <F6> :set nu!<cr>
-
-
 let g:tagbar_type_coffee = {
     \ 'ctagstype' : 'coffee',
     \ 'kinds'     : [

@@ -64,7 +64,7 @@ autocmd WinEnter * set cursorline
 "set showcmd
 
 " 自动补全 --> 不选中第一项
-set completeopt+=longest
+set completeopt=longest,menu,menuone,preview
 "set complete=.,w,b,k "设置补全提示项
 
 set foldlevel=100
@@ -173,11 +173,11 @@ set wrap "Wrap lines
 
 set showcmd
 " 手速不行，所以时间条长点 囧
-set timeout timeoutlen=3000 ttimeoutlen=100
-au CmdWinEnter * set timeoutlen=500 ttimeoutlen=50
-au CmdWinLeave * set timeoutlen=3000 ttimeoutlen=50
-au InsertEnter * set timeoutlen=500 ttimeoutlen=50
-au InsertLeave * set timeoutlen=3000 ttimeoutlen=50
+set timeout timeoutlen=3000 ttimeoutlen=-1
+au CmdWinEnter * set timeoutlen=500 ttimeoutlen=-1
+au CmdWinLeave * set timeoutlen=3000 ttimeoutlen=-1
+au InsertEnter * set timeoutlen=500 ttimeoutlen=-1
+au InsertLeave * set timeoutlen=3000 ttimeoutlen=-1
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
@@ -242,6 +242,19 @@ autocmd BufReadPost *
      \ endif
 " Remember info about open buffers on close
 set viminfo^=%
+
+if exists("+undofile")
+  " undofile - This allows you to use undos after exiting and restarting
+  " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
+  " :help undo-persistence
+  " This is only present in 7.3+
+  if isdirectory($HOME . '/.vim/undo') == 0
+    :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
+  endif
+  set undodir=./.vim-undo//
+  set undodir+=~/.vim/undo//
+  set undofile
+endif
 
 
 """"""""""""""""""""""""""""""
@@ -546,7 +559,7 @@ if exists("+showtabline")
     endif
   endfunc 
   "}}}
-
+"{{{
   function! MyTab_Line2()
 
     let tabs =  MyTab_List()
@@ -554,6 +567,7 @@ if exists("+showtabline")
     let result = MyTab_Tabs(tabs, restlength,1)
     return MyTab_Preview(result[2], result[0], result[1], 1)
   endfunc
+"}}}
     "{{{
   function! MyTab_Line()
 
@@ -615,38 +629,74 @@ if exists("+showtabline")
 endif
 "}}}
 
+"}}}
+
+"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => 按键配置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 在编程的时候经常要输入(,[,{,'," etc
 " 如果正常输入极不方便
 " 该映射方案可以很好的处理这个问题"{{{
-noremap! "" ""<left>
-noremap! '' ''<left>
-noremap! (( ()<left>
-noremap! (<cr> (<cr>)<c-o>O
-noremap! (; ();<esc>hi
-noremap! (<cr>; (<cr>);<c-o>O
-noremap! ('; ('');<esc>hhi
-noremap! ("; ("");<esc>hhi
-noremap! (' ('')<esc>hi
-noremap! (" ("")<esc>hi
-noremap! {{ {}<left>
-noremap! {<cr> {<cr>}<c-o>O
-noremap! {; {};<esc>hi
-noremap! {<cr>; {<cr>};<c-o>O
-noremap! {'; {''};<esc>hhi
-noremap! {"; {""};<esc>hhi
-noremap! {' {''}<esc>hi
-noremap! {" {""}<esc>hi
-noremap! [[ []<left>
-noremap! [<cr> [<cr>]<c-o>O
-noremap! [; [];<esc>hi
-noremap! [<cr>; [<cr>];<c-o>O
-noremap! ['; [''];<esc>hhi
-noremap! ["; [""];<esc>hhi
-noremap! [' ['']<esc>hi
-noremap! [" [""]<esc>hi
+inoremap <cr> <space>a<c-h><cr>
+inoremap <c-b> <del>
+
+"noremap! "" ""<left>
+"noremap! """ """
+"noremap! '' ''<left>
+"noremap! ''' '''
+"noremap! (( ()<left>
+"noremap! (<cr> (<cr>)<c-o>O
+"noremap! (; ();<esc>hi
+"noremap! (<cr>; (<cr>);<c-o>O
+"noremap! ('; ('');<esc>hhi
+"noremap! ("; ("");<esc>hhi
+"noremap! (' ('')<esc>hi
+"noremap! (" ("")<esc>hi
+"noremap! {{ {}<left>
+"noremap! {<cr> {<cr>}<c-o>O
+"noremap! {; {};<esc>hi
+"noremap! {<cr>; {<cr>};<c-o>O
+"noremap! {'; {''};<esc>hhi
+"noremap! {"; {""};<esc>hhi
+"noremap! {' {''}<esc>hi
+"noremap! {" {""}<esc>hi
+"noremap! [[ []<left>
+"noremap! [<cr> [<cr>]<c-o>O
+"noremap! [; [];<esc>hi
+"noremap! [<cr>; [<cr>];<c-o>O
+"noremap! ['; [''];<esc>hhi
+"noremap! ["; [""];<esc>hhi
+"noremap! [' ['']<esc>hi
+"noremap! [" [""]<esc>hi
+"inoremap <buffer> <silent> ' <C-R>=<SID>InsertPair("'", "'")<CR>
+"inoremap <buffer> <silent> " <C-R>=<SID>InsertPair('"', '"')<CR>
+
+"inoremap <buffer> <silent> ( <C-R>=<SID>InsertPair("(", ")")<CR>
+"inoremap <buffer> <silent> [ <C-R>=<SID>InsertPair("[", "]")<CR>
+"inoremap <buffer> <silent> { <C-R>=<SID>InsertPair("{", "}")<CR>
+"inoremap <buffer> <silent> < <C-R>=<SID>InsertPair("<", ">")<CR>
+
+"function! s:InsertPair(opener, closer)
+    "let l:save_ve = &ve
+    "set ve=all
+
+    "call s:InsertStringAtCursor(a:closer)
+
+    "exec "set ve=" . l:save_ve
+    "return a:opener
+"endfunction
+
+"function! s:InsertStringAtCursor(str)
+    "let l:line = getline('.')
+    "let l:column = col('.')-2
+
+    "if l:column < 0
+        "call setline('.', a:str . l:line)
+    "else
+        "call setline('.', l:line[:l:column] . a:str . l:line[l:column+1:])
+    "endif
+"endfunction
 "}}}
 
 "custom comma motion mapping"{{{
@@ -656,12 +706,11 @@ nnoremap da, f,ld2F,i,<ESC>l "delete argument
 nnoremap ca, f,ld2F,i,<ESC>a "delete arg and insert
 "}}}
 
-"nnoremap <leader>reg :reg<cr>
 nnoremap <leader>yp "+p
 nnoremap <leader>yy "+yy
 vnoremap <leader>yy "+y
 
-nnoremap <leader>v viw<c-g>
+nmap <F6> :set nu!<cr>
 
 onoremap id i"
 onoremap ad a"
@@ -680,11 +729,12 @@ nmap <F6> :set nu!<cr>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
-" 切换缓冲
+" 切换缓冲"{{{
 noremap L :bnext<cr>
 noremap H :bprevious<cr>
 noremap A :bfirst<cr>
 noremap E :blast<cr>
+"}}}
 
 " 切换选项卡"{{{
 noremap l :tabnext<cr>
@@ -726,7 +776,6 @@ vnoremap > >gv
 sunmap <
 "}}}
 
-" map <c-c> 
 nnoremap <c-c> <esc>
 
 noremap H ^
@@ -742,29 +791,9 @@ vnoremap <leader>S mzy:execute @@<CR>`z
 
 nnoremap <silent> ,gf :vertical botright wincmd f<CR>
 
-"nnoremap u g-
-"nnoremap <C-R> g+
-" 用途:更改C++参数
-"cmap ;tf ?^{??(?,/^}/s/ 
-
-if exists("+undofile")
-  " undofile - This allows you to use undos after exiting and restarting
-  " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
-  " :help undo-persistence
-  " This is only present in 7.3+
-  if isdirectory($HOME . '/.vim/undo') == 0
-    :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
-  endif
-  set undodir=./.vim-undo//
-  set undodir+=~/.vim/undo//
-  set undofile
-endif
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             自定义插进                                  "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"autocmd BufRead *.py set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
-"autocmd BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
 autocmd BufRead *.py,*.c,*.sh,*.coffee map <silent> <F5> :call Run()<CR>
 autocmd BufRead *.py,*.c,*.sh,*.coffee map <silent> <leader><F5> :call Debug()<CR>
 autocmd BufRead *.py noremap <silent> <F4> :call SetBP()<CR>

@@ -8,12 +8,12 @@ let g:ctrlp_max_height = 20
 let g:ctrlp_show_hidden = 1
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*,~/.vim/bundle/*        " Linux/MacOSX
 "let g:ctrlp_extensions = ['quickfix', 'dir', 'rtscript',
-                      "\ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
+"\ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
 let g:ctrlp_custom_ignore = {
-\ 'dir':  '\v[\/]\.(git|hg|svn|cache)$',
-\ 'file': '\v\.(exe|so|dll)$',
-\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
-\ }
+      \ 'dir':  '\v[\/]\.(git|hg|svn|cache)$',
+      \ 'file': '\v\.(exe|so|dll)$',
+      \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+      \ }
 
 noremap ,,l :CtrlPLine<cr>
 noremap ,,c :CtrlPChange <C-r>=expand("%:p")<cr><cr>
@@ -90,20 +90,22 @@ let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_key_invoke_completion = '<C-L>'
 "let g:ycm_filetype_blacklist = {
-          "\ 'python' : 1,
-          "\}
+      "\ 'vim' : 1,
+      "\}
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
 "inoremap <Tab> <C-x><C-o>
 "inoremap <S-Tab> <Tab>
 let g:ycm_semantic_triggers =  {
-  \   'c' : ['->', '.'],
-  \   'objc' : ['->', '.'],
-  \   'cpp,objcpp' : ['->', '.', '::'],
-  \   'perl' : ['->'],
-  \   'php' : ['->', '::'],
-  \   'cs,java,javascript,d,vim,ruby,python,perl6,scala,vb,elixir,go' : ['.'],
-  \   'lua' : ['.', ':'],
-  \   'erlang' : [':'],
-  \ }
+      \   'c' : ['->', '.'],
+      \   'objc' : ['->', '.'],
+      \   'cpp,objcpp' : ['->', '.', '::'],
+      \   'perl' : ['->'],
+      \   'php' : ['->', '::'],
+      \   'cs,java,javascript,d,vim,ruby,python,perl6,scala,vb,elixir,go' : ['.'],
+      \   'lua' : ['.', ':'],
+      \   'erlang' : [':'],
+      \ }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                Powerline                                "
@@ -123,9 +125,9 @@ let g:syntastic_error_symbol='=>'
 let g:syntastic_warning_symbol='!!'
 let g:syntastic_python_checkers = ['flake8', 'pylint']
 let g:syntastic_mode_map={'mode':'active',
-            \ 'active_filetypes': [],
-            \ 'passive_filetypes': [] }
-            "\ 'passive_filetypes': ['python'] }
+      \ 'active_filetypes': [],
+      \ 'passive_filetypes': [] }
+"\ 'passive_filetypes': ['python'] }
 highlight SyntasticErrorLine guibg=red
 
 
@@ -197,7 +199,8 @@ cnoremap ;nn set nu<cr>:set nonu<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              coffeescript                               "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au BufNewFile,BufReadPost *.coffee setl foldmethod=marker nofoldenable
+let g:coffee_linter = ''
+"au BufNewFile,BufReadPost *.coffee setl foldmethod=marker nofoldenable
 "au FileType * let b:match_words = b:match_words.',\sstruct:^\}'
 "au FileType * let b:match_words += '^\{:^\}'
 
