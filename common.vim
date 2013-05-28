@@ -20,17 +20,9 @@ let mapleader = ","
 let g:mapleader = ","
 
 " Fast saving
-noremap <leader>ww :w!<cr>
-
-" In normal mode, we use : much more often than ; so lets swap them.
-" WARNING: this will cause any "ordinary" map command without the "nore" prefix
-" that uses ":" to fail. For instance, "map <f2> :w" would fail, since vim will
-" read ":w" as ";w" because of the below remappings. Use "noremap"s in such
-" situations and you'll be fine.
-"nnoremap ; :
-"nnoremap : ;
-"vnoremap ; :
-"vnoremap : ;
+au vimenter * unmap <leader>w=
+noremap <leader>w :w!<cr>
+noremap <leader>W :w!<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -122,7 +114,7 @@ set tm=500
 "set background=dark
 
 "set list
-noremap <leader>ls :set list!<cr>
+"noremap <leader>ls :set list!<cr>
 set listchars=tab:▸\ ,eol:¬
 
 " Set extra options when running in GUI mode
@@ -334,7 +326,8 @@ noremap <leader><space> :vimgrep //j <C-R>%<C-A><Home><right><right><right><righ
 noremap <F3> :vimgrep /<c-r>=expand("<cword>")<cr>/j <C-R>%<C-A><cr><Esc>:copen<cr>
 
 " When you press <leader>r you can search and replace the selected text
-"vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
+vnoremap <silent> <leader>R :call VisualSelection('replace')<CR>
+nnoremap <silent> <leader>R viw:call VisualSelection('replace')<CR>
 
 " Do :help cope if you are unsure what cope is. It's super useful!
 "
@@ -349,9 +342,6 @@ noremap <F3> :vimgrep /<c-r>=expand("<cword>")<cr>/j <C-R>%<C-A><cr><Esc>:copen<
 "
 "noremap <leader>cc :botright cope<cr>
 noremap <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-noremap <leader>n :cn<cr>
-noremap <leader>p :cp<cr>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
@@ -360,8 +350,6 @@ noremap <leader>p :cp<cr>
 noremap <leader>ss :setlocal spell!<cr>
 
 " Shortcuts using <leader>
-noremap <leader>sn ]s
-noremap <leader>sp [s
 noremap <leader>sa zg
 noremap <leader>s? z=
 

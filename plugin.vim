@@ -28,17 +28,6 @@ noremap ,,w :CtrlPClearCache<cr>
 noremap ,,B :CtrlPBookmarkDir<cr>
 "}}}
 
-"{{{ 主题
-syntax enable
-colorscheme valloric
-"set background=dark
-
-let g:kolor_italic=1                    " Enable italic. Default: 1
-let g:kolor_bold=1                      " Enable bold. Default: 1
-let g:kolor_underlined=1                " Enable underline for 'Underlined'. Default: 0
-let g:kolor_alternative_matchparen=0    " Gray 'MatchParen' color. Default: 0
-"}}}
-
 "{{{ Indent Guides
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
@@ -119,7 +108,7 @@ let g:Powerline_stl_path_style = 'full'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                Syntastic                                "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:syntastic_check_on_open=0
+let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=0
 let g:syntastic_error_symbol='=>'
 let g:syntastic_warning_symbol='!!'
@@ -233,3 +222,20 @@ nnoremap <leader>u :GundoToggle<cr>
 let g:tagbar_width = 30
 let g:tagbar_sort = 0
 let g:tagbar_left = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                  help                                   "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au FileType help noremap <buffer> <leader>n :call SearchTag(1)<cr>
+au FileType help noremap <buffer> <leader>p :call SearchTag(-1)<cr>
+au FileType help noremap <buffer> <c-m> <c-]>
+"{{{
+func! SearchTag(direction) 
+  let @/="|.\\{-}|"
+  if a:direction == 1
+    call search("|.\\{-}|")
+  elseif a:direction == -1
+    call search("|.\\{-}|",'b')
+  endif
+endfunc 
+"}}}

@@ -52,9 +52,6 @@
 [submodule "bundle/vim-fugitive"]
 	path = bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule "bundle/easymotion"]
-	path = bundle/easymotion
-	url = https://github.com/Lokaltog/vim-easymotion.git
 [submodule "bundle/operator-highlight"]
 	path = bundle/operator-highlight
 	url = https://github.com/Valloric/vim-operator-highlight.git
@@ -85,3 +82,24 @@
 [submodule "bundle/autoclose"]
 	path = bundle/autoclose
 	url = https://github.com/vim-scripts/AutoClose.git
+[submodule "bundle/vim-unimpaired"]
+	path = bundle/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "bundle/colorselector.vim"]
+	path = bundle/colorselector.vim
+	url = https://github.com/c9s/colorselector.vim.git
+[submodule "bundle/vim-css-color"]
+	path = bundle/vim-css-color
+	url = https://github.com/ap/vim-css-color.git
+[submodule "bundle/vim-indent-object"]
+	path = bundle/vim-indent-object
+	url = https://github.com/michaeljsmith/vim-indent-object.git
+[submodule "bundle/viki_vim"]
+	path = bundle/viki_vim
+	url = https://github.com/tomtom/viki_vim.git
+[submodule "bundle/tlib_vim"]
+	path = bundle/tlib_vim
+	url = https://github.com/tomtom/tlib_vim.git
+[submodule "bundle/MatchTagAlways"]
+	path = bundle/MatchTagAlways
+	url = https://github.com/Valloric/MatchTagAlways.git

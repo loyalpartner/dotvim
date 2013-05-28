@@ -376,10 +376,10 @@ command! -nargs=* Calendar  call Calendar(0,<f-args>)
 command! -nargs=* CalendarH call Calendar(1,<f-args>)
 
 if !hasmapto("<Plug>CalendarV")
-  nmap <unique> <Leader>cal <Plug>CalendarV
+  "nmap <unique> <Leader>cal <Plug>CalendarV
 endif
 if !hasmapto("<Plug>CalendarH")
-  nmap <unique> <Leader>caL <Plug>CalendarH
+  "nmap <unique> <Leader>caL <Plug>CalendarH
 endif
 nnoremap <silent> <Plug>CalendarV :cal Calendar(0)<CR>
 nnoremap <silent> <Plug>CalendarH :cal Calendar(1)<CR>
