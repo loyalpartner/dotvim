@@ -20,8 +20,10 @@ if dein#load_state('~/.cache/dein')
   call dein#add('tpope/vim-commentary')
   call dein#add('tpope/vim-surround')
   call dein#add('tpope/vim-repeat')
+  call dein#add('tpope/vim-fugitive')
   call dein#add('907th/vim-auto-save')
   call dein#add('kana/vim-textobj-user')
+  call dein#add('jreybert/vimagit')
   call dein#add('loyalpartner/vim-sdcv')
   
   call dein#end()
@@ -30,14 +32,6 @@ if dein#load_state('~/.cache/dein')
 	" call dein#update()
 endif
 
-" if has("termguicolors")
-" 	" fix bug for vim
-" 	set t_8f=^[[38;2;%lu;%lu;%lum
-" 	set t_8b=^[[48;2;%lu;%lu;%lum
-
-" 	" enable true color
-" 	set termguicolors
-" endif 
 if has("termguicolors")
     " fix bug for vim
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -62,14 +56,35 @@ set background=dark
 
 let g:mapleader = " "
 
-
 nnoremap <leader>hi :h<cr>
 nnoremap <leader>hrr :<c-u>source $MYVIMRC<cr>
 nnoremap <leader>hru :<c-u>call dein#install()<cr>
 nnoremap <leader>hdc :<C-u>e $MYVIMRC<cr>
 
-let g:auto_save = 1
+nnoremap <leader>bb :<c-u>CocList buffers<cr>
+nnoremap <leader>bp :bp<cr>
+nnoremap <leader>bn :bn<cr>
 
+
+nnoremap <leader>ff :<c-u>CocList files<cr>
+
+" coc git
+nmap <leader>gg :<c-u>G<cr>
+
+" navigate chunks of current buffer
+nmap [g <Plug>(coc-git-prevchunk)
+nmap ]g <Plug>(coc-git-nextchunk)
+" show chunk diff at current position
+nmap <leader>gi <Plug>(coc-git-chunkinfo)
+" show commit contains current position
+nmap <leader>gc <Plug>(coc-git-commit)
+" create text object for git chunks
+omap ig <Plug>(coc-git-chunk-inner)
+xmap ig <Plug>(coc-git-chunk-inner)
+omap ag <Plug>(coc-git-chunk-outer)
+xmap ag <Plug>(coc-git-chunk-outer)
+
+let g:auto_save = 1
 
 let g:sdcv_dictionary_simple_list = [
 			\"懒虫简明英汉词典",
