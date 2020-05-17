@@ -59,22 +59,22 @@ set background=dark
 
 let g:mapleader = " "
 
+" config
 noremap <F5> :source %<cr>
 nnoremap <leader>hi :h<cr>
 nnoremap <leader>hrr :<c-u>source $MYVIMRC<cr>
 nnoremap <leader>hru :<c-u>call dein#update()<cr>
 nnoremap <leader>hdc :<C-u>e $MYVIMRC<cr>
 
+" buffer
 nnoremap <leader>bb :<c-u>CocList buffers<cr>
 nnoremap <leader>bp :bp<cr>
 nnoremap <leader>bn :bn<cr>
 nnoremap <leader>bd :bd<cr>
 
-
+" file
 nnoremap <leader>ff :<c-u>CocList files<cr>
 nnoremap <leader>fr :<c-u>CocList mru<cr>
-
-nnoremap <leader>r :<c-u>source %<cr>
 
 "  git
 noremap <leader>gg :<c-u>G<cr>
