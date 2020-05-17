@@ -25,6 +25,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('kana/vim-textobj-user')
   call dein#add('jreybert/vimagit')
   call dein#add('loyalpartner/vim-sdcv')
+  call dein#add('airblade/vim-gitgutter')
   
   call dein#end()
   call dein#save_state()
@@ -47,6 +48,8 @@ set shiftwidth=2
 
 set nu
 
+set updatetime=100
+
 cmap <C-b> <left>
 cmap <C-f> <right>
 
@@ -56,33 +59,36 @@ set background=dark
 
 let g:mapleader = " "
 
+noremap <F5> :source %<cr>
 nnoremap <leader>hi :h<cr>
 nnoremap <leader>hrr :<c-u>source $MYVIMRC<cr>
-nnoremap <leader>hru :<c-u>call dein#install()<cr>
+nnoremap <leader>hru :<c-u>call dein#update()<cr>
 nnoremap <leader>hdc :<C-u>e $MYVIMRC<cr>
 
 nnoremap <leader>bb :<c-u>CocList buffers<cr>
 nnoremap <leader>bp :bp<cr>
 nnoremap <leader>bn :bn<cr>
+nnoremap <leader>bd :bd<cr>
 
 
 nnoremap <leader>ff :<c-u>CocList files<cr>
+nnoremap <leader>fr :<c-u>CocList mru<cr>
 
-" coc git
-nmap <leader>gg :<c-u>G<cr>
+nnoremap <leader>r :<c-u>source %<cr>
 
-" navigate chunks of current buffer
-nmap [g <Plug>(coc-git-prevchunk)
-nmap ]g <Plug>(coc-git-nextchunk)
-" show chunk diff at current position
-nmap <leader>gi <Plug>(coc-git-chunkinfo)
-" show commit contains current position
-nmap <leader>gc <Plug>(coc-git-commit)
-" create text object for git chunks
-omap ig <Plug>(coc-git-chunk-inner)
-xmap ig <Plug>(coc-git-chunk-inner)
-omap ag <Plug>(coc-git-chunk-outer)
-xmap ag <Plug>(coc-git-chunk-outer)
+"  git
+noremap <leader>gg :<c-u>G<cr>
+nmap <leader>gs <Plug>(GitGutterStageHunk)
+nmap <Leader>gu <Plug>(GitGutterUndoHunk)
+nmap ]d <Plug>(GitGutterNextHunk)
+nmap [d <Plug>(GitGutterPrevHunk)
+" nmap <leader>gi <Plug>(coc-git-chunkinfo)
+" nmap <leader>gc <Plug>(coc-git-commit)
+omap id <Plug>(GitGutterTextObjectInnerPending)
+omap ad <Plug>(GitGutterTextObjectOuterPending)
+xmap id <Plug>(GitGutterTextObjectInnerVisual)
+xmap ad <Plug>(GitGutterTextObjectOuterVisual)
+
 
 let g:auto_save = 1
 
@@ -93,4 +99,6 @@ let g:sdcv_dictionary_simple_list = [
 			\"朗道汉英字典5.0",
 			\"新华字典",
 			\]
-noremap g. :<c-u>call sdcv#search_simple(expand("<cword>"))<cr>
+
+nnoremap g. :<c-u>call sdcv#search_pointer()<cr>
+vnoremap <silent> g. v:<c-u>call sdcv#search_selection()<cr>
