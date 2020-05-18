@@ -44,8 +44,11 @@ set nu
 
 set updatetime=100
 
-cmap <C-b> <left>
-cmap <C-f> <right>
+cnoremap <C-b> <left>
+cnoremap <C-f> <right>
+cnoremap <C-a> <home>
+cnoremap <C-e> <end>
+cnoremap <m-j> <c-r>=expand("<cword>")<cr>
 
 let g:airline_theme='one'
 colorscheme one
