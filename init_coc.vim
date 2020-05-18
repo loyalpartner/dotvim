@@ -1,6 +1,14 @@
 let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = '<s-tab>'
 
+call coc#add_extension(
+			\'coc-json', 
+			\'coc-tsserver',
+			\'coc-python',
+			\'coc-vimlsp',
+			\'coc-lists',
+			\'coc-snippets')
+
 inoremap <silent><expr> <TAB>
 			\ pumvisible() ? coc#_select_confirm() :
 			\ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
