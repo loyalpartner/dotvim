@@ -101,11 +101,14 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
 let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = '<s-tab>'
 
 " hack 
 nnoremap <expr> q (&readonly ? ':close!<CR>' : 'q')
+autocmd! FileType fugitive execute 'noremap <buffer> ? :help fugitive-map<cr>'
+
 
 let g:auto_save = 1
 
