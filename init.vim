@@ -50,6 +50,9 @@ cnoremap <C-a> <home>
 cnoremap <C-e> <end>
 cnoremap <m-j> <c-r>=expand("<cword>")<cr>
 
+vnoremap < <gvh
+vnoremap > >gvl
+
 let g:airline_theme='one'
 colorscheme one
 set background=dark
@@ -82,7 +85,7 @@ nnoremap <leader>ff :Denite file<cr>
 nnoremap <leader>fr :Denite file_mru<cr>
 
 "  git
-noremap <leader>gg :<c-u>G<cr>
+nnoremap <leader>gg :<c-u>G<cr>
 nmap <leader>gs <Plug>(GitGutterStageHunk)
 nmap <Leader>gu <Plug>(GitGutterUndoHunk)
 nmap ]d <Plug>(GitGutterNextHunk)
@@ -97,6 +100,8 @@ xmap ad <Plug>(GitGutterTextObjectOuterVisual)
 " search and replace
 nnoremap <leader>sp :CocList grep<cr>
 nnoremap <leader>sr :%s/<c-r>=expand("<cword>")<cr>/
+" replace in function
+autocmd! filetype vim noremap <buffer> <leader>sf :?^fun?,/^endfun/s/ 
 
 " hack 
 nnoremap <expr> q (&readonly ? ':close!<CR>' : 'q')
