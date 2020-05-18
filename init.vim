@@ -80,7 +80,12 @@ nnoremap <leader>hi :h<cr>
 nnoremap <leader>hc :Denite help<cr>
 nnoremap <leader>hrr :<c-u>source $MYVIMRC<cr>
 nnoremap <leader>hru :<c-u>call dein#update()<cr>
+
 nnoremap <leader>hdc :<C-u>e $MYVIMRC<cr>
+nnoremap <leader>hdd :cd 
+			\<c-r>=fnamemodify($MYVIMRC, ":h")<cr>
+			\<cr>
+			\:Denite file<cr>
 
 " buffer
 " nnoremap <leader>bb :<c-u>CocList buffers<cr>
