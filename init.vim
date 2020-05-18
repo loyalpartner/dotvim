@@ -114,3 +114,6 @@ let g:sdcv_dictionary_simple_list = [
 
 nnoremap g. :<c-u>call sdcv#search_pointer()<cr>
 vnoremap <silent> g. v:<c-u>call sdcv#search_selection()<cr>
+
+let g:terminal_key = '<c-`>'
+nnoremap <leader>ot :call TerminalOpen()<cr>
