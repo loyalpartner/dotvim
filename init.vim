@@ -38,6 +38,8 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 
+set ffs=unix,dos
+
 set nu
 
 set updatetime=100
@@ -119,5 +121,5 @@ let g:terminal_key = '<c-`>'
 nnoremap <leader>ot :call TerminalOpen()<cr>
 
 if has("statusline")
-	 set statusline=%<%f\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P
- endif
+	set statusline=%<%f\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P
+endif
