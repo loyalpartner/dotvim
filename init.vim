@@ -102,23 +102,13 @@ execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-denite.vi
 execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-coc.vim"
 
 " hack 
+nnoremap <expr> q (&readonly ? ':close!<CR>' : 'q')
 autocmd! FileType qf execute 'nnoremap q :close!<cr>'
 autocmd! FileType fugitive execute 'noremap <buffer> ? :help fugitive-map<cr>'
 autocmd! FileType gitcommit execute 'noremap <buffer> <C-c><C-c> :wq<cr>'
 
-
-let g:auto_save = 1
-
-let g:sdcv_dictionary_simple_list = [
-			\"懒虫简明英汉词典",
-			\"懒虫简明汉英词典",
-			\"朗道英汉字典5.0",
-			\"朗道汉英字典5.0",
-			\"新华字典",
-			\]
-
-nnoremap g. :<c-u>call sdcv#search_pointer()<cr>
-vnoremap <silent> g. v:<c-u>call sdcv#search_selection()<cr>
+" sdcv.vim
+execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-sdcv.vim"
 
 let g:terminal_key = '<c-`>'
 nnoremap <leader>ot :call TerminalOpen()<cr>
