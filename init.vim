@@ -108,7 +108,7 @@ let g:coc_snippet_prev = '<s-tab>'
 " hack 
 nnoremap <expr> q (&readonly ? ':close!<CR>' : 'q')
 autocmd! FileType fugitive execute 'noremap <buffer> ? :help fugitive-map<cr>'
-autocmd! FileType fugitive execute 'nmap <buffer> <C-c><C-c> :wq<cr>'
+autocmd! FileType gitcommit execute 'noremap <buffer> <C-c><C-c> :wq<cr>'
 
 
 let g:auto_save = 1
