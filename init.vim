@@ -104,6 +104,9 @@ endfunction
 let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = '<s-tab>'
 
+" hack 
+nnoremap <expr> q (&readonly ? ':close!<CR>' : 'q')
+
 let g:auto_save = 1
 
 let g:sdcv_dictionary_simple_list = [
