@@ -97,16 +97,16 @@ xmap ad <Plug>(GitGutterTextObjectOuterVisual)
 " search
 noremap sp :CocList grep<cr>
 
-" coc.nvim
-execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-denite.vim"
-execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-coc.vim"
-
 " hack 
 nnoremap <expr> q (&readonly ? ':close!<CR>' : 'q')
 autocmd! FileType qf execute 'nnoremap q :close!<cr>'
 autocmd! FileType fugitive execute 'noremap <buffer> ? :help fugitive-map<cr>'
 autocmd! FileType gitcommit execute 'noremap <buffer> <C-c><C-c> :wq<cr>'
 
+" denite.nvim
+execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-denite.vim"
+" coc.nvim
+execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-coc.vim"
 " sdcv.vim
 execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-sdcv.vim"
 
