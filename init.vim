@@ -76,6 +76,7 @@ let g:mapleader = " "
 " config
 noremap <F5> :source %<cr>
 nnoremap <leader>hi :h<cr>
+nnoremap <leader>hc :Denite help<cr>
 nnoremap <leader>hrr :<c-u>source $MYVIMRC<cr>
 nnoremap <leader>hru :<c-u>call dein#update()<cr>
 nnoremap <leader>hdc :<C-u>e $MYVIMRC<cr>

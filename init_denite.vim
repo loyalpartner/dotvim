@@ -2,6 +2,7 @@
 " call denite#custom#option()
 
 call denite#custom#option("_", "start_filter", 1)
+call denite#custom#option("_", "match-highlight", 1)
 
 autocmd FileType denite call s:denite_my_settings()
 function! s:denite_my_settings() abort
@@ -17,9 +18,11 @@ endfunction
 autocmd FileType denite-filter call s:denite_filter_my_settings()
 function! s:denite_filter_my_settings() abort
   inoremap <silent><buffer> <C-c> <Esc>
+				\:q<cr>
 				\:call denite#move_to_parent()<cr>
 				\:q<cr>
   inoremap <silent><buffer> <Esc> <Esc>
+				\:q<cr>
 				\:call denite#move_to_parent()<cr>
 				\:q<cr>
 
