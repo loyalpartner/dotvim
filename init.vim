@@ -117,3 +117,7 @@ vnoremap <silent> g. v:<c-u>call sdcv#search_selection()<cr>
 
 let g:terminal_key = '<c-`>'
 nnoremap <leader>ot :call TerminalOpen()<cr>
+
+if has("statusline")
+	 set statusline=%<%f\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P
+ endif

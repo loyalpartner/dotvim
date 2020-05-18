@@ -1,10 +1,8 @@
- 
-" call denite#custom#option()
-
 call denite#custom#option("_", "start_filter", 1)
 call denite#custom#option("_", "match-highlight", 1)
 
 autocmd FileType denite call s:denite_my_settings()
+
 function! s:denite_my_settings() abort
 	call denite#do_map('open_filter_buffer')
   nnoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
