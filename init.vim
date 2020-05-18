@@ -28,6 +28,14 @@ if dein#load_state('~/.cache/dein')
   call dein#add('airblade/vim-gitgutter')
 	call dein#add('honza/vim-snippets')
 	call dein#add('airblade/vim-rooter')
+	" denite
+	call dein#add('Shougo/denite.nvim')
+	if !has('nvim')
+		call dein#add('roxma/nvim-yarp')
+		call dein#add('roxma/vim-hug-neovim-rpc')
+	endif
+	call dein#add('Shougo/neomru.vim')
+
 	
   
   call dein#end()
@@ -73,14 +81,15 @@ nnoremap <leader>hru :<c-u>call dein#update()<cr>
 nnoremap <leader>hdc :<C-u>e $MYVIMRC<cr>
 
 " buffer
-nnoremap <leader>bb :<c-u>CocList buffers<cr>
+" nnoremap <leader>bb :<c-u>CocList buffers<cr>
+nnoremap <leader>bb :<c-u>Denite buffer<cr>
 nnoremap <leader>bp :bp<cr>
 nnoremap <leader>bn :bn<cr>
 nnoremap <leader>bd :bd<cr>
 
 " file
-nnoremap <leader>ff :CocList files<cr>
-nnoremap <leader>fr :<c-u>CocList mru<cr>
+nnoremap <leader>ff :Denite file<cr>
+nnoremap <leader>fr :Denite file_mru<cr>
 
 "  git
 noremap <leader>gg :<c-u>G<cr>
@@ -99,6 +108,7 @@ xmap ad <Plug>(GitGutterTextObjectOuterVisual)
 noremap sp :CocList grep<cr>
 
 " coc.nvim
+execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init_denite.vim"
 execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init_coc.vim"
 
 " hack 
