@@ -1,4 +1,6 @@
 {
+	"suggest.noselect": false,
+	"suggest.minTriggerInputLength": 3,
 	"list.source.files.excludePatterns": ["**/.git/**"],
 	"list.source.mru.defaultOptions": ["-A"]
 }
