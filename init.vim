@@ -91,7 +91,7 @@ xmap id <Plug>(GitGutterTextObjectInnerVisual)
 xmap ad <Plug>(GitGutterTextObjectOuterVisual)
 
 " coc.nvim
-source init_coc.vim
+execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init_coc.vim"
 
 " hack 
 nnoremap <expr> q (&readonly ? ':close!<CR>' : 'q')
