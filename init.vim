@@ -26,6 +26,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('jreybert/vimagit')
   call dein#add('loyalpartner/vim-sdcv')
   call dein#add('airblade/vim-gitgutter')
+	call dein#add('honza/vim-snippets')
   
   call dein#end()
   call dein#save_state()
