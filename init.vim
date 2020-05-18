@@ -14,29 +14,7 @@ if dein#load_state('~/.cache/dein')
     call dein#add('roxma/vim-hug-neovim-rpc')
   endif
 
-  call dein#add('rakr/vim-one')
-  call dein#add('neoclide/coc.nvim', {'merged':0, 'build': 'yarn install --frozen-lockfile'})
-  call dein#add('tpope/vim-sensible')
-  call dein#add('tpope/vim-commentary')
-  call dein#add('tpope/vim-surround')
-  call dein#add('tpope/vim-repeat')
-  call dein#add('tpope/vim-fugitive')
-  call dein#add('907th/vim-auto-save')
-  call dein#add('kana/vim-textobj-user')
-  call dein#add('jreybert/vimagit')
-  call dein#add('loyalpartner/vim-sdcv')
-  call dein#add('airblade/vim-gitgutter')
-	call dein#add('honza/vim-snippets')
-	call dein#add('airblade/vim-rooter')
-	" denite
-	call dein#add('Shougo/denite.nvim')
-	if !has('nvim')
-		call dein#add('roxma/nvim-yarp')
-		call dein#add('roxma/vim-hug-neovim-rpc')
-	endif
-	call dein#add('Shougo/neomru.vim')
-
-	
+	execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-plugin.vim"
   
   call dein#end()
   call dein#save_state()
@@ -115,8 +93,8 @@ xmap ad <Plug>(GitGutterTextObjectOuterVisual)
 noremap sp :CocList grep<cr>
 
 " coc.nvim
-execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init_denite.vim"
-execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init_coc.vim"
+execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-denite.vim"
+execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-coc.vim"
 
 " hack 
 nnoremap <expr> q (&readonly ? ':close!<CR>' : 'q')
