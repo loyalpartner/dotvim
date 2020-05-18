@@ -43,6 +43,9 @@ if has("termguicolors")
     set termguicolors
 endif
 
+" persistent undo
+set undofile
+
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
