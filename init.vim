@@ -27,6 +27,8 @@ if dein#load_state('~/.cache/dein')
   call dein#add('loyalpartner/vim-sdcv')
   call dein#add('airblade/vim-gitgutter')
 	call dein#add('honza/vim-snippets')
+	call dein#add('airblade/vim-rooter')
+	
   
   call dein#end()
   call dein#save_state()
@@ -77,7 +79,7 @@ nnoremap <leader>bn :bn<cr>
 nnoremap <leader>bd :bd<cr>
 
 " file
-nnoremap <leader>ff :<c-u>CocList files<cr>
+nnoremap <leader>ff :CocList files<cr>
 nnoremap <leader>fr :<c-u>CocList mru<cr>
 
 "  git
@@ -92,6 +94,9 @@ omap id <Plug>(GitGutterTextObjectInnerPending)
 omap ad <Plug>(GitGutterTextObjectOuterPending)
 xmap id <Plug>(GitGutterTextObjectInnerVisual)
 xmap ad <Plug>(GitGutterTextObjectOuterVisual)
+
+" search
+noremap sp :CocList grep<cr>
 
 " coc.nvim
 execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init_coc.vim"

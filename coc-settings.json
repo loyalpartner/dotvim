@@ -1,2 +1,4 @@
 {
+	"list.source.files.excludePatterns": ["**/.git/**"],
+	"list.source.mru.defaultOptions": ["-A"]
 }
