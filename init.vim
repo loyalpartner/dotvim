@@ -94,8 +94,9 @@ omap ad <Plug>(GitGutterTextObjectOuterPending)
 xmap id <Plug>(GitGutterTextObjectInnerVisual)
 xmap ad <Plug>(GitGutterTextObjectOuterVisual)
 
-" search
-noremap sp :CocList grep<cr>
+" search and replace
+nnoremap <leader>sp :CocList grep<cr>
+nnoremap <leader>sr :%s/<c-r>=expand("<cword>")<cr>/
 
 " hack 
 nnoremap <expr> q (&readonly ? ':close!<CR>' : 'q')
