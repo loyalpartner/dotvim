@@ -62,7 +62,7 @@ let g:mapleader = " "
 " config
 " <f5> 在这里不起作用?
 " autocmd! filetype vim noremap <buffer> <F5> :source %<cr> 
-autocmd! filetype vim nnoremap <buffer> <leader>r :source %<cr>
+autocmd filetype vim nnoremap <buffer> <leader>r :source %<cr>
 
 nnoremap <leader>hi :h<cr>
 nnoremap <leader>hc :Denite help<cr>
@@ -103,13 +103,13 @@ xmap ad <Plug>(GitGutterTextObjectOuterVisual)
 nnoremap <leader>sp :CocList grep<cr>
 nnoremap <leader>sr :%s/<c-r>=expand("<cword>")<cr>/
 " replace in function
-autocmd! filetype vim noremap <buffer> <leader>sf :?^fun?,/^endfun/s/
+autocmd filetype vim noremap <buffer> <leader>sf :?^fun?,/^endfun/s/
 
 " hack 
 nnoremap <expr> q (&readonly ? ':close!<CR>' : 'q')
-autocmd! FileType qf execute 'nnoremap q :close!<cr>'
-autocmd! FileType fugitive execute 'noremap <buffer> ? :help fugitive-map<cr>'
-autocmd! FileType gitcommit execute 'noremap <buffer> <C-c><C-c> :wq<cr>'
+autocmd FileType qf execute 'nnoremap q :close!<cr>'
+autocmd FileType fugitive execute 'noremap <buffer> ? :help fugitive-map<cr>'
+autocmd FileType gitcommit execute 'noremap <buffer> <C-c><C-c> :wq<cr>'
 
 " denite.nvim
 execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-denite.vim"
