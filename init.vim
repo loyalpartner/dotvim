@@ -118,10 +118,8 @@ execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-denite.vi
 execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-coc.vim"
 " sdcv.vim
 execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-sdcv.vim"
+" statusline
+execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-statusline.vim"
 
 let g:terminal_key = '<c-`>'
 nnoremap <leader>ot :call TerminalOpen()<cr>
-
-if has("statusline")
-	set statusline=%<%f\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).\".\".(&ff).\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P
-endif
