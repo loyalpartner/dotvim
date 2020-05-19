@@ -39,6 +39,7 @@ set softtabstop=2
 set shiftwidth=2
 
 set ffs=unix,dos
+set mouse=a
 
 set nu
 
