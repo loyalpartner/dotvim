@@ -3,6 +3,7 @@ nmap <leader>gs <Plug>(GitGutterStageHunk)
 nmap <Leader>gr <Plug>(GitGutterUndoHunk)
 
 nnoremap <leader>gB :Gina blame<cr>
+nnoremap <leader>gl :G log --oneline<cr>
 nnoremap <leader>gL :Gina log<cr>
 nnoremap <leader>gF :G fetch<cr>
 nnoremap <leader>gS :G stage %<cr>
