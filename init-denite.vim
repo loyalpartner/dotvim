@@ -1,5 +1,6 @@
 call denite#custom#option("_", "start_filter", 1)
 call denite#custom#option("_", "match-highlight", 1)
+call denite#custom#option("_", "winheight", 12)
 
 autocmd FileType denite call s:denite_my_settings()
 
@@ -15,17 +16,9 @@ endfunction
 
 autocmd FileType denite-filter call s:denite_filter_my_settings()
 function! s:denite_filter_my_settings() abort
-  inoremap <silent><buffer> <C-c> <Esc>
-				\:q<cr>
-				\:call denite#move_to_parent()<cr>
-				\:q<cr>
-  inoremap <silent><buffer> <Esc> <Esc>
-				\:q<cr>
-				\:call denite#move_to_parent()<cr>
-				\:q<cr>
-
+  inoremap <silent><buffer><expr> <C-c> denite#do_map('quit')
+  inoremap <silent><buffer><expr> <Esc> denite#do_map('quit')
 	inoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
-	" imap <silent><buffer> <C-n> denite#
 
 	inoremap <silent><buffer> <C-n> <Esc>
 				\:call denite#move_to_parent()<CR>
@@ -35,4 +28,8 @@ function! s:denite_filter_my_settings() abort
 				\:call denite#move_to_parent()<CR>
 				\:call cursor(line('.')-1,0)<CR>
 				\:call denite#move_to_filter()<CR>A
+	inoremap <silent><buffer><expr> <C-t> denite#do_map('do_action', 'tabopen')
+	inoremap <silent><buffer><expr> <C-v> denite#do_map('do_action', 'vsplit')
+	inoremap <silent><buffer><expr> <C-s> denite#do_map('do_action', 'split')
+			
 endfunction
