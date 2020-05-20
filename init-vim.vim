@@ -18,13 +18,6 @@ function Join(flag) abort
 	call s:join(begin, end)
 endfunction
 
-let g:myLongString='A string
-			\ that has a lot of lines
-			\ each beginning with a 
-			\ backslash to continue the previous one
-			\ and whitespace before the backslash
-			\ is ignored'
-
 function! s:join(begin, end) abort
 	let l:lines = getline(a:begin, a:end)
 	" execute "normal $"
