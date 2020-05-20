@@ -1,27 +1,19 @@
 execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-dein.vim"
+" init-vim.vim
+execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-general.vim"
+" init-vim.vim
+execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-vim.vim"
+" init-format.vim
+execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-format.vim"
+" denite.nvim
+execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-denite.vim"
+" coc.nvim
+execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-coc.vim"
+" sdcv.vim
+execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-sdcv.vim"
+" statusline
+execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-statusline.vim"
 
-if has("termguicolors")
-    " fix bug for vim
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
-    " enable true color
-    set termguicolors
-endif
-
-" persistent undo
-set undofile
-
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-
-set ffs=unix,dos
-set mouse=a
-
-set nu
-
-set updatetime=100
 
 cnoremap <C-b> <left>
 cnoremap <C-f> <right>
@@ -85,19 +77,6 @@ nnoremap <expr> q (&readonly ? ':bd<CR>' : 'q')
 autocmd FileType git*,gina*,fugitive*,qf nnoremap <buffer>q :bd<cr>
 autocmd FileType fugitive execute 'noremap <buffer> ? :help fugitive-map<cr>'
 autocmd FileType gitcommit execute 'noremap <buffer> <C-c><C-c> :wq<cr>'
-
-" init-vim.vim
-execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-vim.vim"
-" init-format.vim
-execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-format.vim"
-" denite.nvim
-execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-denite.vim"
-" coc.nvim
-execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-coc.vim"
-" sdcv.vim
-execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-sdcv.vim"
-" statusline
-execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-statusline.vim"
 
 let g:terminal_key = '<c-`>'
 nnoremap <leader>ot :call TerminalOpen()<cr>
