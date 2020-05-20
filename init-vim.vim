@@ -1,7 +1,7 @@
 autocmd! FileType vim call s:init_keybindings()
 
 function s:init_keybindings() abort
-	nnoremap <buffer> S i<cr>\ <Esc>
+	nnoremap <buffer>S :call Split()<cr>
 	nnoremap <buffer>J :call Join(v:false)<cr>
 	vnoremap <buffer>J :<c-u>call Join(v:true)<cr>
 	nnoremap <buffer> <leader>r :source %<cr>
@@ -18,6 +18,13 @@ function Join(flag) abort
 	call s:join(begin, end)
 endfunction
 
+let g:myLongString='A string
+			\ that has a lot of lines
+			\ each beginning with a 
+			\ backslash to continue the previous one
+			\ and whitespace before the backslash
+			\ is ignored'
+
 function! s:join(begin, end) abort
 	let l:lines = getline(a:begin, a:end)
 	" execute "normal $"
@@ -30,4 +37,14 @@ function! s:join(begin, end) abort
 	call setpos(".", l:pos)
 	execute "normal =="
 	call setpos(".", l:pos)
+endfunction
+
+function Split() abort
+	let l:col = col(".")
+	let l:line = " " . getline(".")
+	
+	call setline(".", "")
+		call setline(".", line[:l:col-1])
+	call append(line("."), "\\" . l:line[l:col-1:])
+	execute "normal j=="
 endfunction
