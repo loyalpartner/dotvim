@@ -34,6 +34,8 @@ let g:mapleader = " "
 " <f5> 在这里不起作用?
 " autocmd! filetype vim noremap <buffer> <F5> :source %<cr> 
 nnoremap <M-x> :Denite command<cr>
+
+nnoremap <expr> <leader>w feedkeys("<c-w>")
 nnoremap <leader>hi :h<cr>
 nnoremap <leader>hc :Denite help<cr>
 nnoremap <leader>hrr :<c-u>source $MYVIMRC<cr>
