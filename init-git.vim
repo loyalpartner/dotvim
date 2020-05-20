@@ -11,7 +11,8 @@ nnoremap <leader>gS :G stage %<cr>
 nnoremap <leader>gy :Gina browse --yank<cr>
 " open browser
 
-nnoremap <leader>gor :Gina browse<cr>
+nnoremap <leader>gor :Gbrowse<cr>
+vnoremap <leader>gor :Gbrowse<cr>
 
 nmap ]d <Plug>(GitGutterNextHunk)
 nmap [d <Plug>(GitGutterPrevHunk)
