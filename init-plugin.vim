@@ -22,3 +22,4 @@ if !has('nvim')
 endif
 call dein#add('Shougo/neomru.vim')
 call dein#add('skywind3000/vim-terminal-help')
+call dein#add('sbdchd/neoformat')

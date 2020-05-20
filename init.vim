@@ -95,6 +95,8 @@ autocmd FileType gitcommit execute 'noremap <buffer> <C-c><C-c> :wq<cr>'
 
 " init-vim.vim
 execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-vim.vim"
+" init-format.vim
+execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-format.vim"
 " denite.nvim
 execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-denite.vim"
 " coc.nvim
