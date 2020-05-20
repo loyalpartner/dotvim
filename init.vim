@@ -94,6 +94,8 @@ autocmd FileType qf execute 'nnoremap q :close!<cr>'
 autocmd FileType fugitive execute 'noremap <buffer> ? :help fugitive-map<cr>'
 autocmd FileType gitcommit execute 'noremap <buffer> <C-c><C-c> :wq<cr>'
 
+" init-vim.vim
+execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-vim.vim"
 " denite.nvim
 execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-denite.vim"
 " coc.nvim
