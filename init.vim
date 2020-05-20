@@ -51,20 +51,20 @@ nnoremap <leader>hdc :<C-u>e $MYVIMRC<cr>
 nnoremap <leader>hdd :cd 
 			\<c-r>=fnamemodify($MYVIMRC, ":h")<cr>
 			\<cr>
-			\:Denite file<cr>
+			\:Denite file/rec<cr>
 nnoremap <leader>hdp :<c-u>
 			\cd ~/.cache/dein/repos/github.com<cr>
-			\:Denite file<cr>
+			\:Denite file/rec<cr>
 
 " buffer
 " nnoremap <leader>bb :<c-u>CocList buffers<cr>
-nnoremap <leader>bb :<c-u>Denite buffer<cr>
+nnoremap <leader>bb :<c-u>Denite buffer file/rec<cr>
 nnoremap <leader>bp :bp<cr>
 nnoremap <leader>bn :bn<cr>
 nnoremap <leader>bd :bd<cr>
 
 " file
-nnoremap <leader>ff :Denite file<cr>
+nnoremap <leader>ff :Denite file/rec<cr>
 nnoremap <leader>fr :Denite file_mru<cr>
 
 "  git
