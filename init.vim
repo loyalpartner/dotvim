@@ -79,7 +79,7 @@ xmap id <Plug>(GitGutterTextObjectInnerVisual)
 xmap ad <Plug>(GitGutterTextObjectOuterVisual)
 
 " search and replace
-nnoremap <leader>sp :CocList grep<cr>
+nnoremap <leader>sp :Denite grep<cr>
 nnoremap <leader>sr :%s/<c-r>=expand("<cword>")<cr>/
 
 " quit
