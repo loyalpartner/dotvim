@@ -81,6 +81,10 @@ xmap ad <Plug>(GitGutterTextObjectOuterVisual)
 " search and replace
 nnoremap <leader>sp :CocList grep<cr>
 nnoremap <leader>sr :%s/<c-r>=expand("<cword>")<cr>/
+
+" quit
+nnoremap <leader>qq ZZ
+
 " replace in function
 autocmd filetype vim noremap <buffer> <leader>sf :?^fun?,/^endfun/s/
 
