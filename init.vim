@@ -65,17 +65,7 @@ nnoremap <leader>ff :Denite file<cr>
 nnoremap <leader>fr :Denite file_mru<cr>
 
 "  git
-nnoremap <leader>gg :<c-u>G<cr>
-nmap <leader>gs <Plug>(GitGutterStageHunk)
-nmap <Leader>gu <Plug>(GitGutterUndoHunk)
-nmap ]d <Plug>(GitGutterNextHunk)
-nmap [d <Plug>(GitGutterPrevHunk)
-" nmap <leader>gi <Plug>(coc-git-chunkinfo)
-" nmap <leader>gc <Plug>(coc-git-commit)
-omap id <Plug>(GitGutterTextObjectInnerPending)
-omap ad <Plug>(GitGutterTextObjectOuterPending)
-xmap id <Plug>(GitGutterTextObjectInnerVisual)
-xmap ad <Plug>(GitGutterTextObjectOuterVisual)
+execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-git.vim"
 
 " search and replace
 nnoremap <leader>sp :Denite grep<cr>
@@ -88,8 +78,8 @@ nnoremap <leader>qq ZZ
 autocmd filetype vim noremap <buffer> <leader>sf :?^fun?,/^endfun/s/
 
 " hack 
-nnoremap <expr> q (&readonly ? ':close!<CR>' : 'q')
-autocmd FileType qf execute 'nnoremap q :close!<cr>'
+nnoremap <expr> q (&readonly ? ':bd<CR>' : 'q')
+autocmd FileType git*,gina*,fugitive*,qf nnoremap <buffer>q :bd<cr>
 autocmd FileType fugitive execute 'noremap <buffer> ? :help fugitive-map<cr>'
 autocmd FileType gitcommit execute 'noremap <buffer> <C-c><C-c> :wq<cr>'
 
