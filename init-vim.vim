@@ -38,6 +38,6 @@ function Split() abort
 	
 	call setline(".", "")
 	call setline(".", line[:l:col-1])
-	call append(line("."), "\\" . l:line[l:col-1:])
+	call append(line("."), "\\" . l:line[l:col:])
 	execute "normal j=="
 endfunction
