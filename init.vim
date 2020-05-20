@@ -52,6 +52,9 @@ nnoremap <leader>hdd :cd
 			\<c-r>=fnamemodify($MYVIMRC, ":h")<cr>
 			\<cr>
 			\:Denite file<cr>
+nnoremap <leader>hdp :<c-u>
+			\cd ~/.cache/dein/repos/github.com<cr>
+			\:Denite file<cr>
 
 " buffer
 " nnoremap <leader>bb :<c-u>CocList buffers<cr>
