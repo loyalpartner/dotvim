@@ -1,8 +1,11 @@
 nnoremap <leader>gg :<c-u>G<cr>
 nmap <leader>gs <Plug>(GitGutterStageHunk)
-nmap <Leader>gu <Plug>(GitGutterUndoHunk)
+nmap <Leader>gr <Plug>(GitGutterUndoHunk)
 
 nnoremap <leader>gB :Gina blame<cr>
+nnoremap <leader>gL :Gina log<cr>
+nnoremap <leader>gF :G fetch<cr>
+nnoremap <leader>gS :G stage %<cr>
 
 " yan link
 nnoremap <leader>gy :Gina browse --yank<cr>
