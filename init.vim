@@ -41,7 +41,7 @@ let g:mapleader = " "
 " config
 " <f5> 在这里不起作用?
 " autocmd! filetype vim noremap <buffer> <F5> :source %<cr> 
-
+nnoremap <M-x> :
 nnoremap <leader>hi :h<cr>
 nnoremap <leader>hc :Denite help<cr>
 nnoremap <leader>hrr :<c-u>source $MYVIMRC<cr>
