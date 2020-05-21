@@ -2,22 +2,17 @@ autocmd! FileType vim call s:init_keybindings()
 
 function! s:init_keybindings()
   nnoremap <buffer>S :call Split()<cr>
-  nnoremap <buffer>J :call Join(v:false)<cr>
-  vnoremap <buffer>J :<c-u>call Join(v:true)<cr>
+  nnoremap <buffer>J :Join<cr>
+  vnoremap <buffer>J :Join<cr>
   nnoremap <buffer><leader>r :source %<cr>
   nnoremap <buffer>[[ :call ForwardFunction(-1)<cr>
   nnoremap <buffer>]] :call ForwardFunction(1)<cr>
 endfunction
 
 
-function! Join(flag) abort
-  let [begin, end] = [-1, -1]
-  if a:flag 
-    let [begin, end] = [line('v'), line("'>")]
-  else
-    let [begin, end] = [line('.'), line('.') + 1]
-  endif
-  call s:join(begin, end, ' ')
+function! Join() range
+  call s:join(a:firstline, 
+        \ a:lastline == a:firstline ? a:firstline + 1 : a:lastline, ' ')
 endfunction
 
 function! s:join(begin, end, sep) abort
@@ -41,6 +36,8 @@ function! Split() abort
   call append(line("."), "\\" . l:line[l:col:])
   execute "normal j=="
 endfunction
+
+com! -range Join <line1>,<line2>  call Join()
 
 " dir: 搜索方向
 " TODO： 循环搜索
