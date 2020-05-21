@@ -40,8 +40,7 @@ function! Split() abort
 	let l:col = col(".")
 	let l:line = " " . getline(".")
 	
-	call setline(".", "")
-	call setline(".", line[:l:col-1])
+	call setline(".", line[1:l:col-1])
 	call append(line("."), "\\" . l:line[l:col:])
 	execute "normal j=="
 endfunction
