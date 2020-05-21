@@ -1,13 +1,15 @@
 autocmd! FileType vim call s:init_keybindings()
 
-function! s:init_keybindings() abort
+function! s:init_keybindings()
+	echo "hello"
 	nnoremap <buffer>S :call Split()<cr>
 	nnoremap <buffer>J :call Join(v:false)<cr>
 	vnoremap <buffer>J :<c-u>call Join(v:true)<cr>
-	nnoremap <buffer> <leader>r :source %<cr>
-	noremap <buffer> [[ :call ForwardFunction(-1)<cr>
-	noremap <buffer> ]] :call ForwardFunction(1)<cr>
+	nnoremap <buffer><leader>r :source %<cr>
+	nnoremap <buffer>[[ :call ForwardFunction(-1)<cr>
+	nnoremap <buffer>]] :call ForwardFunction(1)<cr>
 endfunction
+
 
 function! Join(flag) abort
 	let [begin, end] = [-1, -1]
@@ -26,7 +28,8 @@ function! s:join(begin, end) abort
 	let l:pos =  getpos("v")
 	execute a:begin . ',' . a:end . 'd'
 	call map(l:lines, "substitute(v:val, '^\\s\\+','','g')")
-	call map(l:lines, "substitute(v:val, '^\\\\\\s\\+','','g')")
+	call map(l:lines, "substitute(v:val, '^\\\\','','g')")
+	call map(l:lines, "substitute(v:val, '^\\s\\+','','g')")
 	call append(a:begin>0?a:begin-1:0, join(l:lines,' '))    
 	call setpos(".", l:pos)
 	execute "normal =="
@@ -40,19 +43,25 @@ function! Split() abort
 	call setline(".", "")
 	call setline(".", line[:l:col-1])
 	call append(line("."), "\\" . l:line[l:col:])
-	execute "norm"".al j=="
+	execute "normal j=="
 endfunction
 
-function! ForwardFunction(dir) abort
-	let l:lines = getline(0, "$")	
+" dir: 搜索方向
+" TODO： 循环搜索
+function! ForwardFunction(dir) 
+	let l:lines = getline(1, "$")	
 
 	let l:begin = line(".") + a:dir
-	let l:end = a:dir == 1 ? line("$") : line(0)
+	let l:end = a:dir == 1 ? line("$") : 1
 
-	for i in range(l:begin, l:end, a:dir)
+	let l:range1 = range(l:begin, l:end, a:dir)
+	let l:range2 =  a:dir == 1 ? range(1, l:begin - a:dir, a:dir)  : range(line('$'), l:begin - a:dir, a:dir)
+
+	for i in extend(range1, range2)
 		let l:line = getline(i)
 		if l:line =~ "^fun.*"
-			execute "normal " . i ."G"
+			echo "normal " . i ."Gzz"
+			execute "normal " . i ."Gzz"
 			break
 		endif
 	endfor
