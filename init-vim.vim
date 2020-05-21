@@ -1,7 +1,7 @@
 autocmd! FileType vim call s:init_keybindings()
 
 function! s:init_keybindings()
-	echo "hello"
+	setlocal iskeyword=@,48-57,192-255,#
 	nnoremap <buffer>S :call Split()<cr>
 	nnoremap <buffer>J :call Join(v:false)<cr>
 	vnoremap <buffer>J :<c-u>call Join(v:true)<cr>
