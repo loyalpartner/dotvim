@@ -18,8 +18,8 @@ call dein#add('brglng/vim-im-select')
 " denite
 call dein#add('Shougo/denite.nvim')
 if !has('nvim')
-	call dein#add('roxma/nvim-yarp')
-	call dein#add('roxma/vim-hug-neovim-rpc')
+  call dein#add('roxma/nvim-yarp')
+  call dein#add('roxma/vim-hug-neovim-rpc')
 endif
 call dein#add('Shougo/neomru.vim')
 call dein#add('skywind3000/vim-terminal-help')

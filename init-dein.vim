@@ -14,8 +14,8 @@ if dein#load_state('~/.cache/dein')
     call dein#add('roxma/vim-hug-neovim-rpc')
   endif
 
-	execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-plugin.vim"
-  
+  execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-plugin.vim"
+
   call dein#end()
   call dein#save_state()
 endif
