@@ -69,7 +69,7 @@ nnoremap <leader>sp :Denite grep<cr>
 nnoremap <leader>sr :%s/<c-r>=expand("<cword>")<cr>/
 
 " quit
-nnoremap <leader>qq ZZ
+nnoremap <leader>qq :qa<cr>
 
 " replace in function
 autocmd filetype vim noremap <buffer> <leader>sf :?^fun?,/^endfun/s/
