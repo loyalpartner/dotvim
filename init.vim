@@ -31,24 +31,8 @@ set background=dark
 let g:mapleader = " "
 
 " config
-" <f5> 在这里不起作用?
-" autocmd! filetype vim noremap <buffer> <F5> :source %<cr> 
-nnoremap <M-x> :Denite command<cr>
-
-nnoremap <expr> <leader>w feedkeys("<c-w>")
-nnoremap <leader>hi :h<cr>
-nnoremap <leader>hh :Denite help<cr>
-nnoremap <leader>hrr :<c-u>source $MYVIMRC<cr>
-nnoremap <leader>hru :<c-u>call dein#update()<cr>
-
-nnoremap <leader>hdc :<C-u>e $MYVIMRC<cr>
-nnoremap <leader>hdd :cd 
-			\<c-r>=fnamemodify($MYVIMRC, ":h")<cr>
-			\<cr>
-			\:Denite file/rec<cr>
-nnoremap <leader>hdp :<c-u>
-			\cd ~/.cache/dein/repos/github.com<cr>
-			\:Denite file/rec<cr>
+" help
+execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-help.vim"
 
 " buffer
 " nnoremap <leader>bb :<c-u>CocList buffers<cr>
@@ -66,7 +50,9 @@ execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-git.vim"
 
 " search and replace
 nnoremap <leader>sp :Denite grep<cr>
-nnoremap <leader>sr :%s/<c-r>=expand("<cword>")<cr>/
+nnoremap <leader>sr :%s/\<
+			\<c-r>=expand("<cword>")<cr>
+			\\>/
 
 " quit
 nnoremap <leader>qq :qa<cr>
