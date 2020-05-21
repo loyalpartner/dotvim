@@ -1,7 +1,6 @@
 autocmd! FileType vim call s:init_keybindings()
 
 function! s:init_keybindings()
-  setlocal iskeyword=@,48-57,192-255,#
   nnoremap <buffer>S :call Split()<cr>
   nnoremap <buffer>J :call Join(v:false)<cr>
   vnoremap <buffer>J :<c-u>call Join(v:true)<cr>
@@ -18,22 +17,20 @@ function! Join(flag) abort
   else
     let [begin, end] = [line('.'), line('.') + 1]
   endif
-  call s:join(begin, end)
+  call s:join(begin, end, ' ')
 endfunction
 
-function! s:join(begin, end) abort
+function! s:join(begin, end, sep) abort
   let l:lines = getline(a:begin, a:end)
-  " execute "normal $"
-  " let l:pos = a:begin < a:end ? getpos(".") : getpos("v")
+  execute "normal $"
   let l:pos =  getpos("v")
   execute a:begin . ',' . a:end . 'd'
-  call map(l:lines, "substitute(v:val, escape('^\s\+',' \'),'','g')")
-  call map(l:lines, "substitute(v:val, escape('^\\',' \'),'','g')")
-  call map(l:lines, "substitute(v:val, escape('^\s\+',' \'),'','g')")
-  call append(a:begin>0?a:begin-1:0, join(l:lines,' '))    
+  call map(l:lines, "substitute(v:val, '^\\s\\+','','g')")
+  call map(l:lines, "substitute(v:val, '^\\\\','','g')")
+  call map(l:lines, "substitute(v:val, '^\\s\\+','','g')")
+  call append(a:begin>0?a:begin-1:0, join(l:lines, a:sep))    
   call setpos(".", l:pos)
-  execute "normal =="
-  call setpos(".", l:pos)
+  execute "normal ". l:pos[1] . "==" . (l:pos[2] + 1) . "|" 
 endfunction
 
 function! Split() abort
