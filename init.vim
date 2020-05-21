@@ -30,7 +30,7 @@ set background=dark
 
 let g:mapleader = " "
 
-autocmd CursorMoved set nohlsearch
+" autocmd CursorMoved * setlocal nohlsearch
 " config
 " help
 execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-help.vim"

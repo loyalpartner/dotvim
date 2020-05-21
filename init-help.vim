@@ -3,6 +3,7 @@ autocmd filetype help call s:init_keybindings()
 function! s:init_keybindings() abort
   nnoremap <buffer><c-p> :call search("\|[^\|]*\|", "b")<cr>zz
   nnoremap <buffer><c-n> :call search("\|[^\|]*\|", "")<cr>zz
+  nnoremap <buffer><cr> <c-]>
 endfunction
 
 " config
