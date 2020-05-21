@@ -21,6 +21,11 @@ cnoremap <C-a> <home>
 cnoremap <C-e> <end>
 cnoremap <m-j> <c-r>=expand("<cword>")<cr>
 
+nnoremap * *zz
+nnoremap # #zz
+nnoremap n nzz
+nnoremap N Nzz
+
 vnoremap < <gvh
 vnoremap > >gvl
 
