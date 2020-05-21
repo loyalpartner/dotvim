@@ -27,9 +27,9 @@ function! s:join(begin, end) abort
 	" let l:pos = a:begin < a:end ? getpos(".") : getpos("v")
 	let l:pos =  getpos("v")
 	execute a:begin . ',' . a:end . 'd'
-	call map(l:lines, "substitute(v:val, '^\\s\\+','','g')")
-	call map(l:lines, "substitute(v:val, '^\\\\','','g')")
-	call map(l:lines, "substitute(v:val, '^\\s\\+','','g')")
+	call map(l:lines, "substitute(v:val, escape('^\s\+',' \'),'','g')")
+	call map(l:lines, "substitute(v:val, escape('^\\',' \'),'','g')")
+	call map(l:lines, "substitute(v:val, escape('^\s\+',' \'),'','g')")
 	call append(a:begin>0?a:begin-1:0, join(l:lines,' '))    
 	call setpos(".", l:pos)
 	execute "normal =="
