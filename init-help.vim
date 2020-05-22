@@ -12,6 +12,7 @@ nnoremap <M-x> :Denite command<cr>
 nnoremap <expr> <leader>w feedkeys("<c-w>")
 nnoremap <leader>hi :h<cr>
 nnoremap <leader>hh :Denite help<cr>
+nnoremap <leader>ht :Denite tag<cr>
 nnoremap <leader>hrr :<c-u>source $MYVIMRC<cr>
 nnoremap <leader>hru :<c-u>call dein#update()<cr>
 

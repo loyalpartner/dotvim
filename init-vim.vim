@@ -2,6 +2,7 @@ autocmd! FileType vim call s:init()
 autocmd! BufWritePost *.vim call system("ctags -R")
 
 function! s:init()
+  execute "setlocal tags+=" . fnamemodify(expand("<sfile>"), ":p:h") . "/tags"
   execute "setlocal tags+=" . g:dein_directory . "/repos/github.com/tags"
   nnoremap <buffer>S :call Split()<cr>
   nnoremap <buffer>J :Join<cr>
