@@ -11,16 +11,18 @@ nnoremap <M-x> :Denite command<cr>
 
 nnoremap <expr> <leader>w feedkeys("<c-w>")
 nnoremap <leader>hi :h<cr>
-nnoremap <leader>hh :Denite help<cr>
-nnoremap <leader>ht :Denite tag<cr>
+nnoremap <leader>hh :Denite help<cr> " locate help
+nnoremap <leader>ht :Denite tag<cr> " locate tag
 nnoremap <leader>hrr :<c-u>source $MYVIMRC<cr>
 nnoremap <leader>hru :<c-u>call dein#update()<cr>
 
 nnoremap <leader>hdc :<C-u>e $MYVIMRC<cr>
+" open vimrc's directory
 nnoremap <leader>hdd :cd 
       \<c-r>=fnamemodify($MYVIMRC, ":h")<cr>
       \<cr>
       \:Denite file/rec<cr>
+" open plugin's directory
 nnoremap <leader>hdp :<c-u>
       \cd ~/.cache/dein/repos/github.com<cr>
       \:Denite file/rec<cr>
