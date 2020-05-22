@@ -17,6 +17,9 @@ set shiftwidth=2
 set ffs=unix,dos
 set mouse=a
 
-set nu
+set ignorecase
+set relativenumber
 
 set updatetime=100
+
+
