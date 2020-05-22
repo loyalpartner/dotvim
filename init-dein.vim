@@ -2,12 +2,12 @@ if &compatible
   set nocompatible
 endif
 " Add the dein installation directory into runtimepath
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+execute "set runtimepath+=" . g:dein_directory . '/repos/github.com/Shougo/dein.vim'
 
-if dein#load_state('~/.cache/dein')
-  call dein#begin('~/.cache/dein')
+if dein#load_state(g:dein_directory)
+  call dein#begin(g:dein_directory)
 
-  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+  call dein#add(g:dein_directory . '/repos/github.com/Shougo/dein.vim')
   call dein#add('Shougo/deoplete.nvim')
   if !has('nvim')
     call dein#add('roxma/nvim-yarp')

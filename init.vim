@@ -1,3 +1,6 @@
+let g:dein_directory = '~/.cache/dein'
+
+
 execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-dein.vim"
 " init-vim.vim
 execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-general.vim"
