@@ -20,6 +20,8 @@ set mouse=a
 set ignorecase
 set relativenumber
 
+set path+=**
+
 set updatetime=100
 
 
