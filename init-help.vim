@@ -8,6 +8,7 @@ endfunction
 
 " config
 nnoremap <M-x> :Denite command<cr>
+vnoremap <M-x> :Denite command<cr>
 
 nnoremap <expr> <leader>w feedkeys("<c-w>")
 nnoremap <leader>hi :h<cr>
