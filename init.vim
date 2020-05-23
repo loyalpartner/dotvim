@@ -43,8 +43,6 @@ execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-help.vim"
 nnoremap <leader>bb :<c-u>Denite buffer file/rec<cr>
 nnoremap <leader>bp :bp<cr>
 nnoremap <leader>bn :bn<cr>
-nnoremap gT :bp <c-r>=v:count1<cr><cr>
-nnoremap gt :bn <c-r>=v:count1<cr><cr>
 nnoremap <leader>bd :bd<cr>
 
 " file

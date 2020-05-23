@@ -12,12 +12,15 @@ function! s:denite_my_settings() abort
   nnoremap <silent><buffer><expr> q denite#do_map('quit')
   nnoremap <silent><buffer><expr> i denite#do_map('open_filter_buffer')
   nnoremap <silent><buffer><expr> <Space> denite#do_map('toggle_select').'j'
+  nnoremap <silent><buffer><expr> s denite#do_map('do_action', 'split')
+  nnoremap <silent><buffer><expr> v denite#do_map('do_action', 'vsplit')
+  nnoremap <silent><buffer><expr> t denite#do_map('do_action', 'tabopen')
 endfunction
 
 autocmd FileType denite-filter call s:denite_filter_my_settings()
 function! s:denite_filter_my_settings() abort
   inoremap <silent><buffer><expr> <C-c> denite#do_map('quit')
-  inoremap <silent><buffer><expr> <Esc> denite#do_map('quit')
+  " inoremap <silent><buffer><expr> <Esc> denite#do_map('quit')
   inoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
 
   inoremap <silent><buffer> <C-n> <Esc>

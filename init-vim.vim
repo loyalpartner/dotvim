@@ -1,5 +1,5 @@
 autocmd! FileType vim call s:init()
-autocmd! BufWritePost *.vim call system("ctags -R *.vim")
+autocmd! BufWritePost *.vim call system("ctags -R **/*.vim")
 
 function! s:init()
   execute "setlocal tags+=" . fnamemodify(expand("<sfile>"), ":p:h") . "/tags"
