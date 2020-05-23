@@ -20,7 +20,7 @@ endfunction
 autocmd FileType denite-filter call s:denite_filter_my_settings()
 function! s:denite_filter_my_settings() abort
   inoremap <silent><buffer><expr> <C-c> denite#do_map('quit')
-  " inoremap <silent><buffer><expr> <Esc> denite#do_map('quit')
+  inoremap <silent><buffer><expr> <Esc> denite#do_map('quit')
   inoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
 
   inoremap <silent><buffer> <C-n> <Esc>
