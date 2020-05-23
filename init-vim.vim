@@ -1,5 +1,5 @@
 autocmd! FileType vim call s:init()
-autocmd! BufWritePost *.vim call system("ctags -R")
+autocmd! BufWritePost *.vim call system("ctags -R *.vim")
 
 function! s:init()
   execute "setlocal tags+=" . fnamemodify(expand("<sfile>"), ":p:h") . "/tags"
@@ -45,8 +45,6 @@ com! -range Join <line1>,<line2>  call Join()
 " dir: 搜索方向
 " TODO： 循环搜索
 function! ForwardFunction(dir) 
-  let l:lines = getline(1, "$")	
-
   let l:begin = line(".") + a:dir
   let l:end = a:dir == 1 ? line("$") : 1
 
@@ -56,7 +54,6 @@ function! ForwardFunction(dir)
   for i in extend(range1, range2)
     let l:line = getline(i)
     if l:line =~ "^fun.*"
-      echo "normal " . i ."Gzz"
       execute "normal " . i ."Gzz"
       break
     endif

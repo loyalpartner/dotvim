@@ -24,11 +24,6 @@ cnoremap <C-a> <home>
 cnoremap <C-e> <end>
 cnoremap <m-j> <c-r>=expand("<cword>")<cr>
 
-nnoremap * *zz
-nnoremap # #zz
-nnoremap n nzz
-nnoremap N Nzz
-
 vnoremap < <gvh
 vnoremap > >gvl
 
@@ -69,7 +64,7 @@ nnoremap <leader>sr :%s/\<
 nnoremap <leader>qq :qa<cr>
 
 " replace in function
-autocmd filetype vim noremap <buffer> <leader>sf :?^fun?,/^endfun/s/
+autocmd filetype vim noremap <buffer> <leader>sf :OverCommandLine ?^fun?,/^endfun/s/\<\>/<cr><Left><Left><Left>
 
 " hack 
 nnoremap <expr> q (&readonly ? ':bd<CR>' : 'q')
