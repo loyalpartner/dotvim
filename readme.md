@@ -12,6 +12,7 @@ vim -u NONE -c "helptags dispatch/doc" -c q
 * predefined ranges
 
 |	item|	matches			            |equivalent                        |
+|_____|____________________________________________________________|
 |	\d	|digit			              |[0-9]                             |
 |	\D	|non-digit		            |[^0-9]                            |
 |	\x	|hex digit		            |[0-9a-fA-F]                       |
