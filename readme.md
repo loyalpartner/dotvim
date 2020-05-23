@@ -10,18 +10,31 @@ vim -u NONE -c "helptags dispatch/doc" -c q
 ```
 
 * predefined ranges
+```
+:h \w
+```
 
-|	item |	matches			            | equivalent                        |
-| ---  | -----------------------  | --------------------------------  |
-|	\d	 | digit			              | [0-9]                             |
-|	\D	 |non-digit		              |[^0-9]                             |
-|	\x	 |hex digit		              |[0-9a-fA-F]                        |
-|	\X	 |non-hex digit		          |[^0-9a-fA-F]                       |
-|	\s	 |white space		            |[ 	]     (<Tab> and <Space>)       |
-|	\S	 |non-white characters	    |[^ 	]     (not <Tab> and <Space>) |
-|	\l	 |lowercase alpha		        |[a-z]                              |
-|	\L	 |non-lowercase alpha	      |[^a-z]                             |
-|	\u	 |uppercase alpha		        |[A-Z]                              |
-|	\U	 |non-uppercase alpha	      |[^A-Z]                             |
+*	Character classes 
+| item	| matches				            | option     |
+| ----	| -------				            | -----------|
+| \i	  | identifier characters		  | 'isident'  |
+| \I	  | like \i, excluding digits |            |
+| \k	  | keyword characters		    | 'iskeyword'|
+| \K	  | like \k, excluding digits |            |
+| \p	  | printable characters		  | 'isprint'  |
+| \P	  | like \p, excluding digits |            |
+| \f	  | file name characters		  | 'isfname'  |
+| \F	  | like \f, excluding digits |            |
 
+* Match a line break
+```
+/classes\_s
+/"\_[^"]*"
+/one\_s\+two
+/"\_[^"]*"
+```
 
+* 
+```
+<c-w>] 
+```
