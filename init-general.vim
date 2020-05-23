@@ -19,6 +19,7 @@ set mouse=a
 
 set ignorecase
 set relativenumber
+set cursorline
 
 set path+=**
 
