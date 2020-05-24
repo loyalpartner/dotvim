@@ -3,6 +3,7 @@ autocmd! BufWritePost *.vim call system("ctags -R **/*.vim")
 
 function! s:init()
   setlocal iskeyword+=:
+  setlocal iskeyword-=_
   execute "setlocal tags+=" . fnamemodify(expand("<sfile>"), ":p:h") . "/tags"
   execute "setlocal tags+=" . g:dein_directory . "/repos/github.com/tags"
   execute "setlocal path+=" . g:dein_directory . "/repos/github.com/**"
