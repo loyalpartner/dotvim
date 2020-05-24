@@ -41,7 +41,7 @@ function! Split() abort
   execute "normal j=="
 endfunction
 
-com! -range Join <line1>,<line2>  call Join()
+com! -buffer -range Join <line1>,<line2>  call Join()
 
 " dir: 搜索方向
 " TODO： 循环搜索
