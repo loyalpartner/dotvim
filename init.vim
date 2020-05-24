@@ -60,6 +60,7 @@ nnoremap <leader>sr :%s/\<
 
 " quit
 nnoremap <leader>qq :qa<cr>
+nnoremap <leader>qp :pclose<cr>
 
 " replace in function
 autocmd filetype vim noremap <buffer> <leader>sf :OverCommandLine ?^fun?,/^endfun/s/\<\>/<cr><Left><Left><Left>
@@ -70,5 +71,6 @@ autocmd FileType git*,gina*,fugitive*,qf nnoremap <buffer>q :bd<cr>
 autocmd FileType fugitive execute 'noremap <buffer> ? :help fugitive-map<cr>'
 autocmd FileType gitcommit execute 'noremap <buffer> <C-c><C-c> :wq<cr>'
 
-let g:terminal_key = '<c-`>'
-nnoremap <leader>ot :call TerminalOpen()<cr>
+" let g:terminal_key = '<c-`>'
+" nnoremap <leader>ot :call TerminalOpen()<cr>
+nnoremap <c-`> :pclose<cr>
