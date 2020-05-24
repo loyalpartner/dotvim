@@ -17,8 +17,8 @@ let g:sdcv_dictionary_complete_list = [
       \"新华字典",
       \]
 
-nnoremap g. :<c-u>call sdcv#search_pointer()<cr>
-vnoremap <silent> g. v:<c-u>call sdcv#search_selection()<cr>
-nnoremap g> :<c-u>call sdcv#search_detail_pointer()<cr>
-vnoremap <silent> g> v:<c-u>call sdcv#search_detail_selection()<cr>
+nnoremap g. :<c-u>call sdcv#search_pointer("n")<cr>
+vnoremap g. v:<c-u>call sdcv#search_pointer("v")<cr>
+nnoremap g> :<c-u>call sdcv#search_detail_pointer("n")<cr>
+vnoremap g> v:<c-u>call sdcv#search_detail_pointer("v")<cr>
 
