@@ -29,3 +29,7 @@ nnoremap <leader>hdd :cd
 nnoremap <leader>hdp :<c-u>
       \cd ~/.cache/dein/repos/github.com<cr>
       \:Denite file/rec<cr>
+" open plugin's directory
+nnoremap <leader>hds :<c-u>
+      \cd ~/.cache/dein/repos/github.com<cr>
+      \:Denite grep<cr>
