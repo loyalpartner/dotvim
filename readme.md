@@ -1,4 +1,6 @@
 ## Tips
+* 有时候 `W`,`E`,`B` 比 `f` `t` 更合适
+
 * helptags
 ```shell
 vim -u NONE -c "helptags dispatch/doc" -c q
@@ -45,4 +47,15 @@ vim -u NONE -c "helptags dispatch/doc" -c q
 * see which key to map
 ```
 :h map-which-key
+```
+
+* execute command from register
+```
+:@"
+```
+
+* `=~` `!~` 受 `ignormecase` 影响
+```
+"a" =~? "A" # true
+"a" =~# "A" # false
 ```
