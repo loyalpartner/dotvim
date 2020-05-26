@@ -36,5 +36,6 @@ call dein#add('haya14busa/incsearch.vim')
 call dein#add('osyo-manga/vim-over')
 call dein#add('haya14busa/vim-asterisk')
 call dein#add('tommcdo/vim-lion')
-call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],
-					\ 'build': 'sh -c "cd app & yarn install"' })
+call dein#add('iamcco/markdown-preview.nvim', 
+      \{'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],
+      \ 'build': 'sh -c "cd app & yarn install"' })
