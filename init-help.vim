@@ -13,7 +13,7 @@ vnoremap <M-x> :Denite command<cr>
 nnoremap <expr> <leader>w feedkeys("<c-w>")
 nnoremap <leader>hi :h<cr>
 " locate help
-nnoremap <leader>hh :Denite help<cr> 
+nnoremap <leader>hh :Help<cr> 
 " locate tag
 nnoremap <leader>ht :Denite tag<cr> 
 nnoremap <leader>hrr :<c-u>source $MYVIMRC<cr>
@@ -33,3 +33,16 @@ nnoremap <leader>hdp :<c-u>
 nnoremap <leader>hds :<c-u>
       \cd ~/.cache/dein/repos/github.com<cr>
       \:Denite grep<cr>
+
+command! Help 
+      \ let word = expand("<cword>") |
+      \ if strlen(word) > 1 && exists("*" . word) || exists(":" . word) || exists(word) |
+      \   execute ("Denite tag -input=" . word) |
+      \ elseif exists("+" . word) || exists("$". word) || exists("&" . word)|
+      \   execute ("h " . word) |
+      \ else |
+      \   Denite tag |
+      \ endif
+
+
+
