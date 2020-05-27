@@ -13,6 +13,10 @@ function! s:init()
   nnoremap <buffer><leader>r :source %<cr>
   nnoremap <buffer>[[ :call ForwardFunction(-1)<cr>
   nnoremap <buffer>]] :call ForwardFunction(1)<cr>
+  " replace in function
+  noremap <buffer> <leader>sf :OverCommandLine ?^fun?,/^endfun/s/<cr>
+
+  com! -buffer -range Join <line1>,<line2>  call Join()
 endfunction
 
 
@@ -43,7 +47,6 @@ function! Split() abort
   execute "normal j=="
 endfunction
 
-com! -buffer -range Join <line1>,<line2>  call Join()
 
 " dir: 搜索方向
 " TODO： 循环搜索
