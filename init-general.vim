@@ -23,6 +23,8 @@ set cursorline
 
 set path+=**
 
+set spell
+
 set updatetime=100
 
 set hlsearch

@@ -1,21 +1,21 @@
 let g:dein_directory = '~/.cache/dein'
 
 
-execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-dein.vim"
+execute "source " . expand("<sfile>:h") . "/" . "init-dein.vim"
 " init-vim.vim
-execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-general.vim"
+execute "source " . expand("<sfile>:h") . "/" . "init-general.vim"
 " init-vim.vim
-execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-vim.vim"
+execute "source " . expand("<sfile>:h") . "/" . "init-vim.vim"
 " init-format.vim
-execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-format.vim"
+execute "source " . expand("<sfile>:h") . "/" . "init-format.vim"
 " denite.nvim
-execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-denite.vim"
+execute "source " . expand("<sfile>:h") . "/" . "init-denite.vim"
 " coc.nvim
-execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-coc.vim"
+execute "source " . expand("<sfile>:h") . "/" . "init-coc.vim"
 " sdcv.vim
-execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-sdcv.vim"
+execute "source " . expand("<sfile>:h") . "/" . "init-sdcv.vim"
 " statusline
-execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-statusline.vim"
+execute "source " . expand("<sfile>:h") . "/" . "init-statusline.vim"
 
 inoremap hh <Esc>
 cnoremap <C-b> <left>
@@ -36,7 +36,7 @@ let g:mapleader = " "
 " autocmd CursorMoved * setlocal nohlsearch
 " config
 " help
-execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-help.vim"
+execute "source " . expand("<sfile>:h") . "/" . "init-help.vim"
 
 " buffer
 " nnoremap <leader>bb :<c-u>CocList buffers<cr>
@@ -50,7 +50,7 @@ nnoremap <leader>ff :Denite file/rec<cr>
 nnoremap <leader>fr :Denite file_mru<cr>
 
 "  git
-execute "source " . fnamemodify(expand("<sfile>"), ":h") . "/" . "init-git.vim"
+execute "source " . expand("<sfile>:h") . "/" . "init-git.vim"
 
 " search and replace
 nnoremap <leader>sp :Denite grep<cr>
