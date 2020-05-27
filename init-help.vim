@@ -15,7 +15,7 @@ nnoremap <leader>hi :h<cr>
 " locate help
 nnoremap <leader>hh :Help<cr> 
 " locate tag
-nnoremap <leader>ht :Denite tag<cr> 
+nnoremap <leader>ht :Tag<cr> 
 nnoremap <leader>hrr :<c-u>source $MYVIMRC<cr>
 nnoremap <leader>hru :<c-u>call dein#update()<cr>
 nnoremap <leader>hrt :<c-u>call system("cd " . g:dein_directory . "/repos/github.com/;ctags -R **/*.vim")<cr>
@@ -36,13 +36,15 @@ nnoremap <leader>hds :<c-u>
 
 command! Help 
       \ let word = expand("<cword>") |
-      \ if strlen(word) > 1 && exists("*" . word) || exists(":" . word) || exists(word) |
+      \ let word = substitute(word, "^:", "", "") |
+      \ if strlen(word) > 1 && exists("*" . word) || exists(":" . word) || exists("+" . word) || exists("$". word) || exists("&" . word) || exists(word) |
+      \   execute ("Denite help -input=" . word) |
+      \ elseif len(taglist(word)) > 0 |
       \   execute ("Denite tag -input=" . word) |
-      \ elseif exists("+" . word) || exists("$". word) || exists("&" . word)|
-      \   execute ("h " . word) |
-      \ else |
-      \   Denite tag |
       \ endif
 
-
+command! Tag 
+      \ let word = expand("<cword>") |
+      \ let word = substitute(word, "^:", "", "") |
+      \ execute ("Denite tag -input=" . word) |
 
