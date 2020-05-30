@@ -23,6 +23,8 @@ execute "source " . expand("<sfile>:h") . "/" . "init-statusline.vim"
 execute "source " . expand("<sfile>:h") . "/" . "init-git.vim"
 " help
 execute "source " . expand("<sfile>:h") . "/" . "init-help.vim"
+" theme
+execute "source " . expand("<sfile>:h") . "/" . "init-theme.vim"
 
 inoremap hh <Esc>
 cnoremap <C-b> <left>
@@ -33,10 +35,6 @@ cnoremap <m-j> <c-r>=expand("<cword>")<cr>
 
 vnoremap < <gvh
 vnoremap > >gvl
-
-let g:airline_theme='one'
-colorscheme one
-set background=dark
 
 " buffer
 " nnoremap <leader>bb :<c-u>CocList buffers<cr>
