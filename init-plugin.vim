@@ -19,7 +19,6 @@ call dein#add('loyalpartner/vim-sdcv')
 call dein#add('airblade/vim-gitgutter')
 call dein#add('honza/vim-snippets')
 call dein#add('airblade/vim-rooter')
-call dein#add('brglng/vim-im-select')
 " denite
 call dein#add('Shougo/denite.nvim')
 if !has('nvim')
