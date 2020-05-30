@@ -39,3 +39,7 @@ call dein#add('tommcdo/vim-lion')
 call dein#add('iamcco/markdown-preview.nvim', 
       \{'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],
       \ 'build': 'sh -c "cd app & yarn install"' })
+
+if has("unix")
+  call dein#add('kovetskiy/sxhkd-vim')
+endif

@@ -20,6 +20,7 @@ nnoremap <leader>hrr :<c-u>source $MYVIMRC<cr>
 nnoremap <leader>hru :<c-u>call dein#update()<cr>
 nnoremap <leader>hrt :<c-u>call system("cd " . g:dein_directory . "/repos/github.com/;ctags -R **/*.vim")<cr>
 nnoremap <leader>hdc :<C-u>e $MYVIMRC<cr>
+
 " open vimrc's directory
 nnoremap <leader>hdd :cd 
       \<c-r>=fnamemodify($MYVIMRC, ":h")<cr>

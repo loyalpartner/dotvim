@@ -1,6 +1,9 @@
 let g:dein_directory = '~/.cache/dein'
 
 
+let g:mapleader = " "
+
+" config
 execute "source " . expand("<sfile>:h") . "/" . "init-dein.vim"
 " init-vim.vim
 execute "source " . expand("<sfile>:h") . "/" . "init-general.vim"
@@ -16,6 +19,10 @@ execute "source " . expand("<sfile>:h") . "/" . "init-coc.vim"
 execute "source " . expand("<sfile>:h") . "/" . "init-sdcv.vim"
 " statusline
 execute "source " . expand("<sfile>:h") . "/" . "init-statusline.vim"
+"  git
+execute "source " . expand("<sfile>:h") . "/" . "init-git.vim"
+" help
+execute "source " . expand("<sfile>:h") . "/" . "init-help.vim"
 
 inoremap hh <Esc>
 cnoremap <C-b> <left>
@@ -31,13 +38,6 @@ let g:airline_theme='one'
 colorscheme one
 set background=dark
 
-let g:mapleader = " "
-
-" autocmd CursorMoved * setlocal nohlsearch
-" config
-" help
-execute "source " . expand("<sfile>:h") . "/" . "init-help.vim"
-
 " buffer
 " nnoremap <leader>bb :<c-u>CocList buffers<cr>
 nnoremap <leader>bb :<c-u>Denite buffer file/rec<cr>
@@ -49,9 +49,6 @@ nnoremap <leader>bd :bd<cr>
 nnoremap <leader>ff :Denite file/rec<cr>
 nnoremap <leader>fr :Denite file_mru<cr>
 
-"  git
-execute "source " . expand("<sfile>:h") . "/" . "init-git.vim"
-
 " search and replace
 nnoremap <leader>sp :Denite grep<cr>
 nnoremap <leader>sr :%s/\<
@@ -61,9 +58,6 @@ nnoremap <leader>sr :%s/\<
 " quit
 nnoremap <leader>qq :qa<cr>
 nnoremap <leader>qp :pclose<cr>
-
-" replace in function
-autocmd filetype vim noremap <buffer> <leader>sf :OverCommandLine ?^fun?,/^endfun/s/\<\>/<cr><Left><Left><Left>
 
 " hack 
 nnoremap <expr> q (&readonly ? ':bd<CR>' : 'q')
