@@ -63,6 +63,11 @@ autocmd FileType git*,gina*,fugitive*,qf nnoremap <buffer>q :bd<cr>
 autocmd FileType fugitive execute 'noremap <buffer> ? :help fugitive-map<cr>'
 autocmd FileType gitcommit execute 'noremap <buffer> <C-c><C-c> :wq<cr>'
 
-" let g:terminal_key = '<c-`>'
-" nnoremap <leader>ot :call TerminalOpen()<cr>
-nnoremap <c-`> :pclose<cr>
+if has("unix")
+  let g:terminal_key = '<C-Space>'
+else
+  let g:terminal_key = '<C-`>'
+endif
+
+nnoremap <leader>ot :call TerminalOpen()<cr>
+" nnoremap <C-Space> :pclose<cr>
