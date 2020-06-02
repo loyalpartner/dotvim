@@ -1,6 +1,6 @@
 call dein#add('rakr/vim-one')
-call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
-" call dein#add('neoclide/coc.nvim', {'merged':0, 'build': 'yarn install --frozen-lockfile'})
+" call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
+call dein#add('neoclide/coc.nvim', {'merged':0, 'build': 'yarn install --frozen-lockfile'})
 call dein#add('tpope/vim-sensible')
 call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-surround')
