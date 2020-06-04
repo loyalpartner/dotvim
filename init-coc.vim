@@ -7,7 +7,7 @@ call coc#add_extension(
       \'coc-python',
       \'coc-vimlsp',
       \'coc-lists',
-      \'coc-snippets')
+      \'coc-tag')
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
