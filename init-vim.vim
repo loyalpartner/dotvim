@@ -27,13 +27,14 @@ endfunction
 
 function! s:join(begin, end, sep) abort
   let l:lines = getline(a:begin, a:end)
+  let l:line0 = l:lines[0] . " "
   execute "normal $"
   let l:pos =  getpos("v")
   execute a:begin . ',' . a:end . 'd'
   call map(l:lines, "substitute(v:val, '^\\s\\+','','g')")
   call map(l:lines, "substitute(v:val, '^\\\\','','g')")
   call map(l:lines, "substitute(v:val, '^\\s\\+','','g')")
-  call append(a:begin>0?a:begin-1:0, join(l:lines, a:sep))    
+  call append(a:begin>0?a:begin-1:0, l:line0 . join(l:lines[1:], a:sep))    
   call setpos(".", l:pos)
   execute "normal ". l:pos[1] . "==" . (l:pos[2] + 1) . "|" 
 endfunction
