@@ -26,6 +26,11 @@ execute "source " . expand("<sfile>:h") . "/" . "init-help.vim"
 " theme
 execute "source " . expand("<sfile>:h") . "/" . "init-theme.vim"
 
+" init-ahk.vim
+if has("win32")
+  execute "source " . expand("<sfile>:h") . "/" . "init-ahk.vim"
+endif
+
 inoremap hh <Esc>
 cnoremap <C-b> <left>
 cnoremap <C-f> <right>
