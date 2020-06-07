@@ -17,6 +17,8 @@ execute "source " . expand("<sfile>:h") . "/" . "init-denite.vim"
 execute "source " . expand("<sfile>:h") . "/" . "init-coc.vim"
 " sdcv.vim
 execute "source " . expand("<sfile>:h") . "/" . "init-sdcv.vim"
+" baidu-translator.vim
+execute "source " . expand("<sfile>:h") . "/" . "init-baidu-translator.vim"
 " statusline
 execute "source " . expand("<sfile>:h") . "/" . "init-statusline.vim"
 "  git
@@ -73,6 +75,9 @@ if has("unix")
 else
   let g:terminal_key = '<C-`>'
 endif
+
+nmap gs <Plug>BaiduTranslate
+vnoremap gs :<c-u>call <SID>opfunc(visualmode(), visualmode() ==# 'V' ? 0 : 1)<cr>
 
 nnoremap <leader>ot :call TerminalOpen()<cr>
 " nnoremap <C-Space> :pclose<cr>
