@@ -15,6 +15,7 @@ set softtabstop=2
 set shiftwidth=2
 
 set ffs=unix,dos
+set fileencodings=utf-8,ucs-bom,default,latin1
 set mouse=a
 
 set ignorecase
