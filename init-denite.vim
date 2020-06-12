@@ -6,7 +6,7 @@ autocmd FileType denite call s:denite_my_settings()
 
 function! s:denite_my_settings() abort
   call denite#do_map('open_filter_buffer')
-  call denite#custom#var('file/rec', 'command',
+  silent call denite#custom#var('file/rec', 'command',
       \ ['rg', '--files', '--vimgrep'])
   nnoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
   nnoremap <silent><buffer><expr> d denite#do_map('do_action', 'delete')
