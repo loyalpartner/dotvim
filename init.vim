@@ -68,7 +68,7 @@ nnoremap <leader>qp :pclose<cr>
 nnoremap <expr> q (&readonly ? ':bd<CR>' : 'q')
 autocmd FileType git*,gina*,fugitive*,qf nnoremap <buffer>q :bd<cr>
 autocmd FileType fugitive execute 'noremap <buffer> ? :help fugitive-map<cr>'
-autocmd FileType gitcommit execute 'noremap <buffer> <C-c><C-c> :wq<cr>'
+autocmd FileType gitcommit execute 'noremap <silent><buffer> <C-c><C-c> :wq<cr>'
 
 if has("unix")
   let g:terminal_key = '<C-Space>'
