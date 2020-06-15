@@ -44,3 +44,5 @@ if has("unix")
   call dein#add('kovetskiy/sxhkd-vim')
   call dein#add('christoomey/vim-tmux-navigator')
 endif
+
+call dein#add('AndrewRadev/splitjoin.vim')

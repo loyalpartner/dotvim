@@ -7,9 +7,9 @@ function! s:init()
   execute "setlocal tags+=" . fnamemodify(expand("<sfile>"), ":p:h") . "/tags"
   execute "setlocal tags+=" . g:dein_directory . "/repos/github.com/tags"
   execute "setlocal path+=" . g:dein_directory . "/repos/github.com/**"
-  nnoremap <buffer>S :call Split()<cr>
-  nnoremap <buffer>J :Join<cr>
-  vnoremap <buffer>J :Join<cr>
+  " nnoremap <buffer>S :call Split()<cr>
+  " nnoremap <buffer>J :Join<cr>
+  " vnoremap <buffer>J :Join<cr>
   nnoremap <buffer><leader>r :source %<cr>
   nnoremap <buffer>[[ :call ForwardFunction(-1)<cr>
   nnoremap <buffer>]] :call ForwardFunction(1)<cr>
